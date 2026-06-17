@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тануки × Т-Банк — обучение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== БАЗА ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcf3d4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .app {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border-radius: 48px;
+            padding: 32px 28px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.5);
+            position: relative;
+            transition: all 0.3s;
+        }
+        .progress-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #feda00, #f5a623);
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+        .progress-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #333;
+            min-width: 50px;
+            text-align: right;
+        }
+        .step { display: none; animation: fadeSlide 0.4s ease; }
+        .step.active { display: block; }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+        }
+        h2 .emoji { font-size: 2.2rem; margin-right: 8px; }
+        .subhead {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .card {
+            background: rgba(255,255,255,0.5);
+            border-radius: 24px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .card strong { color: #000; }
+        .card .icon { font-size: 1.8rem; margin-right: 10px; vertical-align: middle; }
+        .highlight-box {
+            background: #feda00;
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 6px 0;
+        }
+        .role-badge {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-left: 8px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            font-family: inherit;
+        }
+        .btn-primary { background: #1a1a1a; color: #fff; }
+        .btn-primary:hover { background: #333; transform: scale(1.02); }
+        .btn-secondary { background: rgba(0,0,0,0.05); color: #222; }
+        .btn-secondary:hover { background: rgba(0,0,0,0.1); }
+        .btn-success { background: #2e7d32; color: #fff; }
+        .btn-success:hover { background: #1e5a22; }
+        .btn:disabled { opacity: 0.4; pointer-events: none; }
+
+        /* ===== ТЕСТ ===== */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 14px 18px;
+            margin: 8px 0;
+            border-radius: 16px;
+            border: 2px solid rgba(0,0,0,0.08);
+            background: rgba(255,255,255,0.4);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+        }
+        .quiz-option:hover { background: rgba(255,255,255,0.8); border-color: #aaa; }
+        .quiz-option.correct { border-color: #2e7d32; background: #e8f5e9; }
+        .quiz-option.wrong { border-color: #c62828; background: #ffebee; }
+        .quiz-option.disabled { pointer-events: none; }
+        .quiz-option.selected {
+            border-color: #feda00;
+            background: #feda0040;
+            box-shadow: 0 0 0 2px #feda00;
+        }
+        .quiz-feedback {
+            margin-top: 12px;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 16px;
+        }
+        .quiz-feedback.success { background: #e8f5e9; color: #1e5a22; }
+        .quiz-feedback.error { background: #ffebee; color: #b71c1c; }
+
+        .certificate {
+            text-align: center;
+            background: linear-gradient(135deg, #fff9e0, #fcee9e);
+            border-radius: 32px;
+            padding: 40px 24px;
+            border: 4px solid #feda00;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .certificate h2 { font-size: 2.6rem; }
+        .certificate .name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: #1a1a1a;
+            color: #fff;
+            display: inline-block;
+            padding: 8px 40px;
+            border-radius: 60px;
+            margin: 20px 0;
+        }
+        .certificate .stamp { font-size: 4rem; margin: 16px 0; }
+
+        /* ===== ГАЛЕРЕЯ С ИЗОБРАЖЕНИЯМИ ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .gallery-item {
+            background: rgba(255,255,255,0.6);
+            border-radius: 20px;
+            padding: 16px 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: 0.2s;
+        }
+        .gallery-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.9); }
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            background: #f0f0f0;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+        }
+        .gallery-item .name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #111;
+            margin-top: 4px;
+        }
+        .gallery-item .filename {
+            font-size: 0.7rem;
+            color: #666;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 4px;
+            font-family: monospace;
+        }
+
+        @media (max-width: 600px) {
+            .app { padding: 20px 16px; }
+            h2 { font-size: 1.6rem; }
+            .btn { padding: 10px 20px; font-size: 0.9rem; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .certificate .name { font-size: 1.6rem; padding: 6px 20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+        }
+
+        @media print {
+            body { background: #fff; padding: 0.5cm; }
+            .app { box-shadow: none; border: 1px solid #ccc; backdrop-filter: none; }
+            .nav-buttons, .progress-wrap { display: none; }
+            .step { display: block !important; }
+            .step:not(.active) { display: none !important; }
+            .quiz-option { pointer-events: none; }
+            .certificate { border: 4px solid #feda00; }
+            .gallery-item { background: #f9f9f9; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+<div class="app" id="app">
+    <!-- ПРОГРЕСС -->
+    <div class="progress-wrap">
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="progress-label" id="progressLabel">0%</span>
+    </div>
+
+    <!-- ===== ШАГ 0: ВСТУПЛЕНИЕ ===== -->
+    <div class="step active" data-step="0">
+        <h2><span class="emoji">👋</span> Привет, коллега!</h2>
+        <div class="subhead">
+            Мы запускаем классную акцию вместе с <strong>Т-Банком</strong>.<br>
+            Ты — часть команды, и от тебя зависит, чтобы всё прошло идеально.
+        </div>
+        <div class="card">
+            <p><span class="icon">🧡</span> <strong>Почему это важно?</strong></p>
+            <p style="margin-top: 6px;">Т-Банк любит <strong>прозрачность</strong> — как в рекламе, так и в жизни. Мы будем доставлять <strong>прозрачные спринг-роллы и наши фирменные роллы</strong>, в прозрачных пакетах, с прозрачными подарками. Каждая деталь на виду!</p>
+            <p style="margin-top: 10px; background: #feda00; padding: 8px 14px; border-radius: 40px; display: inline-block; font-weight: 700;">⚠️ За ошибки — штрафы в миллионах!</p>
+        </div>
+        <div class="card">
+            <p><span class="icon">🎯</span> <strong>Кто ты?</strong> Выбери свою роль, чтобы я подсказывал тебе самое важное.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                <button class="btn btn-primary" onclick="selectRole('сборщик')">📦 Сборщик</button>
+                <button class="btn btn-primary" onclick="selectRole('курьер')">🚴 Курьер</button>
+                <button class="btn btn-primary" onclick="selectRole('менеджер')">📋 Менеджер</button>
+                <button class="btn btn-primary" onclick="selectRole('повар')">👨‍🍳 Повар</button>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.9rem; color: #555;">(выбери, чтобы увидеть персональные подсказки)</p>
+        </div>
+        <div class="nav-buttons">
+            <span></span>
+            <button class="btn btn-primary" onclick="goToStep(1)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 1: ЦЕННОСТЬ ===== -->
+    <div class="step" data-step="1">
+        <h2><span class="emoji">🌟</span> Прозрачность — это круто</h2>
+        <div class="subhead">
+            Т-Банк с самого начала говорит о <strong>открытости</strong>. Мы поддерживаем это визуально:
+        </div>
+        <div class="card">
+            <ul style="list-style: none; padding: 0; font-size: 1.05rem; line-height: 2;">
+                <li>✅ <strong>Прозрачные</strong> спринг-роллы</li>
+                <li>✅ <strong>Прозрачная</strong> упаковка</li>
+                <li>✅ <strong>Прозрачный</strong> гостевой бокс</li>
+                <li>✅ <strong>Прозрачный</strong> пакет для доставки</li>
+            </ul>
+        </div>
+        <div class="card" style="background: #feda0020; border-color: #feda00;">
+            <p><span class="icon">💡</span> <strong>Запомни:</strong> мы не прячем еду — мы её показываем. Поэтому каждый заказ должен выглядеть как на витрине.</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(0)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(2)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 2: УПАКОВКА ===== -->
+    <div class="step" data-step="2">
+        <h2><span class="emoji">📦</span> Упаковка — основа</h2>
+        <div class="subhead">
+            Если в заказе есть <strong>хоть одно блюдо Т-банка</strong> — действуем по особому правилу.
+        </div>
+        <div class="card">
+            <p><span class="icon">🛍️</span> <strong>1. Все заказы</strong> складываем в <strong>прозрачный брендированный пакет</strong> Т-банка.</p>
+            <p style="margin-top: 8px;"><span class="icon">🧊</span> <strong>2. Внутрь пакета обязательно</strong> кладём <strong>прозрачный зиплок (гостевой бокс)</strong> (вместо нашего белого брендированного).</p>
+            <p style="margin-top: 8px;"><span class="icon">📌</span> Если блюда Т-банка нет — действуем по <strong>нашим привычным стандартам Тануки</strong>.</p>
+        </div>
+        <div class="card" style="background: #ffebee; border-color: #c62828;">
+            <p><span class="icon">⛔</span> <strong>Важно!</strong> Если заканчиваются <strong>прозрачные контейнеры для сета или спринг-роллов</strong> — блюда или блюдо встаёт в стоп. Нельзя заменять на обычную упаковку — это нарушит прозрачность и приведёт к штрафам.</p>
+        </div>
+        <div class="card" style="background: #f5f5f5;">
+            <p><span class="icon">📋</span> <strong>Что делаем, когда что-то закончилось:</strong></p>
+            <ul style="padding-left: 20px; line-height: 2;">
+                <li>Если заканчиваются <strong>подарки</strong> (брелок, визитки, палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
+                <li>Если заканчиваются <strong>пакеты или зиплоки</strong> → доставляем в <strong>наших обычных (брендированных Тануки белый)</strong>.</li>
+                <li>Если заканчивается <strong>сама упаковка (контейнеры)</strong> → блюдо встаёт в стоп.</li>
+            </ul>
+        </div>
+        <div class="card" id="roleTip2" style="border-left: 6px solid #feda00;">
+            <p><span class="icon">🤝</span> <span id="roleTipText2">Выбери роль, чтобы увидеть совет.</span></p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(1)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(3)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 3: ПОДАРКИ ===== -->
+    <div class="step" data-step="3">
+        <h2><span class="emoji">🎁</span> Подарки на доставку</h2>
+        <div class="subhead">
+            Правила для доставки.
+        </div>
+        <div class="card">
+            <p><span class="icon">🍱</span> <strong>Все 4 вкуса</strong> → брелок (только МСК/МО) + визитка</p>
+            <p><span class="icon">📦</span> <strong>Сет «прозрачный»</strong> → палочки + визитка</p>
+            <p><span class="icon">🍣</span> <strong>Любой спринг-ролл</strong> → <span class="highlight-box">одна визитка</span></p>
+        </div>
+        <div class="card">
+            <p><span class="icon">💡</span> <strong>Если заканчиваются подарки</strong> (брелоки, палочки, визитки) — доставляем заказ <strong>без них</strong>. Это разрешено.</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(2)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(4)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 4: ЧТО МЫ ИСПОЛЬЗУЕМ ===== -->
+    <div class="step" data-step="4">
+        <h2><span class="emoji">🖼️</span> Что мы используем</h2>
+        <div class="subhead">
+            Вот все материалы и подарки для акции. Запомни, как они выглядят!<br>
+            <span style="font-size: 0.9rem; color: #666;">Фотографии хранятся в папке <strong>images/</strong> рядом с этим файлом.</span>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/brelok.png" alt="Брелок" loading="lazy" />
+                <div class="name">Брелок</div>
+                <div class="filename">images/brelok.png</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/vizitka.png" alt="Визитка" loading="lazy" />
+                <div class="name">Визитка</div>
+                <div class="filename">images/vizitka.png</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/palochki.png" alt="Палочки" loading="lazy" />
+                <div class="name">Палочки</div>
+                <div class="filename">images/palochki.png</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/prozrachnyi_paket.png" alt="Прозрачный брендированный пакет" loading="lazy" />
+                <div class="name">Прозрачный брендированный пакет</div>
+                <div class="filename">images/prozrachnyi_paket.png</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/prozrachnyi_ziplok.png" alt="Прозрачный зиплок (гостевой бокс)" loading="lazy" />
+                <div class="name">Прозрачный зиплок (гостевой бокс)</div>
+                <div class="filename">images/prozrachnyi_ziplok.png</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/prozrachnyi_konteiner.png" alt="Прозрачный контейнер" loading="lazy" />
+                <div class="name">Прозрачный контейнер</div>
+                <div class="filename">images/prozrachnyi_konteiner.png</div>
+            </div>
+        </div>
+
+        <div class="card" style="background: #f5f5f5;">
+            <p><span class="icon">📂</span> <strong>Названия файлов для дизайнеров:</strong></p>
+            <ul style="padding-left: 24px; line-height: 1.8; font-family: monospace; font-size: 0.9rem;">
+                <li>images/brelok.png</li>
+                <li>images/vizitka.png</li>
+                <li>images/palochki.png</li>
+                <li>images/prozrachnyi_paket.png</li>
+                <li>images/prozrachnyi_ziplok.png</li>
+                <li>images/prozrachnyi_konteiner.png</li>
+            </ul>
+            <p style="margin-top: 8px; font-size: 0.9rem; color: #555;">Поместите файлы в папку <strong>images/</strong> рядом с этим HTML-файлом.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(3)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(5)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 5: КОНТЕЙНЕРЫ ===== -->
+    <div class="step" data-step="5">
+        <h2><span class="emoji">🍣</span> Контейнер = один спринг-ролл</h2>
+        <div class="subhead">
+            Это суперважно для качества!
+        </div>
+        <div class="card" style="border-color: #feda00;">
+            <p style="font-size: 1.2rem; font-weight: 700;">✅ Каждый спринг-ролл — в <strong>отдельный</strong> прозрачный контейнер.</p>
+            <p style="margin-top: 10px;">❌ <strong>Нельзя</strong> класть два и более ролла в один контейнер — они слипнутся, и гость расстроится.</p>
+            <p style="margin-top: 10px;">📌 Если заказано 3 ролла → нужно 3 контейнера. Просто и понятно.</p>
+        </div>
+        <div class="card">
+            <p><span class="icon">🧑‍🍳</span> <strong>Для повара:</strong> готовь каждый спринг-ролл отдельно и сразу укладывай в отдельный контейнер.</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(4)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(6)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 6: ПОВАР И ПРОВЕРКА ===== -->
+    <div class="step" data-step="6">
+        <h2><span class="emoji">🧑‍🍳</span> Повар готовит, сборщик проверяет</h2>
+        <div class="subhead">
+            В акции участвуют все. У каждого своя задача, но вместе мы делаем идеальный заказ.
+        </div>
+        <div class="card" style="border-left: 6px solid #feda00;">
+            <p><span class="icon">🔪</span> <strong>Повар:</strong></p>
+            <ul style="padding-left: 24px; line-height: 2;">
+                <li>Готовит спринг-роллы и сет по стандарту.</li>
+                <li>Упаковывает каждый спринг-ролл или сет в отдельный прозрачный контейнер.</li>
+                <li>Передаёт упакованное блюдо сборщику для финальной упаковки и проверки.</li>
+            </ul>
+        </div>
+        <div class="card" style="border-left: 6px solid #2e7d32;">
+            <p><span class="icon">📋</span> <strong>Сборщик и менеджер:</strong></p>
+            <ul style="padding-left: 24px; line-height: 2;">
+                <li>Проверяют работу повара: каждое блюдо в отдельном контейнере, согласно стандартам и условиям акции.</li>
+                <li>Сверяют количество с количеством, указанным в бланке заказа.</li>
+                <li>Комплектуют прозрачный зиплок (гостевой бокс) и правильность подарков (по схеме).</li>
+                <li>Только после проверки упаковывают заказ в прозрачный пакет.</li>
+            </ul>
+        </div>
+        <div class="card" id="roleTip6" style="border-left: 6px solid #feda00;">
+            <p><span class="icon">🤝</span> <span id="roleTipText6">Выбери роль, чтобы увидеть персональный совет.</span></p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(5)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(7)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 7: ЧЕК-ЛИСТ ===== -->
+    <div class="step" data-step="7">
+        <h2><span class="emoji">✅</span> Чек-лист сборщика</h2>
+        <div class="subhead">
+            Перед отправкой каждый заказ проходит эту проверку. Не пропускай ни один пункт!
+        </div>
+        <div class="card">
+            <ul style="list-style: none; padding: 0; font-size: 1rem; line-height: 2.2;">
+                <li>☐ Проверили внешний вид блюд на раздаче (все блюда сделаны по стандарту).</li>
+                <li>☐ Упаковали в прозрачные упаковки (контейнеры).</li>
+                <li>☐ Проверили, что повар уложил каждый спринг-ролл в <strong>отдельный</strong> контейнер.</li>
+                <li>☐ Заказ положили в прозрачный пакет.</li>
+                <li>☐ Вместо нашего брендированного зиплока — <strong>прозрачный зиплок (гостевой бокс)</strong>.</li>
+                <li>☐ Предупредили курьера об осторожности.</li>
+                <li>☐ Сверились со схемой подарков и ничего не забыли.</li>
+            </ul>
+        </div>
+        <div class="card" style="background: #ffebee; border-color: #c62828;">
+            <p><span class="icon">⚠️</span> <strong>Штрафы — миллионы!</strong> Договор с Т-банком требует идеального качества. Ошибка = большие деньги.</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(6)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(8)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 8: СЛОЖНЫЕ СЛУЧАИ ===== -->
+    <div class="step" data-step="8">
+        <h2><span class="emoji">🧩</span> Сложные случаи</h2>
+        <div class="subhead">
+            Для менеджеров и сборщиков — разбираем нестандартные заказы и ситуации с расходниками.
+        </div>
+        <div class="card" style="border-left: 6px solid #feda00;">
+            <p><span class="icon">📋</span> <strong>Ситуация 1: Заказаны два разных спринг-ролла (не все 4).</strong></p>
+            <ul style="padding-left: 24px; line-height: 2;">
+                <li>✅ <strong>Кладём:</strong> визитку в прозрачный гостевой бокс.</li>
+                <li>❌ <strong>Не кладём:</strong> брелок, палочки (это только для сета «прозрачный» и всех 4 вкусов).</li>
+            </ul>
+        </div>
+        <div class="card" style="border-left: 6px solid #2e7d32;">
+            <p><span class="icon">📦</span> <strong>Ситуация 2: Заказаны все 4 вкуса + сет «Прозрачный».</strong></p>
+            <ul style="padding-left: 24px; line-height: 2;">
+                <li>✅ <strong>Кладём:</strong> визитку, палочки (для сета), брелок (только если МСК/МО) в прозрачный зиплок.</li>
+                <li>Всё по максимуму!</li>
+            </ul>
+        </div>
+        <div class="card" style="background: #ffebee; border-color: #c62828;">
+            <p><span class="icon">⛔</span> <strong>Что делать, когда что-то закончилось?</strong></p>
+            <ul style="padding-left: 24px; line-height: 2; list-style: none;">
+                <li><strong>а) Закончились подарки</strong> (брелок, визитки, палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
+                <li><strong>б) Закончились пакеты или зиплоки</strong> → доставляем в <strong>наших белых (бумажных Тануки)</strong> — это допустимо, но только если нет прозрачных.</li>
+                <li><strong>в) Закончилась прозрачная упаковка</strong> (контейнеры) → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">блюдо встаёт в стоп</span>. Нельзя заменять на обычную!</li>
+            </ul>
+        </div>
+        <div class="card" id="roleTip8" style="border-left: 6px solid #feda00;">
+            <p><span class="icon">🤝</span> <span id="roleTipText8">Выбери роль, чтобы увидеть совет.</span></p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(7)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(9)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 9: ОСТОРОЖНОСТЬ ===== -->
+    <div class="step" data-step="9">
+        <h2><span class="emoji">🚴</span> Курьер, внимание!</h2>
+        <div class="subhead">
+            Упаковка прозрачная — каждый дефект видно. Будь аккуратен.
+        </div>
+        <div class="card">
+            <p><span class="icon">📢</span> <strong>Обязательно курьеру:</strong></p>
+            <p style="background: #feda00; padding: 12px 16px; border-radius: 20px; font-weight: 700; margin: 10px 0;">
+                «Сумку нельзя наклонять, кидать, переворачивать. Везти горизонтально и аккуратно».
+            </p>
+        </div>
+        <div class="card">
+            <p><span class="icon">🧩</span> <strong>Для менеджеров:</strong> убедитесь, что операторы и курьер поняли инструкции. Проведите с сотрудниками 5-минутный брифинг перед началом смены.</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(8)">← Назад</button>
+            <button class="btn btn-primary" onclick="goToStep(10)">Далее →</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 10: ТЕСТ ===== -->
+    <div class="step" data-step="10">
+        <h2><span class="emoji">🧠</span> Проверь себя</h2>
+        <div class="subhead">
+            Ответь на все вопросы. Будь внимателен!
+        </div>
+        <div id="quizContainer"></div>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(9)">← Назад</button>
+            <button class="btn btn-success" id="quizSubmitBtn" onclick="submitQuiz()" disabled>Проверить</button>
+        </div>
+    </div>
+
+    <!-- ===== ШАГ 11: СЕРТИФИКАТ ===== -->
+    <div class="step" data-step="11">
+        <div class="certificate">
+            <div class="stamp">🏆</div>
+            <h2>Ты — суперзвезда!</h2>
+            <p style="font-size: 1.2rem;">Поздравляем, ты прошёл обучение по акции</p>
+            <p style="font-size: 1.1rem; margin: 12px 0;"><strong>Тануки × Т-Банк</strong></p>
+            <div class="name" id="certName">Сотрудник</div>
+            <p style="margin-top: 16px; font-weight: 600;">Теперь ты знаешь всё о прозрачности, подарках и упаковке.</p>
+            <p style="margin-top: 8px; color: #555;">Распечатай этот сертификат и повесь на видное место!</p>
+            <button class="btn btn-primary" style="margin-top: 20px;" onclick="window.print()">🖨️ Распечатать</button>
+            <button class="btn btn-secondary" style="margin-top: 12px;" onclick="resetCourse()">🔄 Пройти заново</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== ДАННЫЕ =====
+    const TOTAL_STEPS = 12;
+    let currentStep = 0;
+    let userRole = 'сотрудник';
+    let quizAnswered = false;
+    let quizScore = 0;
+
+    const quizQuestions = [
+        {
+            question: 'Если в заказе есть блюдо Т-банка, какой пакет мы используем?',
+            options: ['Обычный коричневый', 'Прозрачный брендированный', 'Любой, какой есть'],
+            correct: 1
+        },
+        {
+            question: 'Сколько визиток кладём при заказе одного спринг-ролла на доставку?',
+            options: ['Одну', 'Две', 'Ни одной'],
+            correct: 0
+        },
+        {
+            question: 'Можно ли положить два спринг-ролла в один контейнер?',
+            options: ['Да, если они маленькие', 'Нет, только по одному', 'Да, если завернуть в плёнку'],
+            correct: 1
+        },
+        {
+            question: 'Кто проверяет, что повар правильно упаковал каждое блюдо?',
+            options: ['Курьер', 'Сборщик и менеджер', 'Никто, это не важно'],
+            correct: 1
+        },
+        {
+            question: 'Что обязательно нужно сообщить курьеру?',
+            options: ['Что заказ горячий', 'Что пакет нельзя наклонять и кидать', 'Что нужно торопиться'],
+            correct: 1
+        },
+        {
+            question: 'Заказаны два разных спринг-ролла (не все 4). Что кладём?',
+            options: [
+                'Только визитку',
+                'Визитку в прозрачный гостевой бокс',
+                'Брелок и палочки'
+            ],
+            correct: 1
+        },
+        {
+            question: 'Заказаны все 4 вкуса + сет «Прозрачный». Что кладём?',
+            options: [
+                'Только визитку и палочки',
+                'Визитку, палочки, брелок (МСК/МО) в прозрачный зиплок',
+                'Ничего, кроме еды'
+            ],
+            correct: 1
+        },
+        {
+            question: 'Что делаем, если заканчиваются прозрачные контейнеры?',
+            options: [
+                'Выдаём в обычной упаковке',
+                'Ставим блюдо в стоп',
+                'Выдаём без упаковки'
+            ],
+            correct: 1
+        }
+    ];
+
+    const roleTips = {
+        сборщик: '👷 Сборщик: проверь работу повара, затем сверись со схемой подарков. В сложных случаях руководствуйся правилами: при отсутствии подарков — выдаём без них, при отсутствии пакетов/зиплоков — берём белые Тануки, при отсутствии контейнеров — стоп.',
+        курьер: '🚴 Курьер: запомни фразу для осторожной перевозки и всегда проверяй целостность пакета.',
+        менеджер: '📋 Менеджер: контролируй весь процесс, особенно сложные случаи. Если заканчиваются контейнеры — немедленно останавливай продажу. Проводи брифинги.',
+        повар: '👨‍🍳 Повар: готовь аккуратно, каждый ролл в отдельный контейнер. Если заканчиваются контейнеры — сразу сообщай менеджеру, блюдо встаёт в стоп.'
+    };
+
+    function selectRole(role) {
+        userRole = role;
+        document.querySelectorAll('.btn-primary').forEach(b => {
+            if (b.textContent.includes(role) || b.textContent.includes('Выбери')) {
+                b.style.background = '#feda00';
+                b.style.color = '#000';
+            } else {
+                b.style.background = '';
+                b.style.color = '';
+            }
+        });
+        updateRoleTips();
+        alert(`Отлично! Ты — ${role}. Теперь я буду давать тебе персональные советы.`);
+    }
+
+    function updateRoleTips() {
+        const tip = roleTips[userRole] || '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
+        document.getElementById('roleTipText2').textContent = tip;
+        document.getElementById('roleTipText6').textContent = tip;
+        document.getElementById('roleTipText8').textContent = tip;
+    }
+
+    function goToStep(step) {
+        if (step < 0 || step >= TOTAL_STEPS) return;
+        if (step === 10) {
+            quizAnswered = false;
+            renderQuiz();
+            document.getElementById('quizSubmitBtn').disabled = true;
+            document.getElementById('quizSubmitBtn').textContent = 'Проверить';
+            document.getElementById('quizSubmitBtn').onclick = function() { submitQuiz(); };
+        }
+        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+        document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+        currentStep = step;
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress() {
+        const pct = Math.round((currentStep / (TOTAL_STEPS - 1)) * 100);
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressLabel').textContent = pct + '%';
+    }
+
+    function renderQuiz() {
+        const container = document.getElementById('quizContainer');
+        let html = '';
+        quizQuestions.forEach((q, idx) => {
+            html += `<div class="card" style="margin-bottom: 20px;">
+                        <p><strong>${idx+1}. ${q.question}</strong></p>`;
+            q.options.forEach((opt, oi) => {
+                html += `<button class="quiz-option" data-q="${idx}" data-opt="${oi}" onclick="selectOption(${idx}, ${oi})">${opt}</button>`;
+            });
+            html += `<div id="quizFeedback${idx}" class="quiz-feedback" style="display:none;"></div>
+                    </div>`;
+        });
+        container.innerHTML = html;
+        quizAnswered = false;
+        document.getElementById('quizSubmitBtn').disabled = true;
+        quizScore = 0;
+        selectedOptions = {};
+    }
+
+    let selectedOptions = {};
+
+    function selectOption(qIdx, optIdx) {
+        if (quizAnswered) return;
+        const container = document.getElementById('quizContainer');
+        const allOpts = container.querySelectorAll(`.quiz-option[data-q="${qIdx}"]`);
+        allOpts.forEach(el => {
+            el.classList.remove('selected', 'correct', 'wrong', 'disabled');
+        });
+        const chosen = container.querySelector(`.quiz-option[data-q="${qIdx}"][data-opt="${optIdx}"]`);
+        chosen.classList.add('selected', 'disabled');
+        selectedOptions[qIdx] = optIdx;
+        const total = quizQuestions.length;
+        let answered = 0;
+        for (let i = 0; i < total; i++) {
+            if (selectedOptions[i] !== undefined) answered++;
+        }
+        document.getElementById('quizSubmitBtn').disabled = (answered < total);
+    }
+
+    function submitQuiz() {
+        if (quizAnswered) return;
+        const total = quizQuestions.length;
+        let correct = 0;
+        const container = document.getElementById('quizContainer');
+        for (let i = 0; i < total; i++) {
+            const selected = selectedOptions[i];
+            const q = quizQuestions[i];
+            const feedback = document.getElementById(`quizFeedback${i}`);
+            const options = container.querySelectorAll(`.quiz-option[data-q="${i}"]`);
+            options.forEach((el, idx) => {
+                el.classList.add('disabled');
+                el.classList.remove('selected');
+                if (idx === q.correct) {
+                    el.classList.add('correct');
+                } else if (idx === selected && selected !== q.correct) {
+                    el.classList.add('wrong');
+                }
+            });
+            if (selected === q.correct) {
+                correct++;
+                feedback.style.display = 'block';
+                feedback.className = 'quiz-feedback success';
+                feedback.textContent = '✅ Верно!';
+            } else {
+                feedback.style.display = 'block';
+                feedback.className = 'quiz-feedback error';
+                feedback.textContent = `❌ Неверно. Правильный ответ: "${q.options[q.correct]}"`;
+            }
+        }
+        quizAnswered = true;
+        document.getElementById('quizSubmitBtn').disabled = true;
+        quizScore = correct;
+        const submitBtn = document.getElementById('quizSubmitBtn');
+        if (correct === total) {
+            submitBtn.textContent = '🏆 Получить сертификат';
+            submitBtn.onclick = function() {
+                goToStep(11);
+                document.getElementById('certName').textContent = userRole === 'сотрудник' ? 'Сотрудник' : userRole;
+            };
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.textContent = '🔄 Попробовать снова';
+            submitBtn.onclick = function() {
+                resetQuiz();
+            };
+            submitBtn.disabled = false;
+        }
+    }
+
+    function resetQuiz() {
+        selectedOptions = {};
+        quizAnswered = false;
+        document.getElementById('quizSubmitBtn').disabled = true;
+        document.getElementById('quizSubmitBtn').textContent = 'Проверить';
+        document.getElementById('quizSubmitBtn').onclick = function() { submitQuiz(); };
+        renderQuiz();
+        document.querySelectorAll('.quiz-feedback').forEach(el => {
+            el.style.display = 'none';
+        });
+    }
+
+    function resetCourse() {
+        selectedOptions = {};
+        quizAnswered = false;
+        userRole = 'сотрудник';
+        goToStep(0);
+        updateRoleTips();
+        document.getElementById('progressFill').style.width = '0%';
+        document.getElementById('progressLabel').textContent = '0%';
+        document.querySelectorAll('.btn-primary').forEach(b => {
+            b.style.background = '';
+            b.style.color = '';
+        });
+        document.getElementById('certName').textContent = 'Сотрудник';
+        resetQuiz();
+        const submitBtn = document.getElementById('quizSubmitBtn');
+        submitBtn.textContent = 'Проверить';
+        submitBtn.onclick = function() { submitQuiz(); };
+        submitBtn.disabled = true;
+    }
+
+    window.onload = function() {
+        updateRoleTips();
+        renderQuiz();
+        updateProgress();
+        document.getElementById('roleTipText2').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
+        document.getElementById('roleTipText6').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
+        document.getElementById('roleTipText8').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
+    };
+</script>
+</body>
+</html>
