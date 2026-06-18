@@ -361,8 +361,24 @@
             .modal-overlay { display: none !important; }
         }
     </style>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109961198', 'ym');
+
+        ym(109961198, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
+    <!-- Yandex.Metrika noscript -->
+    <noscript><div><img src="https://mc.yandex.ru/watch/109961198" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika noscript -->
+
 <div class="app" id="app">
     <!-- ВЫБОР ЯЗЫКА -->
     <div class="lang-selector">
@@ -1539,47 +1555,30 @@
         if (!translations[lang]) return;
         currentLang = lang;
         localStorage.setItem('tanuki_lang', lang);
-        // обновить активную кнопку
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.lang === lang);
         });
         applyLanguage();
-        // если на шаге теста - перерисовать тест
         if (currentStep === 11) {
             renderQuiz();
         }
-        // обновить подсказки ролей (они могут быть уже закешированы, но мы обновим)
         updateRoleTips();
     }
 
     function applyLanguage() {
         const t = translations[currentLang];
         if (!t) return;
-        // все элементы с data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.dataset.i18n;
             if (t[key] !== undefined) {
-                // если это HTML, вставляем как innerHTML
                 el.innerHTML = t[key];
             }
         });
-        // обновляем кнопки ролей - они уже содержат data-i18n, но текст может быть вложен в кнопку, мы обновляем через data-i18n выше
-        // дополнительно обновляем текст кнопки "Далее" в шаге 0, если она заблокирована (у неё data-i18n="next_btn")
-        // но она уже обновится через data-i18n
-
-        // обновляем подсказки
         updateRoleTips();
-
-        // обновить текст в сертификате (имя)
         document.getElementById('certName').textContent = userRole === 'сотрудник' ? (t['cert_campaign']?.split('×')[0]?.trim() || 'Сотрудник') : userRole;
-        // обновить заголовок сертификата тоже через data-i18n уже обновлено
-
-        // если на шаге теста, перерисовать тест
         if (currentStep === 11) {
             renderQuiz();
         }
-
-        // обновить прогресс
         updateProgress();
     }
 
@@ -1811,14 +1810,11 @@
     });
 
     window.onload = function() {
-        // установить язык из localStorage
         const savedLang = localStorage.getItem('tanuki_lang') || 'ru';
         setLanguage(savedLang);
-        // обновить активную кнопку
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.lang === savedLang);
         });
-        // заблокировать кнопку "Далее" в шаге 0
         const nextBtn = document.getElementById('nextBtn0');
         if (nextBtn) {
             nextBtn.classList.add('btn-blocked');
@@ -1827,7 +1823,6 @@
         updateRoleTips();
         renderQuiz();
         updateProgress();
-        // подсказки по умолчанию
         const t = translations[currentLang];
         document.getElementById('roleTipText2').innerHTML = t.role_tip_placeholder;
         document.getElementById('roleTipText4').innerHTML = t.role_tip_placeholder;
