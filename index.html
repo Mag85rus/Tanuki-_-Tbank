@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
         /* ===== БАЗА ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: #fcf3d4;
@@ -26,8 +30,8 @@
             backdrop-filter: blur(16px);
             border-radius: 48px;
             padding: 32px 28px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             position: relative;
             transition: all 0.3s;
         }
@@ -40,7 +44,7 @@
         .progress-track {
             flex: 1;
             height: 8px;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             overflow: hidden;
         }
@@ -58,11 +62,22 @@
             min-width: 50px;
             text-align: right;
         }
-        .step { display: none; animation: fadeSlide 0.4s ease; }
-        .step.active { display: block; }
+        .step {
+            display: none;
+            animation: fadeSlide 0.4s ease;
+        }
+        .step.active {
+            display: block;
+        }
         @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(12px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         h2 {
             font-size: 2rem;
@@ -71,7 +86,10 @@
             letter-spacing: -0.02em;
             color: #1a1a1a;
         }
-        h2 .emoji { font-size: 2.2rem; margin-right: 8px; }
+        h2 .emoji {
+            font-size: 2.2rem;
+            margin-right: 8px;
+        }
         .subhead {
             font-size: 1rem;
             color: #444;
@@ -79,15 +97,21 @@
             line-height: 1.5;
         }
         .card {
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 24px;
             padding: 20px 24px;
             margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.8);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
-        .card strong { color: #000; }
-        .card .icon { font-size: 1.8rem; margin-right: 10px; vertical-align: middle; }
+        .card strong {
+            color: #000;
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
         .highlight-box {
             background: #feda00;
             padding: 12px 18px;
@@ -116,7 +140,7 @@
             flex-wrap: wrap;
         }
         .btn {
-            background: rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.05);
             border: none;
             padding: 12px 28px;
             border-radius: 60px;
@@ -130,20 +154,41 @@
             border: 1px solid transparent;
             font-family: inherit;
         }
-        .btn-primary { background: #1a1a1a; color: #fff; }
-        .btn-primary:hover { background: #333; transform: scale(1.02); }
-        .btn-secondary { background: rgba(0,0,0,0.05); color: #222; }
-        .btn-secondary:hover { background: rgba(0,0,0,0.1); }
-        .btn-success { background: #2e7d32; color: #fff; }
-        .btn-success:hover { background: #1e5a22; }
-        .btn:disabled { opacity: 0.4; pointer-events: none; }
+        .btn-primary {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #333;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.05);
+            color: #222;
+        }
+        .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .btn-success {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: #1e5a22;
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
         .btn-blocked {
             opacity: 0.5;
             cursor: not-allowed;
             pointer-events: auto;
         }
-        .btn-blocked:hover { transform: none; background: #1a1a1a; }
-
+        .btn-blocked:hover {
+            transform: none;
+            background: #1a1a1a;
+        }
         .quiz-option {
             display: block;
             width: 100%;
@@ -151,17 +196,28 @@
             padding: 14px 18px;
             margin: 8px 0;
             border-radius: 16px;
-            border: 2px solid rgba(0,0,0,0.08);
-            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.4);
             font-size: 1rem;
             cursor: pointer;
             transition: 0.15s;
             font-family: inherit;
         }
-        .quiz-option:hover { background: rgba(255,255,255,0.8); border-color: #aaa; }
-        .quiz-option.correct { border-color: #2e7d32; background: #e8f5e9; }
-        .quiz-option.wrong { border-color: #c62828; background: #ffebee; }
-        .quiz-option.disabled { pointer-events: none; }
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: #aaa;
+        }
+        .quiz-option.correct {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+        }
+        .quiz-option.wrong {
+            border-color: #c62828;
+            background: #ffebee;
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+        }
         .quiz-option.selected {
             border-color: #feda00;
             background: #feda0040;
@@ -173,18 +229,25 @@
             padding: 10px 16px;
             border-radius: 16px;
         }
-        .quiz-feedback.success { background: #e8f5e9; color: #1e5a22; }
-        .quiz-feedback.error { background: #ffebee; color: #b71c1c; }
-
+        .quiz-feedback.success {
+            background: #e8f5e9;
+            color: #1e5a22;
+        }
+        .quiz-feedback.error {
+            background: #ffebee;
+            color: #b71c1c;
+        }
         .certificate {
             text-align: center;
             background: linear-gradient(135deg, #fff9e0, #fcee9e);
             border-radius: 32px;
             padding: 40px 24px;
             border: 4px solid #feda00;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
-        .certificate h2 { font-size: 2.6rem; }
+        .certificate h2 {
+            font-size: 2.6rem;
+        }
         .certificate .name {
             font-size: 2.4rem;
             font-weight: 800;
@@ -195,8 +258,10 @@
             border-radius: 60px;
             margin: 20px 0;
         }
-        .certificate .stamp { font-size: 4rem; margin: 16px 0; }
-
+        .certificate .stamp {
+            font-size: 4rem;
+            margin: 16px 0;
+        }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -204,15 +269,18 @@
             margin: 12px 0;
         }
         .gallery-item {
-            background: rgba(255,255,255,0.6);
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 20px;
             padding: 16px 12px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             transition: 0.2s;
             cursor: pointer;
         }
-        .gallery-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.9); }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.9);
+        }
         .gallery-item img {
             max-width: 100%;
             height: auto;
@@ -224,14 +292,15 @@
             transition: 0.2s;
             cursor: pointer;
         }
-        .gallery-item img:hover { transform: scale(1.02); }
+        .gallery-item img:hover {
+            transform: scale(1.02);
+        }
         .gallery-item .name {
             font-weight: 700;
             font-size: 0.95rem;
             color: #111;
             margin-top: 4px;
         }
-
         .modal-overlay {
             display: none;
             position: fixed;
@@ -239,19 +308,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(8px);
             z-index: 9999;
             align-items: center;
             justify-content: center;
             padding: 40px;
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active {
+            display: flex;
+        }
         .modal-overlay img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             background: #fff;
             padding: 10px;
         }
@@ -267,8 +338,10 @@
             font-weight: 700;
             transition: 0.2s;
         }
-        .modal-close:hover { transform: scale(1.2); color: #feda00; }
-
+        .modal-close:hover {
+            transform: scale(1.2);
+            color: #feda00;
+        }
         .example-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -276,14 +349,16 @@
             margin: 12px 0;
         }
         .example-item {
-            background: rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.4);
             border-radius: 16px;
             padding: 14px 18px;
             border-left: 4px solid #feda00;
             font-size: 0.95rem;
             line-height: 1.6;
         }
-        .example-item strong { color: #000; }
+        .example-item strong {
+            color: #000;
+        }
         .example-item .tag {
             display: inline-block;
             background: #1a1a1a;
@@ -299,728 +374,1771 @@
             padding: 0 4px;
             border-radius: 4px;
         }
-
-        @media (max-width: 600px) {
-            .app { padding: 20px 16px; }
-            h2 { font-size: 1.6rem; }
-            .btn { padding: 10px 20px; font-size: 0.9rem; }
-            .nav-buttons { flex-direction: column; align-items: stretch; }
-            .certificate .name { font-size: 1.6rem; padding: 6px 20px; }
-            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
-            .modal-overlay { padding: 20px; }
-            .modal-close { top: 20px; right: 20px; font-size: 2rem; }
+        .role-tip-list {
+            padding-left: 20px;
+            margin: 6px 0;
+            list-style-type: disc;
+        }
+        .role-tip-list li {
+            margin-bottom: 2px;
+        }
+        .lang-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            justify-content: flex-end;
+        }
+        .lang-btn {
+            background: rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+            border-radius: 30px;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            color: #333;
+        }
+        .lang-btn:hover {
+            background: rgba(0, 0, 0, 0.12);
+        }
+        .lang-btn.active {
+            border-color: #feda00;
+            background: #feda0030;
         }
 
+        @media (max-width: 600px) {
+            .app {
+                padding: 20px 16px;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .nav-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .certificate .name {
+                font-size: 1.6rem;
+                padding: 6px 20px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            .modal-overlay {
+                padding: 20px;
+            }
+            .modal-close {
+                top: 20px;
+                right: 20px;
+                font-size: 2rem;
+            }
+            .lang-selector {
+                justify-content: center;
+            }
+        }
         @media print {
-            body { background: #fff; padding: 0.5cm; }
-            .app { box-shadow: none; border: 1px solid #ccc; backdrop-filter: none; }
-            .nav-buttons, .progress-wrap { display: none; }
-            .step { display: block !important; }
-            .step:not(.active) { display: none !important; }
-            .quiz-option { pointer-events: none; }
-            .certificate { border: 4px solid #feda00; }
-            .gallery-item { background: #f9f9f9; border: 1px solid #ddd; }
-            .modal-overlay { display: none !important; }
+            body {
+                background: #fff;
+                padding: 0.5cm;
+            }
+            .app {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                backdrop-filter: none;
+            }
+            .nav-buttons,
+            .progress-wrap,
+            .lang-selector {
+                display: none;
+            }
+            .step {
+                display: block !important;
+            }
+            .step:not(.active) {
+                display: none !important;
+            }
+            .quiz-option {
+                pointer-events: none;
+            }
+            .certificate {
+                border: 4px solid #feda00;
+            }
+            .gallery-item {
+                background: #f9f9f9;
+                border: 1px solid #ddd;
+            }
+            .modal-overlay {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
-<div class="app" id="app">
-    <!-- ПРОГРЕСС -->
-    <div class="progress-wrap">
-        <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <span class="progress-label" id="progressLabel">0%</span>
-    </div>
+    <div class="app" id="app">
 
-    <!-- ===== ШАГ 0: ВСТУПЛЕНИЕ ===== -->
-    <div class="step active" data-step="0">
-        <h2><span class="emoji">👋</span> Привет, коллега!</h2>
-        <div class="subhead">
-            Мы запускаем классную акцию вместе с <strong>Т-Банком</strong>.<br>
-            Ты — часть команды, и от тебя зависит, чтобы всё прошло идеально.
+        <!-- ВЫБОР ЯЗЫКА -->
+        <div class="lang-selector">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">🇷🇺 Рус</button>
+            <button class="lang-btn" data-lang="ky" onclick="setLanguage('ky')">🇰🇬 Кыр</button>
+            <button class="lang-btn" data-lang="uz" onclick="setLanguage('uz')">🇺🇿 Oʻzbek</button>
+            <button class="lang-btn" data-lang="tg" onclick="setLanguage('tg')">🇹🇯 Тоҷ</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">🇬🇧 Eng</button>
         </div>
-        <div class="card">
-            <p><span class="icon">🧡</span> <strong>Почему это важно?</strong></p>
-            <p style="margin-top: 6px;">Т-Банк любит <strong>прозрачность</strong> — как в рекламе, так и в жизни. Мы будем доставлять <strong>прозрачные спринг-роллы и наш фирменный сет роллов в прозрачной упаковке</strong>. Каждая деталь на виду!</p>
-            <p style="margin-top: 10px; background: #feda00; padding: 8px 14px; border-radius: 40px; display: inline-block; font-weight: 700;">⚠️ За ошибки — штрафы в миллионах!</p>
-        </div>
-        <div class="card">
-            <p><span class="icon">🎯</span> <strong>Кто ты?</strong> Выбери свою роль, чтобы я подсказывал тебе самое важное.</p>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-                <button class="btn btn-primary" onclick="selectRole('оператор доставки')">📦 Оператор доставки</button>
-                <button class="btn btn-primary" onclick="selectRole('курьер')">🚴 Курьер</button>
-                <button class="btn btn-primary" onclick="selectRole('менеджер')">📋 Менеджер</button>
-                <button class="btn btn-primary" onclick="selectRole('повар')">👨‍🍳 Повар</button>
+
+        <!-- ПРОГРЕСС -->
+        <div class="progress-wrap">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p style="margin-top: 12px; font-size: 0.9rem; color: #555;">(выбери и нажми далее, чтобы увидеть персональные подсказки)</p>
-        </div>
-        <div class="nav-buttons">
-            <span></span>
-            <button class="btn btn-primary btn-blocked" id="nextBtn0" onclick="handleNextStep0()">Далее →</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 1: ЦЕННОСТЬ ===== -->
-    <div class="step" data-step="1">
-        <h2><span class="emoji">🌟</span> Прозрачность — это круто</h2>
-        <div class="subhead">
-            Т-Банк с самого начала говорит о <strong>открытости</strong>. Мы поддерживаем это визуально:
-        </div>
-        <div class="card">
-            <ul style="list-style: none; padding: 0; font-size: 1.05rem; line-height: 2;">
-                <li>✅ <strong>Прозрачные</strong> спринг-роллы</li>
-                <li>✅ <strong>Прозрачная</strong> упаковка</li>
-                <li>✅ <strong>Прозрачный</strong> гостевой бокс</li>
-                <li>✅ <strong>Прозрачный</strong> пакет для доставки</li>
-            </ul>
-        </div>
-        <div class="card" style="background: #feda0020; border-color: #feda00;">
-            <p><span class="icon">💡</span> <strong>Запомни:</strong> мы не прячем еду — мы её показываем. Поэтому каждый заказ должен выглядеть как на витрине.</p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(0)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(2)">Далее →</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 2: УПАКОВКА ===== -->
-    <div class="step" data-step="2">
-        <h2><span class="emoji">📦</span> Упаковка — основа</h2>
-        <div class="subhead">
-            Если в заказе есть <strong>хоть одно блюдо Т-банка</strong> — действуем по особому правилу.
-        </div>
-        <div class="card">
-            <p><span class="icon">🛍️</span> <strong>1. Все заказы</strong> складываем и доставляем в <strong>прозрачный брендированный пакет</strong> Т-банка.</p>
-            <p style="margin-top: 8px;"><span class="icon">🧊</span> <strong>2. Внутрь пакета обязательно</strong> кладём <strong>прозрачный зиплок (гостевой бокс)</strong> (вместо нашего белого брендированного).</p>
-            <p style="margin-top: 8px;"><span class="icon">📌</span> Если блюда Т-банка нет — действуем по нашим привычным стандартам Тануки:<br>
-            <span style="display: block; margin-top: 6px; padding-left: 20px;">например: <strong>прозрачный сет + суп «Тануки ям»</strong> — доставка в прозрачном пакете + прозрачный гостевой бокс<br>
-            <strong>ролл «Филадельфия» + суп «Тануки ям»</strong> — доставка в нашем белом пакете + белый гостевой бокс</span></p>
-        </div>
-        <div class="card" style="background: #ffebee; border-color: #c62828;">
-            <p><span class="icon">⛔</span> <strong>Важно!</strong> Если заканчиваются <strong>прозрачные контейнеры для сета или спринг-роллов</strong> — блюда или блюдо встаёт в стоп. Нельзя заменять на нашу стандартную упаковку — это нарушит прозрачность и приведёт к штрафам.</p>
-        </div>
-        <div class="card" style="background: #f5f5f5;">
-            <p><span class="icon">📋</span> <strong>Что делаем, когда что-то закончилось:</strong></p>
-            <ul style="padding-left: 20px; line-height: 2;">
-                <li>Если заканчиваются <strong>подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
-                <li>Если заканчиваются <strong>пакеты или зиплоки</strong> → доставляем в <strong>наших обычных (брендированных Тануки белый)</strong>.</li>
-                <li>Если заканчивается <strong>сама упаковка (контейнеры)</strong> → блюдо встаёт в стоп.</li>
-            </ul>
-        </div>
-        <div class="card" id="roleTip2" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">🤝</span> <span id="roleTipText2">Выбери роль, чтобы увидеть совет.</span></p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(1)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(3)">Далее →</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 3: ПОДАРКИ ===== -->
-    <div class="step" data-step="3">
-        <h2><span class="emoji">🎁</span> Подарки на доставку</h2>
-        <div class="subhead">
-            Правила для доставки.
-        </div>
-        <div class="card">
-            <p><span class="icon">🍱</span> <strong>Все 4 вкуса</strong> → брелок (только МСК/МО) + визитка (открытка)</p>
-            <p><span class="icon">📦</span> <strong>Сет «Прозрачный»</strong> → палочки + визитка (открытка)</p>
-            <p><span class="icon">🍣</span> <strong>Любой прозрачный спринг-ролл</strong> → <span class="highlight-box">одна визитка (открытка)</span></p>
-        </div>
-        <div class="card">
-            <p><span class="icon">💡</span> <strong>Если заканчиваются подарки</strong> (брелоки, палочки, визитки (открытки)) — доставляем заказ <strong>без них</strong>. Это разрешено.</p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(2)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(4)">Далее →</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 4: КОМПЛЕКТАЦИЯ ГОСТЕВОГО БОКСА ===== -->
-    <div class="step" data-step="4">
-        <h2><span class="emoji">🧳</span> Комплектация гостевого бокса</h2>
-        <div class="subhead">
-            <strong>Для операторов доставки и менеджеров:</strong> если в заказе есть блюда акции Т-банка <strong>и</strong> блюда нашего действующего меню — формируем гостевой бокс в <strong>прозрачном зиплоке</strong>.
+            <span class="progress-label" id="progressLabel">0%</span>
         </div>
 
-        <div class="card" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">📋</span> <strong>Общее правило:</strong></p>
-            <ul style="padding-left: 20px; line-height: 2;">
-                <li>В зиплок кладём <strong>подарок</strong> в зависимости от блюда акции (палочки, брелок, визитка (открытка)).</li>
-                <li>Добавляем стандартные комплектующие согласно <strong>действующему стандарту гостевого бокса</strong> (количество персон, палочки, соевый соус, красная ложка).</li>
-                <li>Количество <strong>белых палочек Тануки</strong> и <strong>красных ложек</strong> зависит от <strong>количества гостей</strong>.</li>
-            </ul>
-        </div>
-
-        <div class="card" style="background: #f5f5f5;">
-            <p><span class="icon">📌</span> <strong>Примеры:</strong></p>
-            <div class="example-grid">
-                <div class="example-item">
-                    <span class="tag">Пример 1</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br>
-                    <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.
+        <!-- ===== ШАГ 0: ВСТУПЛЕНИЕ ===== -->
+        <div class="step active" data-step="0">
+            <h2><span class="emoji">👋</span> <span data-i18n="step0_title">Привет, коллега!</span></h2>
+            <div class="subhead" data-i18n="step0_subhead">
+                Мы запускаем классную акцию вместе с <strong>Т-Банком</strong>.<br> Ты — часть команды, и от тебя зависит, чтобы всё прошло идеально.
+            </div>
+            <div class="card">
+                <p><span class="icon">🧡</span> <strong data-i18n="step0_card1_title">Почему это важно?</strong></p>
+                <p style="margin-top: 6px;" data-i18n="step0_card1_text">Т-Банк любит <strong>прозрачность</strong> — как в рекламе, так и в жизни. Мы будем доставлять <strong>прозрачные спринг-роллы и наш фирменный сет роллов в прозрачной упаковке</strong>. Каждая деталь на виду!</p>
+                <p style="margin-top: 10px; background: #feda00; padding: 8px 14px; border-radius: 40px; display: inline-block; font-weight: 700;" data-i18n="step0_card1_warning">⚠️ За ошибки — штрафы в миллионах!</p>
+            </div>
+            <div class="card">
+                <p><span class="icon">🎯</span> <strong data-i18n="step0_card2_title">Кто ты?</strong> <span data-i18n="step0_card2_sub">Выбери свою роль, чтобы я подсказывал тебе самое важное.</span></p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                    <button class="btn btn-primary" onclick="selectRole('оператор доставки')" data-i18n="role_delivery">📦 Оператор доставки</button>
+                    <button class="btn btn-primary" onclick="selectRole('курьер')" data-i18n="role_courier">🚴 Курьер</button>
+                    <button class="btn btn-primary" onclick="selectRole('менеджер')" data-i18n="role_manager">📋 Менеджер</button>
+                    <button class="btn btn-primary" onclick="selectRole('повар')" data-i18n="role_chef">👨‍🍳 Повар</button>
                 </div>
-                <div class="example-item">
-                    <span class="tag">Пример 2</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 2</strong><br>
-                    <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 2 белые палочки Тануки + 1 красная ложка + соевый соус.
-                </div>
-                <div class="example-item">
-                    <span class="tag">Пример 3</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br>
-                    <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + соевый соус.
-                </div>
-                <div class="example-item">
-                    <span class="tag">Пример 4</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br>
-                    <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.
-                </div>
-                <div class="example-item">
-                    <span class="tag">Пример 5</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br>
-                    <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + соевый соус.
-                </div>
-                <div class="example-item">
-                    <span class="tag">Пример 6</span>
-                    <strong>Заказ:</strong> сет «Прозрачный», <strong>4 вкуса спринг-роллов</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 3</strong><br>
-                    <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (брелок (МСК/МО) или визитка (открытка)) + 3 белые палочки Тануки + 1 красная ложка + соевый соус.
+                <p style="margin-top: 12px; font-size: 0.9rem; color: #555;" data-i18n="step0_card2_hint">(выбери и нажми далее, чтобы увидеть персональные подсказки)</p>
+            </div>
+            <div class="nav-buttons">
+                <span></span>
+                <button class="btn btn-primary btn-blocked" id="nextBtn0" onclick="handleNextStep0()" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 1: ЦЕННОСТЬ ===== -->
+        <div class="step" data-step="1">
+            <h2><span class="emoji">🌟</span> <span data-i18n="step1_title">Прозрачность — это круто</span></h2>
+            <div class="subhead" data-i18n="step1_subhead">Т-Банк с самого начала говорит о <strong>открытости</strong>. Мы поддерживаем это визуально:</div>
+            <div class="card">
+                <ul style="list-style: none; padding: 0; font-size: 1.05rem; line-height: 2;">
+                    <li data-i18n="step1_list1">✅ <strong>Прозрачные</strong> спринг-роллы</li>
+                    <li data-i18n="step1_list2">✅ <strong>Прозрачная</strong> упаковка</li>
+                    <li data-i18n="step1_list3">✅ <strong>Прозрачный</strong> гостевой бокс</li>
+                    <li data-i18n="step1_list4">✅ <strong>Прозрачный</strong> пакет для доставки</li>
+                </ul>
+            </div>
+            <div class="card" style="background: #feda0020; border-color: #feda00;">
+                <p><span class="icon">💡</span> <strong data-i18n="step1_reminder_title">Запомни:</strong> <span data-i18n="step1_reminder_text">мы не прячем еду — мы её показываем. Поэтому каждый заказ должен выглядеть как на витрине.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(0)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(2)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 2: УПАКОВКА ===== -->
+        <div class="step" data-step="2">
+            <h2><span class="emoji">📦</span> <span data-i18n="step2_title">Упаковка — основа</span></h2>
+            <div class="subhead" data-i18n="step2_subhead">Если в заказе есть <strong>хоть одно блюдо Т-банка</strong> — действуем по особому правилу.</div>
+            <div class="card">
+                <p><span class="icon">🛍️</span> <strong data-i18n="step2_rule1_title">1. Все заказы</strong> <span data-i18n="step2_rule1_text">складываем и доставляем в <strong>прозрачный брендированный пакет</strong> Т-банка.</span></p>
+                <p style="margin-top: 8px;"><span class="icon">🧊</span> <strong data-i18n="step2_rule2_title">2. Внутрь пакета обязательно</strong> <span data-i18n="step2_rule2_text">кладём <strong>прозрачный зиплок (гостевой бокс)</strong> (вместо нашего белого брендированного).</span></p>
+                <p style="margin-top: 8px;"><span class="icon">📌</span> <span data-i18n="step2_rule3_text">Если блюда Т-банка нет — действуем по нашим привычным стандартам Тануки:</span><br>
+                    <span style="display: block; margin-top: 6px; padding-left: 20px;" data-i18n="step2_rule3_examples">например: <strong>прозрачный сет + суп Тануки ям</strong> — доставка в прозрачном пакете + прозрачный гостевой бокс<br> <strong>ролл Филадельфия + суп Тануки ям</strong> — доставка в нашем белом пакете + белый гостевой бокс</span></p>
+            </div>
+            <div class="card" style="background: #ffebee; border-color: #c62828;">
+                <p><span class="icon">⛔</span> <strong data-i18n="step2_warning_title">Важно!</strong> <span data-i18n="step2_warning_text">Если заканчиваются <strong>прозрачные контейнеры для сета или спринг-роллов</strong> — блюда или блюдо встаёт в стоп. Нельзя заменять на нашу стандартную упаковку — это нарушит прозрачность и приведёт к штрафам.</span></p>
+            </div>
+            <div class="card" style="background: #f5f5f5;">
+                <p><span class="icon">📋</span> <strong data-i18n="step2_out_of_stock_title">Что делаем, когда что-то закончилось:</strong></p>
+                <ul style="padding-left: 20px; line-height: 2;">
+                    <li data-i18n="step2_out_of_stock1">Если заканчиваются <strong>подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
+                    <li data-i18n="step2_out_of_stock2">Если заканчиваются <strong>пакеты или зиплоки</strong> → доставляем в <strong>наших обычных (брендированных Тануки белый)</strong>.</li>
+                    <li data-i18n="step2_out_of_stock3">Если заканчивается <strong>сама упаковка (контейнеры)</strong> → блюдо встаёт в стоп.</li>
+                </ul>
+            </div>
+            <div class="card" id="roleTip2" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">🤝</span> <span id="roleTipText2" data-i18n="role_tip_default">Выбери роль, чтобы увидеть совет.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(1)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(3)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 3: ПОДАРКИ ===== -->
+        <div class="step" data-step="3">
+            <h2><span class="emoji">🎁</span> <span data-i18n="step3_title">Подарки на доставку</span></h2>
+            <div class="subhead" data-i18n="step3_subhead">Правила для доставки.</div>
+            <div class="card">
+                <p><span class="icon">🍱</span> <strong data-i18n="step3_rule1">Все 4 вкуса</strong> <span data-i18n="step3_rule1_text">→ брелок (только МСК/МО) + визитка (открытка)</span></p>
+                <p><span class="icon">📦</span> <strong data-i18n="step3_rule2">Сет «Прозрачный»</strong> <span data-i18n="step3_rule2_text">→ палочки + визитка (открытка)</span></p>
+                <p><span class="icon">🍣</span> <strong data-i18n="step3_rule3">Любой прозрачный спринг-ролл</strong> → <span class="highlight-box" data-i18n="step3_rule3_highlight">одна визитка (открытка)</span></p>
+            </div>
+            <div class="card">
+                <p><span class="icon">💡</span> <strong data-i18n="step3_note_title">Если заканчиваются подарки</strong> <span data-i18n="step3_note_text">(брелоки, палочки, визитки (открытки)) — доставляем заказ <strong>без них</strong>. Это разрешено.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(2)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(4)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 4: КОМПЛЕКТАЦИЯ ГОСТЕВОГО БОКСА ===== -->
+        <div class="step" data-step="4">
+            <h2><span class="emoji">🧳</span> <span data-i18n="step4_title">Комплектация гостевого бокса</span></h2>
+            <div class="subhead" data-i18n="step4_subhead"><strong>Для операторов доставки и менеджеров:</strong> если в заказе есть блюда акции Т-банка <strong>и</strong> блюда нашего действующего меню — формируем гостевой бокс в <strong>прозрачном зиплоке</strong>.</div>
+            <div class="card" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">📋</span> <strong data-i18n="step4_rule_title">Общее правило:</strong></p>
+                <ul style="padding-left: 20px; line-height: 2;">
+                    <li data-i18n="step4_rule1">В зиплок кладём <strong>подарок</strong> в зависимости от блюда акции (палочки, брелок, визитка (открытка)).</li>
+                    <li data-i18n="step4_rule2">Добавляем стандартные комплектующие согласно <strong>действующему стандарту гостевого бокса</strong> (количество персон, палочки, соевый соус, красная ложка).</li>
+                    <li data-i18n="step4_rule3">Количество <strong>белых палочек Тануки</strong> и <strong>красных ложек</strong> зависит от <strong>количества гостей</strong>.</li>
+                </ul>
+            </div>
+            <div class="card" style="background: #f5f5f5;">
+                <p><span class="icon">📌</span> <strong data-i18n="step4_examples_title">Примеры:</strong></p>
+                <div class="example-grid">
+                    <div class="example-item" data-i18n="step4_ex1"><span class="tag">Пример 1</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br> <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.</div>
+                    <div class="example-item" data-i18n="step4_ex2"><span class="tag">Пример 2</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 2</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 2 белые палочки Тануки + 1 красная ложка + соевый соус.</div>
+                    <div class="example-item" data-i18n="step4_ex3"><span class="tag">Пример 3</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + соевый соус.</div>
+                    <div class="example-item" data-i18n="step4_ex4"><span class="tag">Пример 4</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.</div>
+                    <div class="example-item" data-i18n="step4_ex5"><span class="tag">Пример 5</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + соевый соус.</div>
+                    <div class="example-item" data-i18n="step4_ex6"><span class="tag">Пример 6</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>4 вкуса спринг-роллов</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 3</strong><br> <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (брелок (МСК/МО) или визитка (открытка)) + 3 белые палочки Тануки + 1 красная ложка + соевый соус.</div>
                 </div>
             </div>
-        </div>
-
-        <div class="card" id="roleTip4" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">🤝</span> <span id="roleTipText4">Выбери роль, чтобы увидеть совет.</span></p>
-        </div>
-
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(3)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(5)">Далее →</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 5: ЧТО МЫ ИСПОЛЬЗУЕМ ===== -->
-    <div class="step" data-step="5">
-        <h2><span class="emoji">🖼️</span> Что мы используем</h2>
-        <div class="subhead">
-            Вот все материалы и подарки для акции. Запомни, как они выглядят!<br>
-            <span style="font-size: 0.9rem; color: #666;">Нажми на фото, чтобы увеличить.</span>
-        </div>
-
-        <div class="gallery-grid">
-            <div class="gallery-item" onclick="openModal('images/brelok.png')">
-                <img src="images/brelok.png" alt="Брелок" loading="lazy" />
-                <div class="name">Брелок</div>
+            <div class="card" id="roleTip4" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">🤝</span> <span id="roleTipText4" data-i18n="role_tip_default">Выбери роль, чтобы увидеть совет.</span></p>
             </div>
-            <div class="gallery-item" onclick="openModal('images/vizitka.png')">
-                <img src="images/vizitka.png" alt="Визитка (открытка)" loading="lazy" />
-                <div class="name">Визитка (открытка)</div>
-            </div>
-            <div class="gallery-item" onclick="openModal('images/palochki.png')">
-                <img src="images/palochki.png" alt="Палочки" loading="lazy" />
-                <div class="name">Палочки</div>
-            </div>
-            <div class="gallery-item" onclick="openModal('images/prozrachnyi_paket.png')">
-                <img src="images/prozrachnyi_paket.png" alt="Прозрачный брендированный пакет" loading="lazy" />
-                <div class="name">Прозрачный брендированный пакет</div>
-            </div>
-            <div class="gallery-item" onclick="openModal('images/prozrachnyi_ziplok.png')">
-                <img src="images/prozrachnyi_ziplok.png" alt="Прозрачный зиплок (гостевой бокс)" loading="lazy" />
-                <div class="name">Прозрачный зиплок (гостевой бокс)</div>
-            </div>
-            <div class="gallery-item" onclick="openModal('images/prozrachnyi_konteiner.png')">
-                <img src="images/prozrachnyi_konteiner.png" alt="Прозрачный контейнер" loading="lazy" />
-                <div class="name">Прозрачный контейнер</div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(3)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(5)" data-i18n="btn_next">Далее →</button>
             </div>
         </div>
 
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(4)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(6)">Далее →</button>
+        <!-- ===== ШАГ 5: ЧТО МЫ ИСПОЛЬЗУЕМ ===== -->
+        <div class="step" data-step="5">
+            <h2><span class="emoji">🖼️</span> <span data-i18n="step5_title">Что мы используем</span></h2>
+            <div class="subhead" data-i18n="step5_subhead">Вот все материалы и подарки для акции. Запомни, как они выглядят!<br> <span style="font-size: 0.9rem; color: #666;" data-i18n="step5_subhead_hint">Нажми на фото, чтобы увеличить.</span></div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('images/brelok.png')">
+                    <img src="images/brelok.png" alt="Брелок" loading="lazy" />
+                    <div class="name" data-i18n="gallery_brelok">Брелок</div>
+                </div>
+                <div class="gallery-item" onclick="openModal('images/vizitka.png')">
+                    <img src="images/vizitka.png" alt="Визитка (открытка)" loading="lazy" />
+                    <div class="name" data-i18n="gallery_vizitka">Визитка (открытка)</div>
+                </div>
+                <div class="gallery-item" onclick="openModal('images/palochki.png')">
+                    <img src="images/palochki.png" alt="Палочки" loading="lazy" />
+                    <div class="name" data-i18n="gallery_palochki">Палочки</div>
+                </div>
+                <div class="gallery-item" onclick="openModal('images/prozrachnyi_paket.png')">
+                    <img src="images/prozrachnyi_paket.png" alt="Прозрачный брендированный пакет" loading="lazy" />
+                    <div class="name" data-i18n="gallery_paket">Прозрачный брендированный пакет</div>
+                </div>
+                <div class="gallery-item" onclick="openModal('images/prozrachnyi_ziplok.png')">
+                    <img src="images/prozrachnyi_ziplok.png" alt="Прозрачный зиплок (гостевой бокс)" loading="lazy" />
+                    <div class="name" data-i18n="gallery_ziplok">Прозрачный зиплок (гостевой бокс)</div>
+                </div>
+                <div class="gallery-item" onclick="openModal('images/prozrachnyi_konteiner.png')">
+                    <img src="images/prozrachnyi_konteiner.png" alt="Прозрачный контейнер" loading="lazy" />
+                    <div class="name" data-i18n="gallery_konteiner">Прозрачный контейнер</div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(4)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(6)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 6: КОНТЕЙНЕРЫ ===== -->
+        <div class="step" data-step="6">
+            <h2><span class="emoji">🍣</span> <span data-i18n="step6_title">Контейнер = один спринг-ролл</span></h2>
+            <div class="subhead" data-i18n="step6_subhead">Это суперважно для качества!</div>
+            <div class="card" style="border-color: #feda00;">
+                <p style="font-size: 1.2rem; font-weight: 700;" data-i18n="step6_rule1">✅ Каждый спринг-ролл — в <strong>отдельный</strong> прозрачный контейнер.</p>
+                <p style="margin-top: 10px;" data-i18n="step6_rule2">❌ <strong>Нельзя</strong> класть два и более ролла в один контейнер — они слипнутся, и гость расстроится.</p>
+                <p style="margin-top: 10px;" data-i18n="step6_rule3">📌 Если заказано 3 ролла → нужно 3 контейнера. Просто и понятно.</p>
+            </div>
+            <div class="card">
+                <p><span class="icon">🧑‍🍳</span> <strong data-i18n="step6_chef_tip">Для повара:</strong> <span data-i18n="step6_chef_tip_text">готовь каждый спринг-ролл отдельно и сразу укладывай в отдельный контейнер.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(5)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(7)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 7: ПОВАР И ПРОВЕРКА ===== -->
+        <div class="step" data-step="7">
+            <h2><span class="emoji">🧑‍🍳</span> <span data-i18n="step7_title">Повар готовит, оператор проверяет</span></h2>
+            <div class="subhead" data-i18n="step7_subhead">В акции участвуют все. У каждого своя задача, но вместе мы делаем идеальный заказ.</div>
+            <div class="card" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">🔪</span> <strong data-i18n="step7_chef_title">Повар:</strong></p>
+                <ul style="padding-left: 24px; line-height: 2;">
+                    <li data-i18n="step7_chef1">Готовит спринг-роллы или сет по стандартам и СТК.</li>
+                    <li data-i18n="step7_chef2">Упаковывает каждый спринг-ролл или сет в отдельный прозрачный контейнер.</li>
+                    <li data-i18n="step7_chef3">Передаёт упакованное блюдо оператору доставки для финальной проверки и упаковки.</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left: 6px solid #2e7d32;">
+                <p><span class="icon">📋</span> <strong data-i18n="step7_operator_title">Оператор доставки и менеджер:</strong></p>
+                <ul style="padding-left: 24px; line-height: 2;">
+                    <li data-i18n="step7_operator1">Проверяют работу повара: каждое блюдо в своём отдельном контейнере, блюдо приготовлено и внешне привлекательно согласно стандартам и условиям акции. <strong>(🔴Важно: контроль внешнего вида приготовленного блюда!)</strong></li>
+                    <li data-i18n="step7_operator2">Сверяют количество с указанным в бланке заказа.</li>
+                    <li data-i18n="step7_operator3">Комплектуют прозрачный зиплок (гостевой бокс) и правильность подарков (по схеме).</li>
+                    <li data-i18n="step7_operator4">Только после проверки упаковывают заказ в прозрачный пакет.</li>
+                </ul>
+            </div>
+            <div class="card" id="roleTip7" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">🤝</span> <span id="roleTipText7" data-i18n="role_tip_default">Выбери роль, чтобы увидеть совет.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(6)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(8)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 8: ЧЕК-ЛИСТ ===== -->
+        <div class="step" data-step="8">
+            <h2><span class="emoji">✅</span> <span data-i18n="step8_title">Чек-лист оператора доставки</span></h2>
+            <div class="subhead" data-i18n="step8_subhead">Перед отправкой каждый заказ проходит эту проверку. Не пропускай ни один пункт!</div>
+            <div class="card">
+                <ul style="list-style: none; padding: 0; font-size: 1rem; line-height: 2.2;">
+                    <li data-i18n="step8_check1">☐ Проверить внешний вид блюд на раздаче (все блюда сделаны по стандарту).</li>
+                    <li data-i18n="step8_check2">☐ Блюда упакованы в прозрачные контейнеры (каждый спринг-ролл в отдельный контейнер).</li>
+                    <li data-i18n="step8_check3">☐ Сформировать Гостевой бокс - прозрачный зиплок.</li>
+                    <li data-i18n="step8_check4">☐ Свериться со схемой подарков, ничего не забыть и не перепутать.</li>
+                    <li data-i18n="step8_check5">☐ Упаковать блюда в прозрачный пакет.</li>
+                    <li data-i18n="step8_check6">☐ Предупредить курьера об осторожности.</li>
+                </ul>
+            </div>
+            <div class="card" style="background: #ffebee; border-color: #c62828;">
+                <p><span class="icon">⚠️</span> <strong data-i18n="step8_warning_title">Штрафы — миллионы!</strong> <span data-i18n="step8_warning_text">Договор с Т-банком требует идеального качества. Ошибка = большие деньги.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(7)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(9)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 9: СЛОЖНЫЕ СЛУЧАИ ===== -->
+        <div class="step" data-step="9">
+            <h2><span class="emoji">🧩</span> <span data-i18n="step9_title">Сложные случаи</span></h2>
+            <div class="subhead" data-i18n="step9_subhead">Для менеджеров и операторов доставки — разбираем нестандартные заказы и ситуации с расходниками.</div>
+            <div class="card" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">📋</span> <strong data-i18n="step9_case1_title">Ситуация 1: Заказаны два разных спринг-ролла (не все 4).</strong></p>
+                <ul style="padding-left: 24px; line-height: 2;">
+                    <li data-i18n="step9_case1_yes">✅ <strong>Кладём:</strong> визитку (открытку) в прозрачный гостевой бокс.</li>
+                    <li data-i18n="step9_case1_no">❌ <strong>Не кладём:</strong> брелок, палочки (это только для сета «Прозрачный» и всех 4 вкусов).</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left: 6px solid #2e7d32;">
+                <p><span class="icon">📦</span> <strong data-i18n="step9_case2_title">Ситуация 2: Заказаны все 4 вкуса + сет «Прозрачный».</strong></p>
+                <ul style="padding-left: 24px; line-height: 2;">
+                    <li data-i18n="step9_case2_yes">✅ <strong>Кладём:</strong> визитку (открытку), палочки (для сета), брелок (только если МСК/МО) в прозрачный зиплок.</li>
+                    <li data-i18n="step9_case2_max">Всё по максимуму!</li>
+                </ul>
+            </div>
+            <div class="card" style="background: #ffebee; border-color: #c62828;">
+                <p><span class="icon">⛔</span> <strong data-i18n="step9_out_of_stock_title">Что делать, когда что-то закончилось?</strong></p>
+                <ul style="padding-left: 24px; line-height: 2; list-style: none;">
+                    <li data-i18n="step9_out1"><strong>а) Закончились подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
+                    <li data-i18n="step9_out2"><strong>б) Закончились пакеты или зиплоки</strong> → доставляем в <strong>наших белых Тануки</strong> — это допустимо, но только если нет прозрачных.</li>
+                    <li data-i18n="step9_out3"><strong>в) Закончилась прозрачная упаковка</strong> (контейнеры) → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">блюдо встаёт в стоп</span>. Нельзя заменять на обычную!</li>
+                </ul>
+            </div>
+            <div class="card" id="roleTip9" style="border-left: 6px solid #feda00;">
+                <p><span class="icon">🤝</span> <span id="roleTipText9" data-i18n="role_tip_default">Выбери роль, чтобы увидеть совет.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(8)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(10)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 10: ОСТОРОЖНОСТЬ ===== -->
+        <div class="step" data-step="10">
+            <h2><span class="emoji">🚴</span> <span data-i18n="step10_title">Курьер, внимание!</span></h2>
+            <div class="subhead" data-i18n="step10_subhead">Упаковка прозрачная — каждый дефект видно. Будь аккуратен.</div>
+            <div class="card">
+                <p><span class="icon">📢</span> <strong data-i18n="step10_courier_title">Обязательно курьеру:</strong></p>
+                <p style="background: #feda00; padding: 12px 16px; border-radius: 20px; font-weight: 700; margin: 10px 0;" data-i18n="step10_courier_quote">«Сумку с заказом нельзя наклонять, кидать, переворачивать. Везти ровно и аккуратно».</p>
+            </div>
+            <div class="card">
+                <p><span class="icon">🧩</span> <strong data-i18n="step10_manager_title">Для менеджеров:</strong> <span data-i18n="step10_manager_text">убедитесь, что операторы и курьер поняли инструкции. Проводите с сотрудниками 5-минутный брифинг перед началом смены.</span></p>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(9)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-primary" onclick="goToStep(11)" data-i18n="btn_next">Далее →</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 11: ТЕСТ ===== -->
+        <div class="step" data-step="11">
+            <h2><span class="emoji">🧠</span> <span data-i18n="step11_title">Проверь себя</span></h2>
+            <div class="subhead" data-i18n="step11_subhead">Ответь на все 10 вопросов. Будь внимателен!</div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(10)" data-i18n="btn_back">← Назад</button>
+                <button class="btn btn-success" id="quizSubmitBtn" onclick="submitQuiz()" disabled data-i18n="btn_check">Проверить</button>
+            </div>
+        </div>
+
+        <!-- ===== ШАГ 12: СЕРТИФИКАТ ===== -->
+        <div class="step" data-step="12">
+            <div class="certificate">
+                <div class="stamp">🏆</div>
+                <h2 data-i18n="cert_title">Ты — суперзвезда!</h2>
+                <p style="font-size: 1.2rem;" data-i18n="cert_sub1">Поздравляем, ты прошёл обучение по акции</p>
+                <p style="font-size: 1.1rem; margin: 12px 0;"><strong data-i18n="cert_sub2">Тануки × Т-Банк</strong></p>
+                <div class="name" id="certName" data-i18n="cert_employee">Сотрудник</div>
+                <p style="margin-top: 16px; font-weight: 600;" data-i18n="cert_text1">Теперь ты знаешь всё о прозрачности, подарках и упаковке.</p>
+                <p style="margin-top: 8px; color: #555;" data-i18n="cert_text2">Распечатай этот сертификат и повесь на видное место!</p>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="window.print()" data-i18n="btn_print">🖨️ Распечатать</button>
+                <button class="btn btn-secondary" style="margin-top: 12px;" onclick="resetCourse()" data-i18n="btn_restart">🔄 Пройти заново</button>
+            </div>
         </div>
     </div>
 
-    <!-- ===== ШАГ 6: КОНТЕЙНЕРЫ ===== -->
-    <div class="step" data-step="6">
-        <h2><span class="emoji">🍣</span> Контейнер = один спринг-ролл</h2>
-        <div class="subhead">
-            Это суперважно для качества!
-        </div>
-        <div class="card" style="border-color: #feda00;">
-            <p style="font-size: 1.2rem; font-weight: 700;">✅ Каждый спринг-ролл — в <strong>отдельный</strong> прозрачный контейнер.</p>
-            <p style="margin-top: 10px;">❌ <strong>Нельзя</strong> класть два и более ролла в один контейнер — они слипнутся, и гость расстроится.</p>
-            <p style="margin-top: 10px;">📌 Если заказано 3 ролла → нужно 3 контейнера. Просто и понятно.</p>
-        </div>
-        <div class="card">
-            <p><span class="icon">🧑‍🍳</span> <strong>Для повара:</strong> готовь каждый спринг-ролл отдельно и сразу укладывай в отдельный контейнер.</p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(5)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(7)">Далее →</button>
-        </div>
+    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <button class="modal-close" onclick="closeModal(event)" data-i18n="modal_close">✕</button>
+        <img id="modalImage" src="" alt="Увеличенное фото" />
     </div>
 
-    <!-- ===== ШАГ 7: ПОВАР И ПРОВЕРКА ===== -->
-    <div class="step" data-step="7">
-        <h2><span class="emoji">🧑‍🍳</span> Повар готовит, оператор проверяет</h2>
-        <div class="subhead">
-            В акции участвуют все. У каждого своя задача, но вместе мы делаем идеальный заказ.
-        </div>
-        <div class="card" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">🔪</span> <strong>Повар:</strong></p>
-            <ul style="padding-left: 24px; line-height: 2;">
-                <li>Готовит спринг-роллы или сет по стандартам и СТК.</li>
-                <li>Упаковывает каждый спринг-ролл или сет в отдельный прозрачный контейнер.</li>
-                <li>Передаёт упакованное блюдо оператору доставки для финальной проверки и упаковки.</li>
-            </ul>
-        </div>
-        <div class="card" style="border-left: 6px solid #2e7d32;">
-            <p><span class="icon">📋</span> <strong>Оператор доставки и менеджер:</strong></p>
-            <ul style="padding-left: 24px; line-height: 2;">
-                <li>Проверяют работу повара: каждое блюдо в своём отдельном контейнере, блюдо приготовлено и внешне привлекательно согласно стандартам и условиям акции. (🔴Важно: контроль внешнего вида приготовленного блюда!)</li>
-                <li>Сверяют количество с указанным в бланке заказа.</li>
-                <li>Комплектуют прозрачный зиплок (гостевой бокс) и правильность подарков (по схеме).</li>
-                <li>Только после проверки упаковывают заказ в прозрачный пакет.</li>
-            </ul>
-        </div>
-        <div class="card" id="roleTip7" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">🤝</span> <span id="roleTipText7">Выбери роль, чтобы увидеть совет.</span></p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(6)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(8)">Далее →</button>
-        </div>
-    </div>
+    <script>
+        // ============================================================
+        //  ПЕРЕВОДЫ
+        // ============================================================
+        const translations = {
+            ru: {
+                // роли
+                role_delivery: '📦 Оператор доставки',
+                role_courier: '🚴 Курьер',
+                role_manager: '📋 Менеджер',
+                role_chef: '👨‍🍳 Повар',
+                role_tip_default: 'Выбери роль, чтобы увидеть совет.',
+                // кнопки
+                btn_next: 'Далее →',
+                btn_back: '← Назад',
+                btn_check: 'Проверить',
+                btn_print: '🖨️ Распечатать',
+                btn_restart: '🔄 Пройти заново',
+                modal_close: '✕',
+                // step0
+                step0_title: 'Привет, коллега!',
+                step0_subhead: 'Мы запускаем классную акцию вместе с <strong>Т-Банком</strong>.<br> Ты — часть команды, и от тебя зависит, чтобы всё прошло идеально.',
+                step0_card1_title: 'Почему это важно?',
+                step0_card1_text: 'Т-Банк любит <strong>прозрачность</strong> — как в рекламе, так и в жизни. Мы будем доставлять <strong>прозрачные спринг-роллы и наш фирменный сет роллов в прозрачной упаковке</strong>. Каждая деталь на виду!',
+                step0_card1_warning: '⚠️ За ошибки — штрафы в миллионах!',
+                step0_card2_title: 'Кто ты?',
+                step0_card2_sub: 'Выбери свою роль, чтобы я подсказывал тебе самое важное.',
+                step0_card2_hint: '(выбери и нажми далее, чтобы увидеть персональные подсказки)',
+                // step1
+                step1_title: 'Прозрачность — это круто',
+                step1_subhead: 'Т-Банк с самого начала говорит о <strong>открытости</strong>. Мы поддерживаем это визуально:',
+                step1_list1: '✅ <strong>Прозрачные</strong> спринг-роллы',
+                step1_list2: '✅ <strong>Прозрачная</strong> упаковка',
+                step1_list3: '✅ <strong>Прозрачный</strong> гостевой бокс',
+                step1_list4: '✅ <strong>Прозрачный</strong> пакет для доставки',
+                step1_reminder_title: 'Запомни:',
+                step1_reminder_text: 'мы не прячем еду — мы её показываем. Поэтому каждый заказ должен выглядеть как на витрине.',
+                // step2
+                step2_title: 'Упаковка — основа',
+                step2_subhead: 'Если в заказе есть <strong>хоть одно блюдо Т-банка</strong> — действуем по особому правилу.',
+                step2_rule1_title: '1. Все заказы',
+                step2_rule1_text: 'складываем и доставляем в <strong>прозрачный брендированный пакет</strong> Т-банка.',
+                step2_rule2_title: '2. Внутрь пакета обязательно',
+                step2_rule2_text: 'кладём <strong>прозрачный зиплок (гостевой бокс)</strong> (вместо нашего белого брендированного).',
+                step2_rule3_text: 'Если блюда Т-банка нет — действуем по нашим привычным стандартам Тануки:',
+                step2_rule3_examples: 'например: <strong>прозрачный сет + суп Тануки ям</strong> — доставка в прозрачном пакете + прозрачный гостевой бокс<br> <strong>ролл Филадельфия + суп Тануки ям</strong> — доставка в нашем белом пакете + белый гостевой бокс',
+                step2_warning_title: 'Важно!',
+                step2_warning_text: 'Если заканчиваются <strong>прозрачные контейнеры для сета или спринг-роллов</strong> — блюда или блюдо встаёт в стоп. Нельзя заменять на нашу стандартную упаковку — это нарушит прозрачность и приведёт к штрафам.',
+                step2_out_of_stock_title: 'Что делаем, когда что-то закончилось:',
+                step2_out_of_stock1: 'Если заканчиваются <strong>подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).',
+                step2_out_of_stock2: 'Если заканчиваются <strong>пакеты или зиплоки</strong> → доставляем в <strong>наших обычных (брендированных Тануки белый)</strong>.',
+                step2_out_of_stock3: 'Если заканчивается <strong>сама упаковка (контейнеры)</strong> → блюдо встаёт в стоп.',
+                // step3
+                step3_title: 'Подарки на доставку',
+                step3_subhead: 'Правила для доставки.',
+                step3_rule1: 'Все 4 вкуса',
+                step3_rule1_text: '→ брелок (только МСК/МО) + визитка (открытка)',
+                step3_rule2: 'Сет «Прозрачный»',
+                step3_rule2_text: '→ палочки + визитка (открытка)',
+                step3_rule3: 'Любой прозрачный спринг-ролл',
+                step3_rule3_highlight: 'одна визитка (открытка)',
+                step3_note_title: 'Если заканчиваются подарки',
+                step3_note_text: '(брелоки, палочки, визитки (открытки)) — доставляем заказ <strong>без них</strong>. Это разрешено.',
+                // step4
+                step4_title: 'Комплектация гостевого бокса',
+                step4_subhead: '<strong>Для операторов доставки и менеджеров:</strong> если в заказе есть блюда акции Т-банка <strong>и</strong> блюда нашего действующего меню — формируем гостевой бокс в <strong>прозрачном зиплоке</strong>.',
+                step4_rule_title: 'Общее правило:',
+                step4_rule1: 'В зиплок кладём <strong>подарок</strong> в зависимости от блюда акции (палочки, брелок, визитка (открытка)).',
+                step4_rule2: 'Добавляем стандартные комплектующие согласно <strong>действующему стандарту гостевого бокса</strong> (количество персон, палочки, соевый соус, красная ложка).',
+                step4_rule3: 'Количество <strong>белых палочек Тануки</strong> и <strong>красных ложек</strong> зависит от <strong>количества гостей</strong>.',
+                step4_examples_title: 'Примеры:',
+                step4_ex1: '<span class="tag">Пример 1</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br> <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.',
+                step4_ex2: '<span class="tag">Пример 2</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 2</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 2 белые палочки Тануки + 1 красная ложка + соевый соус.',
+                step4_ex3: '<span class="tag">Пример 3</span> <strong>Заказ:</strong> сет «Прозрачный», ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + соевый соус.',
+                step4_ex4: '<span class="tag">Пример 4</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 1</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + 1 белые палочки Тануки + 1 красная ложка + соевый соус.',
+                step4_ex5: '<span class="tag">Пример 5</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>Прозрачный спринг-ролл с тунцом</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 0</strong><br> <span class="highlight">Кладём:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (визитка (открытка)) + соевый соус.',
+                step4_ex6: '<span class="tag">Пример 6</span> <strong>Заказ:</strong> сет «Прозрачный», <strong>4 вкуса спринг-роллов</strong>, ролл «Филадельфия», суп «Тануки ям». <strong>Гостей: 3</strong><br> <span class="highlight">Кладём в прозрачный зиплок Т-банка:</span> 1 подарок (палочки + визитка (открытка)) + 1 подарок (брелок (МСК/МО) или визитка (открытка)) + 3 белые палочки Тануки + 1 красная ложка + соевый соус.',
+                // step5
+                step5_title: 'Что мы используем',
+                step5_subhead: 'Вот все материалы и подарки для акции. Запомни, как они выглядят!<br> <span style="font-size: 0.9rem; color: #666;">Нажми на фото, чтобы увеличить.</span>',
+                step5_subhead_hint: 'Нажми на фото, чтобы увеличить.',
+                gallery_brelok: 'Брелок',
+                gallery_vizitka: 'Визитка (открытка)',
+                gallery_palochki: 'Палочки',
+                gallery_paket: 'Прозрачный брендированный пакет',
+                gallery_ziplok: 'Прозрачный зиплок (гостевой бокс)',
+                gallery_konteiner: 'Прозрачный контейнер',
+                // step6
+                step6_title: 'Контейнер = один спринг-ролл',
+                step6_subhead: 'Это суперважно для качества!',
+                step6_rule1: '✅ Каждый спринг-ролл — в <strong>отдельный</strong> прозрачный контейнер.',
+                step6_rule2: '❌ <strong>Нельзя</strong> класть два и более ролла в один контейнер — они слипнутся, и гость расстроится.',
+                step6_rule3: '📌 Если заказано 3 ролла → нужно 3 контейнера. Просто и понятно.',
+                step6_chef_tip: 'Для повара:',
+                step6_chef_tip_text: 'готовь каждый спринг-ролл отдельно и сразу укладывай в отдельный контейнер.',
+                // step7
+                step7_title: 'Повар готовит, оператор проверяет',
+                step7_subhead: 'В акции участвуют все. У каждого своя задача, но вместе мы делаем идеальный заказ.',
+                step7_chef_title: 'Повар:',
+                step7_chef1: 'Готовит спринг-роллы или сет по стандартам и СТК.',
+                step7_chef2: 'Упаковывает каждый спринг-ролл или сет в отдельный прозрачный контейнер.',
+                step7_chef3: 'Передаёт упакованное блюдо оператору доставки для финальной проверки и упаковки.',
+                step7_operator_title: 'Оператор доставки и менеджер:',
+                step7_operator1: 'Проверяют работу повара: каждое блюдо в своём отдельном контейнере, блюдо приготовлено и внешне привлекательно согласно стандартам и условиям акции. <strong>(🔴Важно: контроль внешнего вида приготовленного блюда!)</strong>',
+                step7_operator2: 'Сверяют количество с указанным в бланке заказа.',
+                step7_operator3: 'Комплектуют прозрачный зиплок (гостевой бокс) и правильность подарков (по схеме).',
+                step7_operator4: 'Только после проверки упаковывают заказ в прозрачный пакет.',
+                // step8
+                step8_title: 'Чек-лист оператора доставки',
+                step8_subhead: 'Перед отправкой каждый заказ проходит эту проверку. Не пропускай ни один пункт!',
+                step8_check1: '☐ Проверить внешний вид блюд на раздаче (все блюда сделаны по стандарту).',
+                step8_check2: '☐ Блюда упакованы в прозрачные контейнеры (каждый спринг-ролл в отдельный контейнер).',
+                step8_check3: '☐ Сформировать Гостевой бокс - прозрачный зиплок.',
+                step8_check4: '☐ Свериться со схемой подарков, ничего не забыть и не перепутать.',
+                step8_check5: '☐ Упаковать блюда в прозрачный пакет.',
+                step8_check6: '☐ Предупредить курьера об осторожности.',
+                step8_warning_title: 'Штрафы — миллионы!',
+                step8_warning_text: 'Договор с Т-банком требует идеального качества. Ошибка = большие деньги.',
+                // step9
+                step9_title: 'Сложные случаи',
+                step9_subhead: 'Для менеджеров и операторов доставки — разбираем нестандартные заказы и ситуации с расходниками.',
+                step9_case1_title: 'Ситуация 1: Заказаны два разных спринг-ролла (не все 4).',
+                step9_case1_yes: '✅ <strong>Кладём:</strong> визитку (открытку) в прозрачный гостевой бокс.',
+                step9_case1_no: '❌ <strong>Не кладём:</strong> брелок, палочки (это только для сета «Прозрачный» и всех 4 вкусов).',
+                step9_case2_title: 'Ситуация 2: Заказаны все 4 вкуса + сет «Прозрачный».',
+                step9_case2_yes: '✅ <strong>Кладём:</strong> визитку (открытку), палочки (для сета), брелок (только если МСК/МО) в прозрачный зиплок.',
+                step9_case2_max: 'Всё по максимуму!',
+                step9_out_of_stock_title: 'Что делать, когда что-то закончилось?',
+                step9_out1: '<strong>а) Закончились подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).',
+                step9_out2: '<strong>б) Закончились пакеты или зиплоки</strong> → доставляем в <strong>наших белых Тануки</strong> — это допустимо, но только если нет прозрачных.',
+                step9_out3: '<strong>в) Закончилась прозрачная упаковка</strong> (контейнеры) → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">блюдо встаёт в стоп</span>. Нельзя заменять на обычную!',
+                // step10
+                step10_title: 'Курьер, внимание!',
+                step10_subhead: 'Упаковка прозрачная — каждый дефект видно. Будь аккуратен.',
+                step10_courier_title: 'Обязательно курьеру:',
+                step10_courier_quote: '«Сумку с заказом нельзя наклонять, кидать, переворачивать. Везти ровно и аккуратно».',
+                step10_manager_title: 'Для менеджеров:',
+                step10_manager_text: 'убедитесь, что операторы и курьер поняли инструкции. Проводите с сотрудниками 5-минутный брифинг перед началом смены.',
+                // step11
+                step11_title: 'Проверь себя',
+                step11_subhead: 'Ответь на все 10 вопросов. Будь внимателен!',
+                // сертификат
+                cert_title: 'Ты — суперзвезда!',
+                cert_sub1: 'Поздравляем, ты прошёл обучение по акции',
+                cert_sub2: 'Тануки × Т-Банк',
+                cert_employee: 'Сотрудник',
+                cert_text1: 'Теперь ты знаешь всё о прозрачности, подарках и упаковке.',
+                cert_text2: 'Распечатай этот сертификат и повесь на видное место!',
+                // роль-подсказки (внутренние, с HTML)
+                roleTip_delivery: `Оператор доставки: проверь работу повара, затем сверись со схемой подарков. В сложных случаях руководствуйся правилами:
+                    <ul class="role-tip-list"><li>при отсутствии подарков — выдаём без них;</li><li>при отсутствии пакетов/зиплоков — берём белые Тануки;</li><li>при отсутствии контейнеров — стоп.</li></ul> 🔴 Особое внимание удели комплектации гостевого бокса при смешанных заказах.`,
+                roleTip_courier: 'Курьер: запомни фразу для осторожной перевозки и всегда проверяй целостность пакета.',
+                roleTip_manager: 'Менеджер: контролируй весь процесс, особенно сложные случаи. Если заканчиваются контейнеры — немедленно останавливай продажу. Проводи брифинги и следи за правильной комплектацией заказов.',
+                roleTip_chef: 'Повар: готовь аккуратно, каждый ролл в отдельный контейнер. Если заканчиваются контейнеры — сразу сообщай менеджеру, блюдо встаёт в стоп.',
+                // quiz questions (будут использоваться в рендере)
+                q1: 'Если в заказе есть блюдо Т-банка, какой пакет мы используем?',
+                q1_o1: 'Стандартный белый',
+                q1_o2: 'Прозрачный брендированный',
+                q1_o3: 'Любой, какой есть',
+                q2: 'Сколько визиток (открыток) кладём при заказе одного прозрачного спринг-ролла на доставку?',
+                q2_o1: 'Одну',
+                q2_o2: 'Две',
+                q2_o3: 'Ни одной',
+                q3: 'Можно ли положить два спринг-ролла в один контейнер?',
+                q3_o1: 'Да, если они маленькие',
+                q3_o2: 'Нет, только по одному',
+                q3_o3: 'Да, если завернуть в плёнку',
+                q4: 'Кто проверяет, что повар правильно упаковал каждое блюдо?',
+                q4_o1: 'Курьер',
+                q4_o2: 'Оператор доставки и менеджер',
+                q4_o3: 'Никто, это не важно',
+                q5: 'Что обязательно нужно сообщить курьеру?',
+                q5_o1: 'Что заказ горячий',
+                q5_o2: 'Что везем заказ аккуратно',
+                q5_o3: 'Что нужно торопиться',
+                q6: 'Заказаны два разных спринг-ролла (не все 4). Что кладём?',
+                q6_o1: 'Только визитку (открытку)',
+                q6_o2: 'Визитку (открытку) в прозрачный гостевой бокс',
+                q6_o3: 'Брелок и палочки',
+                q7: 'Заказаны все 4 вкуса + сет «Прозрачный». Что кладём?',
+                q7_o1: 'Только визитку (открытку) и палочки',
+                q7_o2: 'Визитку (открытку), палочки, брелок (МСК/МО) в прозрачный зиплок',
+                q7_o3: 'Ничего, кроме еды',
+                q8: 'Что делаем, если заканчиваются прозрачные контейнеры?',
+                q8_o1: 'Выдаём в обычной упаковке',
+                q8_o2: 'Ставим блюдо в стоп',
+                q8_o3: 'Выдаём без упаковки',
+                q9: 'В смешанном заказе (есть блюда Т-банка и обычные), какой гостевой бокс используем?',
+                q9_o1: 'Прозрачный зиплок',
+                q9_o2: 'Белый Тануки',
+                q9_o3: 'Любой',
+                q10: 'При комплектации гостевого бокса, если гостей 2, сколько белых палочек Тануки кладём?',
+                q10_o1: '1',
+                q10_o2: '2',
+                q10_o3: '0',
+                quiz_correct: '✅ Верно!',
+                quiz_wrong: '❌ Неверно. Правильный ответ: "',
+                quiz_submit_retry: '🔄 Попробовать снова',
+                quiz_submit_cert: '🏆 Получить сертификат',
+                quiz_submit_check: 'Проверить',
+            },
 
-    <!-- ===== ШАГ 8: ЧЕК-ЛИСТ ===== -->
-    <div class="step" data-step="8">
-        <h2><span class="emoji">✅</span> Чек-лист оператора доставки</h2>
-        <div class="subhead">
-            Перед отправкой каждый заказ проходит эту проверку. Не пропускай ни один пункт!
-        </div>
-        <div class="card">
-            <ul style="list-style: none; padding: 0; font-size: 1rem; line-height: 2.2;">
-                <li>☐ Проверить внешний вид блюд на раздаче (все блюда сделаны по стандарту).</li>
-                <li>☐ Блюда упакованы в прозрачные контейнеры (каждый спринг-ролл в отдельный контейнер).</li>
-                <li>☐ Сформировать Гостевой бокс - прозрачный зиплок.</li>
-                <li>☐ Свериться со схемой подарков, ничего не забыть и не перепутать.</li>
-                <li>☐ Упаковать блюда в прозрачный пакет.</li>
-                <li>☐ Предупредить курьера об осторожности.</li>
-            </ul>
-        </div>
-        <div class="card" style="background: #ffebee; border-color: #c62828;">
-            <p><span class="icon">⚠️</span> <strong>Штрафы — миллионы!</strong> Договор с Т-банком требует идеального качества. Ошибка = большие деньги.</p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(7)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(9)">Далее →</button>
-        </div>
-    </div>
+            // ===== КЫРГЫЗЧА =====
+            ky: {
+                role_delivery: '📦 Жеткирүү оператору',
+                role_courier: '🚴 Курьер',
+                role_manager: '📋 Менеджер',
+                role_chef: '👨‍🍳 Ашпоз',
+                role_tip_default: 'Кеңеш алуу үчүн ролуңузду тандаңыз.',
+                btn_next: 'Кийин →',
+                btn_back: '← Артка',
+                btn_check: 'Текшерүү',
+                btn_print: '🖨️ Басып чыгаруу',
+                btn_restart: '🔄 Кайрадан өтүү',
+                modal_close: '✕',
+                step0_title: 'Салам, кесиптеш!',
+                step0_subhead: 'Биз <strong>Т-Банк</strong> менен чогуу сонун акцияны баштап жатабыз.<br> Сен команданын бөлүгүсүң жана бардыгы идеалдуу өтүшү үчүн сенден көз каранды.',
+                step0_card1_title: 'Эмне үчүн бул маанилүү?',
+                step0_card1_text: 'Т-Банк <strong>ачыктыкты</strong> жакшы көрөт — жарнамада да, жашоодо да. Биз <strong>тунук спринг-роллдарды жана тунук таңгактагы фирмалык роллдар топтомун</strong> жеткиребиз. Ар бир деталь көз алдында!',
+                step0_card1_warning: '⚠️ Каталыктар үчүн — миллиондогон айыптар!',
+                step0_card2_title: 'Сен кимсиң?',
+                step0_card2_sub: 'Өзүңдүн ролуңду танда, мен сага эң маанилүү нерселерди кеңеш кылайын.',
+                step0_card2_hint: '(тандап, андан кийин "Кийин" баскычын басып, жеке кеңештерди көрүңүз)',
+                step1_title: 'Ачыктык — бул сонун',
+                step1_subhead: 'Т-Банк башынан эле <strong>ачыктык</strong> жөнүндө айтат. Биз муну визуалдык түрдө колдойбуз:',
+                step1_list1: '✅ <strong>Тунук</strong> спринг-роллдар',
+                step1_list2: '✅ <strong>Тунук</strong> таңгак',
+                step1_list3: '✅ <strong>Тунук</strong> конок кутусу',
+                step1_list4: '✅ <strong>Тунук</strong> жеткирүү баштыгы',
+                step1_reminder_title: 'Эсте сакта:',
+                step1_reminder_text: 'биз тамакты жашырбайбыз — аны көрсөтөбүз. Ошондуктан ар бир заказ витринадагыдай көрүнүшү керек.',
+                step2_title: 'Таңгак — негиз',
+                step2_subhead: 'Эгер заказда <strong>Т-банктын бир тамагы</strong> болсо — атайын эреже боюнча иштейбиз.',
+                step2_rule1_title: '1. Бардык заказдар',
+                step2_rule1_text: 'Т-банктын <strong>тунук бренддик баштыгына</strong> салып жеткиребиз.',
+                step2_rule2_title: '2. Баштыктын ичине сөзсүз',
+                step2_rule2_text: '<strong>тунук зиплок (конок кутусу)</strong> салабыз (биздин ак бренддик ордуна).',
+                step2_rule3_text: 'Эгер Т-банктын тамагы жок болсо — биздин Тануки стандарттары боюнча иштейбиз:',
+                step2_rule3_examples: 'мисалы: <strong>тунук топтом + Тануки ям сорпосу</strong> — тунук баштык + тунук конок кутусу<br> <strong>Филадельфия роллу + Тануки ям сорпосу</strong> — биздин ак баштык + ак конок кутусу',
+                step2_warning_title: 'Маанилүү!',
+                step2_warning_text: 'Эгер <strong>тунук контейнерлер</strong> (топтом же спринг-роллдар үчүн) бүтсө — тамак токтотулат. Аларды биздин стандарттуу таңгакка алмаштырууга болбойт — бул ачыктыкты бузат жана айыптарга алып келет.',
+                step2_out_of_stock_title: 'Эгер бир нерсе бүтсө эмне кылабыз:',
+                step2_out_of_stock1: 'Эгер <strong>белектер</strong> (брелок, визитка (открытка), таякчалар) бүтсө → заказды <strong>аларсыз</strong> жеткиребиз (бул уруксат).',
+                step2_out_of_stock2: 'Эгер <strong>баштыктар же зиплоктор</strong> бүтсө → <strong>биздин ак Тануки</strong> баштыктарында жеткиребиз.',
+                step2_out_of_stock3: 'Эгер <strong>таңгактын өзү</strong> (контейнерлер) бүтсө → тамак токтотулат.',
+                step3_title: 'Жеткирүүдөгү белектер',
+                step3_subhead: 'Жеткирүү эрежелери.',
+                step3_rule1: 'Бардык 4 даам',
+                step3_rule1_text: '→ брелок (МСК/МО гана) + визитка (открытка)',
+                step3_rule2: '«Тунук» топтому',
+                step3_rule2_text: '→ таякчалар + визитка (открытка)',
+                step3_rule3: 'Ар кандай тунук спринг-ролл',
+                step3_rule3_highlight: 'бир визитка (открытка)',
+                step3_note_title: 'Эгер белектер бүтсө',
+                step3_note_text: '(брелоктор, таякчалар, визиткалар (открыткалар)) — заказды <strong>аларсыз</strong> жеткиребиз. Бул уруксат.',
+                step4_title: 'Конок кутусун комплектациялоо',
+                step4_subhead: '<strong>Жеткирүү операторлору жана менеджерлер үчүн:</strong> эгер заказда Т-банк акциясынын тамактары <strong>жана</strong> биздин менюдагы тамактар болсо — конок кутусун <strong>тунук зиплокто</strong> түзөбүз.',
+                step4_rule_title: 'Жалпы эреже:',
+                step4_rule1: 'Зиплокко акциянын тамагына жараша <strong>белек</strong> салабыз (таякчалар, брелок, визитка (открытка)).',
+                step4_rule2: '<strong>Конок кутусунун учурдагы стандартына</strong> ылайык стандарттык комплектүүлөрдү кошобуз (адамдардын саны, таякчалар, соя соусу, кызыл кашык).',
+                step4_rule3: '<strong>Ак Тануки таякчаларынын</strong> жана <strong>кызыл кашыктардын</strong> саны <strong>коноктордун санына</strong> жараша болот.',
+                step4_examples_title: 'Мисалдар:',
+                step4_ex1: '<span class="tag">Мисал 1</span> <strong>Заказ:</strong> «Тунук» топтому, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 1</strong><br> <span class="highlight">Т-банктын тунук зиплокусуна салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + 1 ак Тануки таякчасы + 1 кызыл кашык + соя соусу.',
+                step4_ex2: '<span class="tag">Мисал 2</span> <strong>Заказ:</strong> «Тунук» топтому, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 2</strong><br> <span class="highlight">Салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + 2 ак Тануки таякчасы + 1 кызыл кашык + соя соусу.',
+                step4_ex3: '<span class="tag">Мисал 3</span> <strong>Заказ:</strong> «Тунук» топтому, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 0</strong><br> <span class="highlight">Салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + соя соусу.',
+                step4_ex4: '<span class="tag">Мисал 4</span> <strong>Заказ:</strong> «Тунук» топтому, <strong>Тунук спринг-ролл (тунец менен)</strong>, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 1</strong><br> <span class="highlight">Салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + 1 белек (визитка (открытка)) + 1 ак Тануки таякчасы + 1 кызыл кашык + соя соусу.',
+                step4_ex5: '<span class="tag">Мисал 5</span> <strong>Заказ:</strong> «Тунук» топтому, <strong>Тунук спринг-ролл (тунец менен)</strong>, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 0</strong><br> <span class="highlight">Салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + 1 белек (визитка (открытка)) + соя соусу.',
+                step4_ex6: '<span class="tag">Мисал 6</span> <strong>Заказ:</strong> «Тунук» топтому, <strong>4 даам спринг-ролл</strong>, «Филадельфия» роллу, «Тануки ям» сорпосу. <strong>Коноктор: 3</strong><br> <span class="highlight">Т-банктын тунук зиплокусуна салабыз:</span> 1 белек (таякчалар + визитка (открытка)) + 1 белек (брелок (МСК/МО) же визитка (открытка)) + 3 ак Тануки таякчасы + 1 кызыл кашык + соя соусу.',
+                step5_title: 'Биз эмнени колдонобуз',
+                step5_subhead: 'Акция үчүн бардык материалдар жана белектер. Алардын кандай көрүнөрүн эсте сакта!<br> <span style="font-size: 0.9rem; color: #666;">Сүрөттү чоңойтуу үчүн басыңыз.</span>',
+                step5_subhead_hint: 'Сүрөттү чоңойтуу үчүн басыңыз.',
+                gallery_brelok: 'Брелок',
+                gallery_vizitka: 'Визитка (открытка)',
+                gallery_palochki: 'Таякчалар',
+                gallery_paket: 'Тунук бренддик баштык',
+                gallery_ziplok: 'Тунук зиплок (конок кутусу)',
+                gallery_konteiner: 'Тунук контейнер',
+                step6_title: 'Контейнер = бир спринг-ролл',
+                step6_subhead: 'Бул сапат үчүн абдан маанилүү!',
+                step6_rule1: '✅ Ар бир спринг-ролл — <strong>өзүнчө</strong> тунук контейнерде.',
+                step6_rule2: '❌ <strong>Болбойт</strong> эки же андан көп роллду бир контейнерге салуу — алар жабышып калат, конок капа болот.',
+                step6_rule3: '📌 Эгер 3 ролл заказ кылынса → 3 контейнер керек. Жөнөкөй жана түшүнүктүү.',
+                step6_chef_tip: 'Ашпоз үчүн:',
+                step6_chef_tip_text: 'ар бир спринг-роллду өзүнчө даярдап, дароо өзүнчө контейнерге сал.',
+                step7_title: 'Ашпоз даярдайт, оператор текшерет',
+                step7_subhead: 'Акцияга баары катышат. Ар биринин өз милдети бар, бирок чогуу идеалдуу заказды жасайбыз.',
+                step7_chef_title: 'Ашпоз:',
+                step7_chef1: 'Спринг-роллдарды же топтомду стандарттар жана СТК боюнча даярдайт.',
+                step7_chef2: 'Ар бир спринг-роллду же топтомду өзүнчө тунук контейнерге салат.',
+                step7_chef3: 'Даяр тамакты жеткирүү операторуна акыркы текшерүү жана таңгактоо үчүн берет.',
+                step7_operator_title: 'Жеткирүү оператору жана менеджер:',
+                step7_operator1: 'Ашпоздун ишин текшерет: ар бир тамак өзүнчө контейнерде, тамак стандарттарга жана акциянын шарттарына ылайык даярдалган жана сырткы көрүнүшү жагымдуу. <strong>(🔴Маанилүү: даяр тамактын сырткы көрүнүшүн контролдоо!)</strong>',
+                step7_operator2: 'Санды заказ бланкындагы менен салыштырат.',
+                step7_operator3: 'Тунук зиплокту (конок кутусун) жана белектердин тууралыгын (схема боюнча) комплектациялайт.',
+                step7_operator4: 'Текшерүүдөн кийин гана заказды тунук баштыкка таңгактайт.',
+                step8_title: 'Жеткирүү операторунун чек-листи',
+                step8_subhead: 'Жөнөтүүдөн мурун ар бир заказ бул текшерүүдөн өтөт. Бир пунктту да өткөрүп жибербе!',
+                step8_check1: '☐ Тамактардын сырткы көрүнүшүн текшерүү (бардык тамактар стандарт боюнча жасалган).',
+                step8_check2: '☐ Тамактар тунук контейнерлерге таңгалган (ар бир спринг-ролл өзүнчө контейнерде).',
+                step8_check3: '☐ Конок кутусун - тунук зиплокту түзүү.',
+                step8_check4: '☐ Белектердин схемасы менен салыштырып, эч нерсени унутпай, чаташтырбай.',
+                step8_check5: '☐ Тамактарды тунук баштыкка таңгактоо.',
+                step8_check6: '☐ Курьерди этияттык жөнүндө эскертүү.',
+                step8_warning_title: 'Айыптар — миллиондогон!',
+                step8_warning_text: 'Т-банк менен келишим идеалдуу сапатты талап кылат. Каталык = чоң акча.',
+                step9_title: 'Татаал учурлар',
+                step9_subhead: 'Менеджерлер жана жеткирүү операторлору үчүн — стандарттуу эмес заказдарды жана чыгымдар менен кырдаалдарды талдайбыз.',
+                step9_case1_title: 'Кырдаал 1: Эки башка спринг-ролл заказ кылынган (бардык 4 эмес).',
+                step9_case1_yes: '✅ <strong>Салабыз:</strong> визитка (открытка) тунук конок кутусуна.',
+                step9_case1_no: '❌ <strong>Салбайбыз:</strong> брелок, таякчалар (булар «Тунук» топтому жана бардык 4 даам үчүн гана).',
+                step9_case2_title: 'Кырдаал 2: Бардык 4 даам + «Тунук» топтому заказ кылынган.',
+                step9_case2_yes: '✅ <strong>Салабыз:</strong> визитка (открытка), таякчалар (топтом үчүн), брелок (МСК/МО гана) тунук зиплокко.',
+                step9_case2_max: 'Баары максималдуу!',
+                step9_out_of_stock_title: 'Эгер бир нерсе бүтсө эмне кылабыз?',
+                step9_out1: '<strong>а) Белектер бүтсө</strong> (брелок, визитка (открытка), таякчалар) → заказды <strong>аларсыз</strong> жеткиребиз (бул уруксат).',
+                step9_out2: '<strong>б) Баштыктар же зиплоктор бүтсө</strong> → <strong>биздин ак Тануки</strong> менен жеткиребиз — бул уруксат, бирок тунуктары жок болгондо гана.',
+                step9_out3: '<strong>в) Тунук таңгак</strong> (контейнерлер) бүтсө → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">тамак токтотулат</span>. Адаттагыга алмаштырууга болбойт!',
+                step10_title: 'Курьер, көңүл бур!',
+                step10_subhead: 'Таңгак тунук — ар бир кемчилик көрүнүп турат. Этият бол.',
+                step10_courier_title: 'Курьерге сөзсүз:',
+                step10_courier_quote: '«Заказдын баштыгын эңкейтүүгө, ыргытууга, оодарууга болбойт. Түз жана этият айдоо керек».',
+                step10_manager_title: 'Менеджерлер үчүн:',
+                step10_manager_text: 'операторлор жана курьер инструкцияларды түшүнгөнүнө ынаныңыз. Кызматкерлер менен иш баштаар алдында 5 мүнөттүк брифинг өткөрүңүз.',
+                step11_title: 'Өзүңдү текшер',
+                step11_subhead: 'Бардык 10 суроого жооп бер. Көңүл бур!',
+                cert_title: 'Сен — супер жылдыз!',
+                cert_sub1: 'Куттуктайбыз, сен акция боюнча окуудан өттүң',
+                cert_sub2: 'Тануки × Т-Банк',
+                cert_employee: 'Кызматкер',
+                cert_text1: 'Эми сен ачыктык, белектер жана таңгак жөнүндө баарын билесиң.',
+                cert_text2: 'Бул сертификатты басып чыгарып, көрүнгөн жерге илип кой!',
+                roleTip_delivery: `Жеткирүү оператору: ашпоздун ишин текшер, андан кийин белектердин схемасы менен салыштыр. Татаал учурларда эрежелерди колдон:
+                    <ul class="role-tip-list"><li>белектер жок болсо — аларсыз беребиз;</li><li>баштыктар/зиплоктор жок болсо — ак Тануки алабыз;</li><li>контейнерлер жок болсо — токтотулат.</li></ul> 🔴 Аралаш заказдарда конок кутусунун комплектациясына өзгөчө көңүл бур.`,
+                roleTip_courier: 'Курьер: этият жеткирүү үчүн сөздү эсте жана баштыктын бүтүндүгүн ар дайым текшер.',
+                roleTip_manager: 'Менеджер: бүт процесс, өзгөчө татаал учурларды көзөмөлдө. Эгер контейнерлер бүтсө — дароо сатууну токтот. Брифингдерди өткөрүп, заказдардын туура комплектациясын көзөмөлдө.',
+                roleTip_chef: 'Ашпоз: тактык менен даярда, ар бир роллду өзүнчө контейнерге сал. Эгер контейнерлер бүтсө — дароо менеджерге билдир, тамак токтотулат.',
+                q1: 'Эгер заказда Т-банктын тамагы болсо, кайсы баштыкты колдонобуз?',
+                q1_o1: 'Стандарттык ак',
+                q1_o2: 'Тунук бренддик',
+                q1_o3: 'Кайсы бар, ошол',
+                q2: 'Жеткирүүгө бир тунук спринг-ролл заказ кылынганда канча визитка (открытка) салабыз?',
+                q2_o1: 'Бир',
+                q2_o2: 'Эки',
+                q2_o3: 'Эч кандай',
+                q3: 'Эки спринг-роллду бир контейнерге салууга болобу?',
+                q3_o1: 'Ооба, эгер кичине болсо',
+                q3_o2: 'Жок, ар бири өзүнчө гана',
+                q3_o3: 'Ооба, эгер пленкага ороп койсо',
+                q4: 'Ашпоз тамакты туура таңгактаганын ким текшерет?',
+                q4_o1: 'Курьер',
+                q4_o2: 'Жеткирүү оператору жана менеджер',
+                q4_o3: 'Эч ким, бул маанилүү эмес',
+                q5: 'Курьерге сөзсүз эмнени айтуу керек?',
+                q5_o1: 'Заказ ысык',
+                q5_o2: 'Заказды этият айдоо керек',
+                q5_o3: 'Ашыкча шашыш керек',
+                q6: 'Эки башка спринг-ролл заказ кылынган (бардык 4 эмес). Эмне салабыз?',
+                q6_o1: 'Тек гана визитка (открытка)',
+                q6_o2: 'Тунук конок кутусуна визитка (открытка)',
+                q6_o3: 'Брелок жана таякчалар',
+                q7: 'Бардык 4 даам + «Тунук» топтому заказ кылынган. Эмне салабыз?',
+                q7_o1: 'Тек гана визитка (открытка) жана таякчалар',
+                q7_o2: 'Тунук зиплокко визитка (открытка), таякчалар, брелок (МСК/МО)',
+                q7_o3: 'Тамактан башка эч нерсе',
+                q8: 'Эгер тунук контейнерлер бүтсө эмне кылабыз?',
+                q8_o1: 'Адаттагы таңгакта беребиз',
+                q8_o2: 'Тамакты токтотобуз',
+                q8_o3: 'Таңгаксыз беребиз',
+                q9: 'Аралаш заказда (Т-банк жана адаттагы тамактар бар), кайсы конок кутусун колдонобуз?',
+                q9_o1: 'Тунук зиплок',
+                q9_o2: 'Ак Тануки',
+                q9_o3: 'Кайсы болсо ошол',
+                q10: 'Конок кутусун комплектациялоодо, эгер коноктор 2 болсо, канча ак Тануки таякчасын салабыз?',
+                q10_o1: '1',
+                q10_o2: '2',
+                q10_o3: '0',
+                quiz_correct: '✅ Туура!',
+                quiz_wrong: '❌ Туура эмес. Туура жооп: "',
+                quiz_submit_retry: '🔄 Кайрадан аракет кылуу',
+                quiz_submit_cert: '🏆 Сертификат алуу',
+                quiz_submit_check: 'Текшерүү',
+            },
 
-    <!-- ===== ШАГ 9: СЛОЖНЫЕ СЛУЧАИ ===== -->
-    <div class="step" data-step="9">
-        <h2><span class="emoji">🧩</span> Сложные случаи</h2>
-        <div class="subhead">
-            Для менеджеров и операторов доставки — разбираем нестандартные заказы и ситуации с расходниками.
-        </div>
-        <div class="card" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">📋</span> <strong>Ситуация 1: Заказаны два разных спринг-ролла (не все 4).</strong></p>
-            <ul style="padding-left: 24px; line-height: 2;">
-                <li>✅ <strong>Кладём:</strong> визитку (открытку) в прозрачный гостевой бокс.</li>
-                <li>❌ <strong>Не кладём:</strong> брелок, палочки (это только для сета «Прозрачный» и всех 4 вкусов).</li>
-            </ul>
-        </div>
-        <div class="card" style="border-left: 6px solid #2e7d32;">
-            <p><span class="icon">📦</span> <strong>Ситуация 2: Заказаны все 4 вкуса + сет «Прозрачный».</strong></p>
-            <ul style="padding-left: 24px; line-height: 2;">
-                <li>✅ <strong>Кладём:</strong> визитку (открытку), палочки (для сета), брелок (только если МСК/МО) в прозрачный зиплок.</li>
-                <li>Всё по максимуму!</li>
-            </ul>
-        </div>
-        <div class="card" style="background: #ffebee; border-color: #c62828;">
-            <p><span class="icon">⛔</span> <strong>Что делать, когда что-то закончилось?</strong></p>
-            <ul style="padding-left: 24px; line-height: 2; list-style: none;">
-                <li><strong>а) Закончились подарки</strong> (брелок, визитки (открытки), палочки) → доставляем заказ <strong>без них</strong> (это разрешено).</li>
-                <li><strong>б) Закончились пакеты или зиплоки</strong> → доставляем в <strong>наших белых Тануки</strong> — это допустимо, но только если нет прозрачных.</li>
-                <li><strong>в) Закончилась прозрачная упаковка</strong> (контейнеры) → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">блюдо встаёт в стоп</span>. Нельзя заменять на обычную!</li>
-            </ul>
-        </div>
-        <div class="card" id="roleTip9" style="border-left: 6px solid #feda00;">
-            <p><span class="icon">🤝</span> <span id="roleTipText9">Выбери роль, чтобы увидеть совет.</span></p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(8)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(10)">Далее →</button>
-        </div>
-    </div>
+            // ===== ЎЗБЕКЧА =====
+            uz: {
+                role_delivery: '📦 Yetkazib berish operatori',
+                role_courier: '🚴 Kuryer',
+                role_manager: '📋 Menejer',
+                role_chef: '👨‍🍳 Oshpaz',
+                role_tip_default: 'Maslahat olish uchun rolingizni tanlang.',
+                btn_next: 'Keyingi →',
+                btn_back: '← Orqaga',
+                btn_check: 'Tekshirish',
+                btn_print: '🖨️ Chop etish',
+                btn_restart: '🔄 Qayta o‘tish',
+                modal_close: '✕',
+                step0_title: 'Salom, hamkasb!',
+                step0_subhead: 'Biz <strong>T-Bank</strong> bilan ajoyib aksiyani boshlayapmiz.<br> Siz jamoa aʼzosisiz va hammasi ideal bo‘lishi sizga bog‘liq.',
+                step0_card1_title: 'Nima uchun bu muhim?',
+                step0_card1_text: 'T-Bank <strong>oshkoralikni</strong> yaxshi ko‘radi — reklamada ham, hayotda ham. Biz <strong>shaffof spring-rollar va shaffof o‘ramdagi firma rollar to‘plamini</strong> yetkazamiz. Har bir tafsilot ko‘z oldida!',
+                step0_card1_warning: '⚠️ Xatolar uchun — millionlab jarimalar!',
+                step0_card2_title: 'Siz kimsiz?',
+                step0_card2_sub: 'O‘z rolingizni tanlang, men sizga eng muhim maslahatlarni beraman.',
+                step0_card2_hint: '(tanlab, keyin "Keyingi" tugmasini bosing va shaxsiy maslahatlarni ko‘ring)',
+                step1_title: 'Oshkoralik — bu ajoyib',
+                step1_subhead: 'T-Bank boshidanoq <strong>ochiqlik</strong> haqida gapiradi. Biz buni vizual qo‘llab-quvvatlaymiz:',
+                step1_list1: '✅ <strong>Shaffof</strong> spring-rollar',
+                step1_list2: '✅ <strong>Shaffof</strong> o‘ram',
+                step1_list3: '✅ <strong>Shaffof</strong> mehmon qutisi',
+                step1_list4: '✅ <strong>Shaffof</strong> yetkazib berish paketi',
+                step1_reminder_title: 'Esda tut:',
+                step1_reminder_text: 'biz ovqatni yashirmaymiz — uni ko‘rsatamiz. Shuning uchun har bir buyurtma vitrinadagidek ko‘rinishi kerak.',
+                step2_title: 'O‘ram — asos',
+                step2_subhead: 'Agar buyurtmada <strong>T-bankning bitta taomi</strong> bo‘lsa — maxsus qoida bo‘yicha ishlaymiz.',
+                step2_rule1_title: '1. Barcha buyurtmalar',
+                step2_rule1_text: 'T-bankning <strong>shaffof brendli paketiga</strong> solib yetkazamiz.',
+                step2_rule2_title: '2. Paket ichiga albatta',
+                step2_rule2_text: '<strong>shaffof ziplok (mehmon qutisi)</strong> solamiz (bizning oq brendli o‘rniga).',
+                step2_rule3_text: 'Agar T-bank taomi bo‘lmasa — bizning Tanuki standartlari bo‘yicha ishlaymiz:',
+                step2_rule3_examples: 'masalan: <strong>shaffof to‘plam + Tanuki yam sho‘rvasi</strong> — shaffof paket + shaffof mehmon qutisi<br> <strong>Filadelfiya roll + Tanuki yam sho‘rvasi</strong> — bizning oq paket + oq mehmon qutisi',
+                step2_warning_title: 'Muhim!',
+                step2_warning_text: 'Agar <strong>shaffof konteynerlar</strong> (to‘plam yoki spring-rollar uchun) tugasa — taom to‘xtatiladi. Ularni bizning standart o‘ramga almashtirib bo‘lmaydi — bu oshkoralikni buzadi va jarimalarga olib keladi.',
+                step2_out_of_stock_title: 'Agar biror narsa tugasa nima qilamiz:',
+                step2_out_of_stock1: 'Agar <strong>sovg‘alar</strong> (brelok, vizitka (otkrytka), tayoqchalar) tugasa — buyurtmani <strong>ularsiz</strong> yetkazamiz (bu ruxsat).',
+                step2_out_of_stock2: 'Agar <strong>paketlar yoki ziploklar</strong> tugasa — <strong>bizning oq Tanuki</strong> da yetkazamiz.',
+                step2_out_of_stock3: 'Agar <strong>o‘ramning o‘zi</strong> (konteynerlar) tugasa — taom to‘xtatiladi.',
+                step3_title: 'Yetkazib berishdagi sovg‘alar',
+                step3_subhead: 'Yetkazib berish qoidalari.',
+                step3_rule1: 'Barcha 4 taʼm',
+                step3_rule1_text: '→ brelok (faqat MSK/MO) + vizitka (otkrytka)',
+                step3_rule2: '«Shaffof» to‘plami',
+                step3_rule2_text: '→ tayoqchalar + vizitka (otkrytka)',
+                step3_rule3: 'Har qanday shaffof spring-roll',
+                step3_rule3_highlight: 'bitta vizitka (otkrytka)',
+                step3_note_title: 'Agar sovg‘alar tugasa',
+                step3_note_text: '(breloklar, tayoqchalar, vizitkalar (otkrytkalar)) — buyurtmani <strong>ularsiz</strong> yetkazamiz. Bu ruxsat.',
+                step4_title: 'Mehmon qutisini komplektatsiya qilish',
+                step4_subhead: '<strong>Yetkazib berish operatorlari va menejerlar uchun:</strong> agar buyurtmada T-bank aksiyasining taomlari <strong>va</strong> bizning menyudagi taomlar bo‘lsa — mehmon qutisini <strong>shaffof ziplokda</strong> tuzamiz.',
+                step4_rule_title: 'Umumiy qoida:',
+                step4_rule1: 'Ziplokga aksiya taomiga qarab <strong>sovg‘a</strong> solamiz (tayoqchalar, brelok, vizitka (otkrytka)).',
+                step4_rule2: '<strong>Mehmon qutisining amaldagi standartiga</strong> muvofiq standart komplektlarni qo‘shamiz (odamlar soni, tayoqchalar, soya sousi, qizil qoshiq).',
+                step4_rule3: '<strong>Oq Tanuki tayoqchalari</strong> va <strong>qizil qoshiqlar</strong> soni <strong>mehmonlar soniga</strong> bog‘liq.',
+                step4_examples_title: 'Misollar:',
+                step4_ex1: '<span class="tag">Misol 1</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 1</strong><br> <span class="highlight">T-bankning shaffof ziplokiga solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + 1 oq Tanuki tayoqchasi + 1 qizil qoshiq + soya sousi.',
+                step4_ex2: '<span class="tag">Misol 2</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 2</strong><br> <span class="highlight">Solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + 2 oq Tanuki tayoqchasi + 1 qizil qoshiq + soya sousi.',
+                step4_ex3: '<span class="tag">Misol 3</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 0</strong><br> <span class="highlight">Solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + soya sousi.',
+                step4_ex4: '<span class="tag">Misol 4</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, <strong>Shaffof spring-roll (orkinos bilan)</strong>, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 1</strong><br> <span class="highlight">Solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + 1 sovg‘a (vizitka (otkrytka)) + 1 oq Tanuki tayoqchasi + 1 qizil qoshiq + soya sousi.',
+                step4_ex5: '<span class="tag">Misol 5</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, <strong>Shaffof spring-roll (orkinos bilan)</strong>, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 0</strong><br> <span class="highlight">Solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + 1 sovg‘a (vizitka (otkrytka)) + soya sousi.',
+                step4_ex6: '<span class="tag">Misol 6</span> <strong>Buyurtma:</strong> «Shaffof» to‘plami, <strong>4 taʼm spring-roll</strong>, «Filadelfiya» roll, «Tanuki yam» sho‘rva. <strong>Mehmonlar: 3</strong><br> <span class="highlight">T-bankning shaffof ziplokiga solamiz:</span> 1 sovg‘a (tayoqchalar + vizitka (otkrytka)) + 1 sovg‘a (brelok (MSK/MO) yoki vizitka (otkrytka)) + 3 oq Tanuki tayoqchasi + 1 qizil qoshiq + soya sousi.',
+                step5_title: 'Biz nimani ishlatamiz',
+                step5_subhead: 'Aksiya uchun barcha materiallar va sovg‘alar. Ularning qanday ko‘rinishini eslab qoling!<br> <span style="font-size: 0.9rem; color: #666;">Kattalashtirish uchun rasmni bosing.</span>',
+                step5_subhead_hint: 'Kattalashtirish uchun rasmni bosing.',
+                gallery_brelok: 'Brelok',
+                gallery_vizitka: 'Vizitka (otkrytka)',
+                gallery_palochki: 'Tayoqchalar',
+                gallery_paket: 'Shaffof brendli paket',
+                gallery_ziplok: 'Shaffof ziplok (mehmon qutisi)',
+                gallery_konteiner: 'Shaffof konteyner',
+                step6_title: 'Konteyner = bitta spring-roll',
+                step6_subhead: 'Bu sifat uchun juda muhim!',
+                step6_rule1: '✅ Har bir spring-roll — <strong>alohida</strong> shaffof konteynerda.',
+                step6_rule2: '❌ <strong>Mumkin emas</strong> ikkita yoki undan ko‘p rollni bitta konteynerga solish — ular yopishib qoladi, mehmon xafa bo‘ladi.',
+                step6_rule3: '📌 Agar 3 ta roll buyurtma qilingan bo‘lsa → 3 ta konteyner kerak. Oddiy va tushunarli.',
+                step6_chef_tip: 'Oshpaz uchun:',
+                step6_chef_tip_text: 'har bir spring-rollni alohida tayyorlab, darhol alohida konteynerga sol.',
+                step7_title: 'Oshpaz tayyorlaydi, operator tekshiradi',
+                step7_subhead: 'Aksiyada hamma ishtirok etadi. Har birining o‘z vazifasi bor, lekin birgalikda ideal buyurtmani yaratamiz.',
+                step7_chef_title: 'Oshpaz:',
+                step7_chef1: 'Spring-rollar yoki to‘plamni standartlar va STK bo‘yicha tayyorlaydi.',
+                step7_chef2: 'Har bir spring-roll yoki to‘plamni alohida shaffof konteynerga soladi.',
+                step7_chef3: 'Tayyor taomni yetkazib berish operatoriga yakuniy tekshirish va o‘rash uchun beradi.',
+                step7_operator_title: 'Yetkazib berish operatori va menejer:',
+                step7_operator1: 'Oshpazning ishini tekshiradi: har bir taom o‘zining alohida konteynerida, taom standartlar va aksiya shartlariga muvofiq tayyorlangan va tashqi ko‘rinishi jozibali. <strong>(🔴Muhim: tayyor taomning tashqi ko‘rinishini nazorat qilish!)</strong>',
+                step7_operator2: 'Soni buyurtma blankasidagi bilan solishtiradi.',
+                step7_operator3: 'Shaffof ziplokni (mehmon qutisini) va sovg‘alarning to‘g‘riligini (sxema bo‘yicha) komplektlaydi.',
+                step7_operator4: 'Faqat tekshirishdan keyin buyurtmani shaffof paketga o‘raydi.',
+                step8_title: 'Yetkazib berish operatorining chek-list',
+                step8_subhead: 'Jo‘natishdan oldin har bir buyurtma bu tekshiruvdan o‘tadi. Birorta bandni ham o‘tkazib yuborma!',
+                step8_check1: '☐ Taomlarning tashqi ko‘rinishini tekshirish (barcha taomlar standart bo‘yicha tayyorlangan).',
+                step8_check2: '☐ Taomlar shaffof konteynerlarga o‘ralgan (har bir spring-roll alohida konteynerda).',
+                step8_check3: '☐ Mehmon qutisini - shaffof ziplokni tuzish.',
+                step8_check4: '☐ Sovg‘alar sxemasi bilan solishtirish, hech narsani unutmaslik va chalkashtirmaslik.',
+                step8_check5: '☐ Taomlarni shaffof paketga o‘rash.',
+                step8_check6: '☐ Kuryerni ehtiyotkorlik haqida ogohlantirish.',
+                step8_warning_title: 'Jarimalar — millionlab!',
+                step8_warning_text: 'T-bank bilan shartnoma ideal sifatni talab qiladi. Xato = katta pul.',
+                step9_title: 'Murakkab holatlar',
+                step9_subhead: 'Menejerlar va yetkazib berish operatorlari uchun — nostandart buyurtmalar va sarf materiallar bilan bog‘liq vaziyatlarni tahlil qilamiz.',
+                step9_case1_title: 'Vaziyat 1: Ikkita har xil spring-roll buyurtma qilingan (barcha 4 emas).',
+                step9_case1_yes: '✅ <strong>Solamiz:</strong> vizitka (otkrytka) shaffof mehmon qutisiga.',
+                step9_case1_no: '❌ <strong>Solmaymiz:</strong> brelok, tayoqchalar (bular «Shaffof» to‘plami va barcha 4 taʼm uchun).',
+                step9_case2_title: 'Vaziyat 2: Barcha 4 taʼm + «Shaffof» to‘plami buyurtma qilingan.',
+                step9_case2_yes: '✅ <strong>Solamiz:</strong> vizitka (otkrytka), tayoqchalar (to‘plam uchun), brelok (faqat MSK/MO) shaffof ziplokga.',
+                step9_case2_max: 'Hammasi maksimal!',
+                step9_out_of_stock_title: 'Agar biror narsa tugasa nima qilamiz?',
+                step9_out1: '<strong>a) Sovg‘alar tugasa</strong> (brelok, vizitka (otkrytka), tayoqchalar) → buyurtmani <strong>ularsiz</strong> yetkazamiz (bu ruxsat).',
+                step9_out2: '<strong>b) Paketlar yoki ziploklar tugasa</strong> → <strong>bizning oq Tanuki</strong> da yetkazamiz — bu ruxsat, lekin faqat shaffoflari bo‘lmaganda.',
+                step9_out3: '<strong>v) Shaffof o‘ram</strong> (konteynerlar) tugasa → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">taom to‘xtatiladi</span>. Oddiyga almashtirish mumkin emas!',
+                step10_title: 'Kuryer, diqqat!',
+                step10_subhead: 'O‘ram shaffof — har bir nuqson ko‘rinib turadi. Ehtiyot bo‘l.',
+                step10_courier_title: 'Kuryerga albatta:',
+                step10_courier_quote: '«Buyurtma solingan sumkani egish, uloqtirish, ag‘darish mumkin emas. Tekis va ehtiyot olib borish kerak».',
+                step10_manager_title: 'Menejerlar uchun:',
+                step10_manager_text: 'operatorlar va kuryer ko‘rsatmalarni tushunganiga ishonch hosil qiling. Xodimlar bilan smena boshlanishidan oldin 5 daqiqalik brifing o‘tkazing.',
+                step11_title: 'O‘zingni sinab ko‘r',
+                step11_subhead: 'Barcha 10 savolga javob ber. Diqqatli bo‘l!',
+                cert_title: 'Sen — super yulduz!',
+                cert_sub1: 'Tabriklaymiz, sen aksiya bo‘yicha o‘qishdan o‘tding',
+                cert_sub2: 'Tanuki × T-Bank',
+                cert_employee: 'Xodim',
+                cert_text1: 'Endi sen oshkoralik, sovg‘alar va o‘ram haqida hamma narsani bilasan.',
+                cert_text2: 'Ushbu sertifikatni chop etib, ko‘rinadigan joyga osib qo‘y!',
+                roleTip_delivery: `Yetkazib berish operatori: oshpazning ishini tekshir, keyin sovg‘alar sxemasi bilan solishtir. Murakkab holatlarda qoidalarni qo‘llang:
+                    <ul class="role-tip-list"><li>sovg‘alar bo‘lmasa — ularsiz beramiz;</li><li>paketlar/ziploklar bo‘lmasa — oq Tanuki olamiz;</li><li>konteynerlar bo‘lmasa — to‘xtatiladi.</li></ul> 🔴 Aralash buyurtmalarda mehmon qutisini komplektatsiya qilishga alohida eʼtibor bering.`,
+                roleTip_courier: 'Kuryer: ehtiyot yetkazib berish uchun iborani esda tut va paketning butunligini doim tekshir.',
+                roleTip_manager: 'Menejer: butun jarayonni, ayniqsa murakkab holatlarni nazorat qil. Konteynerlar tugasa — darhol savdoni to‘xtat. Brifinglar o‘tkaz va buyurtmalarning to‘g‘ri komplektatsiyasini kuzat.',
+                roleTip_chef: 'Oshpaz: aniq tayyorla, har bir rollni alohida konteynerga sol. Konteynerlar tugasa — darhol menejerga xabar ber, taom to‘xtatiladi.',
+                q1: 'Agar buyurtmada T-bank taomi bo‘lsa, qaysi paketni ishlatamiz?',
+                q1_o1: 'Standart oq',
+                q1_o2: 'Shaffof brendli',
+                q1_o3: 'Qaysi bo‘lsa, o‘sha',
+                q2: 'Yetkazib berishga bitta shaffof spring-roll buyurtma qilinganda nechta vizitka (otkrytka) solamiz?',
+                q2_o1: 'Bitta',
+                q2_o2: 'Ikkita',
+                q2_o3: 'Hech qanday',
+                q3: 'Ikkita spring-rollni bitta konteynerga solish mumkinmi?',
+                q3_o1: 'Ha, agar kichik bo‘lsa',
+                q3_o2: 'Yo‘q, faqat har biri alohida',
+                q3_o3: 'Ha, agar plyonkaga o‘ralsa',
+                q4: 'Oshpaz taomni to‘g‘ri o‘raganligini kim tekshiradi?',
+                q4_o1: 'Kuryer',
+                q4_o2: 'Yetkazib berish operatori va menejer',
+                q4_o3: 'Hech kim, bu muhim emas',
+                q5: 'Kuryerga albatta nimani aytish kerak?',
+                q5_o1: 'Buyurtma issiq',
+                q5_o2: 'Buyurtmani ehtiyot olib borish kerak',
+                q5_o3: 'Shoshilish kerak',
+                q6: 'Ikkita har xil spring-roll buyurtma qilingan (barcha 4 emas). Nima solamiz?',
+                q6_o1: 'Faqat vizitka (otkrytka)',
+                q6_o2: 'Shaffof mehmon qutisiga vizitka (otkrytka)',
+                q6_o3: 'Brelok va tayoqchalar',
+                q7: 'Barcha 4 taʼm + «Shaffof» to‘plami buyurtma qilingan. Nima solamiz?',
+                q7_o1: 'Faqat vizitka (otkrytka) va tayoqchalar',
+                q7_o2: 'Shaffof ziplokga vizitka (otkrytka), tayoqchalar, brelok (MSK/MO)',
+                q7_o3: 'Ovqatdan boshqa hech narsa',
+                q8: 'Shaffof konteynerlar tugasa nima qilamiz?',
+                q8_o1: 'Oddiy o‘ramda beramiz',
+                q8_o2: 'Taomni to‘xtatamiz',
+                q8_o3: 'O‘ramsiz beramiz',
+                q9: 'Aralash buyurtmada (T-bank va oddiy taomlar bor), qaysi mehmon qutisini ishlatamiz?',
+                q9_o1: 'Shaffof ziplok',
+                q9_o2: 'Oq Tanuki',
+                q9_o3: 'Qaysi bo‘lsa',
+                q10: 'Mehmon qutisini komplektatsiya qilishda, agar mehmonlar 2 ta bo‘lsa, nechta oq Tanuki tayoqchasini solamiz?',
+                q10_o1: '1',
+                q10_o2: '2',
+                q10_o3: '0',
+                quiz_correct: '✅ To‘g‘ri!',
+                quiz_wrong: '❌ Noto‘g‘ri. To‘g‘ri javob: "',
+                quiz_submit_retry: '🔄 Qayta urinish',
+                quiz_submit_cert: '🏆 Sertifikat olish',
+                quiz_submit_check: 'Tekshirish',
+            },
 
-    <!-- ===== ШАГ 10: ОСТОРОЖНОСТЬ ===== -->
-    <div class="step" data-step="10">
-        <h2><span class="emoji">🚴</span> Курьер, внимание!</h2>
-        <div class="subhead">
-            Упаковка прозрачная — каждый дефект видно. Будь аккуратен.
-        </div>
-        <div class="card">
-            <p><span class="icon">📢</span> <strong>Обязательно курьеру:</strong></p>
-            <p style="background: #feda00; padding: 12px 16px; border-radius: 20px; font-weight: 700; margin: 10px 0;">
-                «Сумку с заказом нельзя наклонять, кидать, переворачивать. Везти ровно и аккуратно».
-            </p>
-        </div>
-        <div class="card">
-            <p><span class="icon">🧩</span> <strong>Для менеджеров:</strong> убедитесь, что операторы и курьер поняли инструкции. Проводите с сотрудниками 5-минутный брифинг перед началом смены.</p>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(9)">← Назад</button>
-            <button class="btn btn-primary" onclick="goToStep(11)">Далее →</button>
-        </div>
-    </div>
+            // ===== ТОҶИКӢ =====
+            tg: {
+                role_delivery: '📦 Оператори расонидан',
+                role_courier: '🚴 Курьер',
+                role_manager: '📋 Менеҷер',
+                role_chef: '👨‍🍳 Ошпаз',
+                role_tip_default: 'Барои дидани маслиҳат нақши худро интихоб кунед.',
+                btn_next: 'Баъдӣ →',
+                btn_back: '← Бозгашт',
+                btn_check: 'Санҷидан',
+                btn_print: '🖨️ Чоп кардан',
+                btn_restart: '🔄 Аз нав гузаштан',
+                modal_close: '✕',
+                step0_title: 'Салом, ҳамкор!',
+                step0_subhead: 'Мо бо <strong>Т-Банк</strong> як аксияи аълосифатро оғоз мекунем.<br> Ту қисми даста ҳастӣ ва ҳама чиз ба таври идеалӣ гузаштан аз ту вобаста аст.',
+                step0_card1_title: 'Чаро ин муҳим аст?',
+                step0_card1_text: 'Т-Банк <strong>шаффофиятро</strong> дӯст медорад — дар таблиғот ҳам, дар ҳаёт ҳам. Мо <strong>спринг-роллҳои шаффоф ва маҷмӯаи роллҳои фирмавиро дар бастабандии шаффоф</strong> расонем. Ҳар як ҷузъиёт дар назар аст!',
+                step0_card1_warning: '⚠️ Барои хатоҳо — ҷаримаҳои миллионӣ!',
+                step0_card2_title: 'Ту кистӣ?',
+                step0_card2_sub: 'Нақши худро интихоб кун, то ман ба ту муҳимтарин маслиҳатҳоро диҳам.',
+                step0_card2_hint: '(интихоб кунед ва пас "Баъдӣ" -ро пахш кунед, то маслиҳатҳои шахсиро бубинед)',
+                step1_title: 'Шаффофият — ин аҷиб аст',
+                step1_subhead: 'Т-Банк аз аввал дар бораи <strong>ошкороӣ</strong> сухан мегӯяд. Мо инро визуалӣ дастгирӣ мекунем:',
+                step1_list1: '✅ <strong>Шаффоф</strong> спринг-роллҳо',
+                step1_list2: '✅ <strong>Шаффоф</strong> бастабандӣ',
+                step1_list3: '✅ <strong>Шаффоф</strong> қуттии меҳмон',
+                step1_list4: '✅ <strong>Шаффоф</strong> халта барои расонидан',
+                step1_reminder_title: 'Ба ёд дошт:',
+                step1_reminder_text: 'мо хӯрокро пинҳон намекунем — мо онро нишон медиҳем. Аз ин рӯ ҳар як фармоиш бояд мисли витрина намоён бошад.',
+                step2_title: 'Бастабандӣ — асос',
+                step2_subhead: 'Агар дар фармоиш <strong>як таоми Т-банк</strong> бошад — мувофиқи қоидаи махсус амал мекунем.',
+                step2_rule1_title: '1. Ҳамаи фармоишҳо',
+                step2_rule1_text: 'дар <strong>халтаи шаффофи брендии</strong> Т-банк ҷойгир карда мерасонем.',
+                step2_rule2_title: '2. Дар дохили халта ҳатман',
+                step2_rule2_text: '<strong>зиплоки шаффоф (қуттии меҳмон)</strong> мегузорем (ба ҷои сафеди брендии мо).',
+                step2_rule3_text: 'Агар таоми Т-банк набошад — мувофиқи стандартҳои одатии Тануки амал мекунем:',
+                step2_rule3_examples: 'масалан: <strong>маҷмӯаи шаффоф + шӯрбои Тануки ям</strong> — расонидан дар халтаи шаффоф + қуттии шаффофи меҳмон<br> <strong>ролли Филаделфия + шӯрбои Тануки ям</strong> — расонидан дар халтаи сафеди мо + қуттии сафеди меҳмон',
+                step2_warning_title: 'Муҳим!',
+                step2_warning_text: 'Агар <strong>контейнерҳои шаффоф</strong> (барои маҷмӯа ё спринг-роллҳо) тамом шаванд — таом қатъ мешавад. Иваз кардан бо бастабандии стандартии мо мумкин нест — ин шаффофиятро вайрон мекунад ва ба ҷаримаҳо оварда мерасонад.',
+                step2_out_of_stock_title: 'Агар чизе тамом шавад чӣ мекунем:',
+                step2_out_of_stock1: 'Агар <strong>туҳфаҳо</strong> (брелок, визитка (открытка), чӯбчаҳо) тамом шаванд → фармоишро <strong>бе онҳо</strong> мерасонем (ин иҷозат аст).',
+                step2_out_of_stock2: 'Агар <strong>халтаҳо ё зиплокҳо</strong> тамом шаванд → дар <strong>сафеди Тануки</strong> мерасонем.',
+                step2_out_of_stock3: 'Агар <strong>бастабандии худи</strong> (контейнерҳо) тамом шавад → таом қатъ мешавад.',
+                step3_title: 'Туҳфаҳо ҳангоми расонидан',
+                step3_subhead: 'Қоидаҳои расонидан.',
+                step3_rule1: 'Ҳамаи 4 мазза',
+                step3_rule1_text: '→ брелок (танҳо МСК/МО) + визитка (открытка)',
+                step3_rule2: 'Маҷмӯаи «Шаффоф»',
+                step3_rule2_text: '→ чӯбчаҳо + визитка (открытка)',
+                step3_rule3: 'Ҳар гуна спринг-ролли шаффоф',
+                step3_rule3_highlight: 'як визитка (открытка)',
+                step3_note_title: 'Агар туҳфаҳо тамом шаванд',
+                step3_note_text: '(брелокҳо, чӯбчаҳо, визиткаҳо (открыткаҳо)) — фармоишро <strong>бе онҳо</strong> мерасонем. Ин иҷозат аст.',
+                step4_title: 'Комплектатсияи қуттии меҳмон',
+                step4_subhead: '<strong>Барои операторони расонидан ва менеҷерон:</strong> агар дар фармоиш таомҳои аксияи Т-банк <strong>ва</strong> таомҳои менюи ҷории мо бошад — қуттии меҳмонро дар <strong>зиплоки шаффоф</strong> тартиб медиҳем.',
+                step4_rule_title: 'Қоидаи умумӣ:',
+                step4_rule1: 'Дар зиплок <strong>туҳфа</strong> вобаста ба таоми аксия (чӯбчаҳо, брелок, визитка (открытка)) мегузорем.',
+                step4_rule2: 'Комплектҳои стандартиро мувофиқи <strong>стандарти ҷории қуттии меҳмон</strong> илова мекунем (шумораи шахсон, чӯбчаҳо, соуси соя, қошуқи сурх).',
+                step4_rule3: 'Шумораи <strong>чӯбчаҳои сафеди Тануки</strong> ва <strong>қошуқҳои сурх</strong> аз <strong>шумораи меҳмонон</strong> вобаста аст.',
+                step4_examples_title: 'Намунаҳо:',
+                step4_ex1: '<span class="tag">Намуна 1</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 1</strong><br> <span class="highlight">Дар зиплоки шаффофи Т-банк мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + 1 чӯбчаи сафеди Тануки + 1 қошуқи сурх + соуси соя.',
+                step4_ex2: '<span class="tag">Намуна 2</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 2</strong><br> <span class="highlight">Мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + 2 чӯбчаи сафеди Тануки + 1 қошуқи сурх + соуси соя.',
+                step4_ex3: '<span class="tag">Намуна 3</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 0</strong><br> <span class="highlight">Мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + соуси соя.',
+                step4_ex4: '<span class="tag">Намуна 4</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», <strong>Спринг-ролли шаффоф бо тунец</strong>, ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 1</strong><br> <span class="highlight">Мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + 1 туҳфа (визитка (открытка)) + 1 чӯбчаи сафеди Тануки + 1 қошуқи сурх + соуси соя.',
+                step4_ex5: '<span class="tag">Намуна 5</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», <strong>Спринг-ролли шаффоф бо тунец</strong>, ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 0</strong><br> <span class="highlight">Мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + 1 туҳфа (визитка (открытка)) + соуси соя.',
+                step4_ex6: '<span class="tag">Намуна 6</span> <strong>Фармоиш:</strong> маҷмӯаи «Шаффоф», <strong>4 мазза спринг-ролл</strong>, ролли «Филаделфия», шӯрбои «Тануки ям». <strong>Меҳмонон: 3</strong><br> <span class="highlight">Дар зиплоки шаффофи Т-банк мегузорем:</span> 1 туҳфа (чӯбчаҳо + визитка (открытка)) + 1 туҳфа (брелок (МСК/МО) ё визитка (открытка)) + 3 чӯбчаи сафеди Тануки + 1 қошуқи сурх + соуси соя.',
+                step5_title: 'Мо чӣ истифода мекунем',
+                step5_subhead: 'Ҳамаи маводҳо ва туҳфаҳо барои аксия. Чӣ гуна намуданро ба ёд доред!<br> <span style="font-size: 0.9rem; color: #666;">Барои калон кардан ба акс пахш кунед.</span>',
+                step5_subhead_hint: 'Барои калон кардан ба акс пахш кунед.',
+                gallery_brelok: 'Брелок',
+                gallery_vizitka: 'Визитка (открытка)',
+                gallery_palochki: 'Чӯбчаҳо',
+                gallery_paket: 'Халтаи шаффофи брендӣ',
+                gallery_ziplok: 'Зиплоки шаффоф (қуттии меҳмон)',
+                gallery_konteiner: 'Контейнери шаффоф',
+                step6_title: 'Контейнер = як спринг-ролл',
+                step6_subhead: 'Ин барои сифат хеле муҳим аст!',
+                step6_rule1: '✅ Ҳар як спринг-ролл — дар <strong>контейнери алоҳидаи</strong> шаффоф.',
+                step6_rule2: '❌ <strong>Мумкин нест</strong> ду ё зиёда роллро дар як контейнер гузоштан — онҳо ба ҳам мечаспанд ва меҳмон норозӣ мешавад.',
+                step6_rule3: '📌 Агар 3 ролл фармоиш дода шуда бошад → 3 контейнер лозим. Оддӣ ва равшан.',
+                step6_chef_tip: 'Барои ошпаз:',
+                step6_chef_tip_text: 'ҳар як спринг-роллро алоҳида тайёр кунед ва фавран дар контейнери алоҳида гузоред.',
+                step7_title: 'Ошпаз тайёр мекунад, оператор санҷиш мекунад',
+                step7_subhead: 'Ҳама дар аксия иштирок мекунанд. Ҳар кас вазифаи худро дорад, аммо якҷоя фармоиши идеалиро месозем.',
+                step7_chef_title: 'Ошпаз:',
+                step7_chef1: 'Спринг-роллҳо ё маҷмӯаро мувофиқи стандартҳо ва СТК тайёр мекунад.',
+                step7_chef2: 'Ҳар як спринг-ролл ё маҷмӯаро дар контейнери алоҳидаи шаффоф бастабандӣ мекунад.',
+                step7_chef3: 'Таоми бастабандишударо ба оператори расонидан барои санҷиши ниҳоӣ ва бастабандӣ медиҳад.',
+                step7_operator_title: 'Оператори расонидан ва менеҷер:',
+                step7_operator1: 'Кори ошпазро санҷиш мекунанд: ҳар як таом дар контейнери алоҳидаи худ, таом мувофиқи стандартҳо ва шартҳои аксия тайёр ва намуди зоҳирӣ ҷолиб аст. <strong>(🔴Муҳим: назорати намуди зоҳирии таоми тайёр!)</strong>',
+                step7_operator2: 'Миқдорро бо он дар бланкаи фармоиш нишон додашуда муқоиса мекунанд.',
+                step7_operator3: 'Зиплоки шаффоф (қуттии меҳмон) ва дурустии туҳфаҳоро (мувофиқи схема) тартиб медиҳанд.',
+                step7_operator4: 'Танҳо пас аз санҷиш фармоишро дар халтаи шаффоф бастабандӣ мекунанд.',
+                step8_title: 'Чек-листи оператори расонидан',
+                step8_subhead: 'Пеш аз фиристодан ҳар як фармоиш ин санҷишро мегузаронад. Ягон бандеро аз даст надиҳед!',
+                step8_check1: '☐ Намуди зоҳирии таомҳоро дар пахнкунӣ санҷед (ҳамаи таомҳо мувофиқи стандарт тайёр шудаанд).',
+                step8_check2: '☐ Таомҳо дар контейнерҳои шаффоф бастабанди шудаанд (ҳар як спринг-ролл дар контейнери алоҳида).',
+                step8_check3: '☐ Қуттии меҳмон - зиплоки шаффофро тартиб диҳед.',
+                step8_check4: '☐ Бо схемаи туҳфаҳо муқоиса кунед, ҳеҷ чизро фаромӯш накунед ва иштибоҳ накунед.',
+                step8_check5: '☐ Таомҳоро дар халтаи шаффоф бастабандӣ кунед.',
+                step8_check6: '☐ Курьерро дар бораи эҳтиёткорӣ огоҳ кунед.',
+                step8_warning_title: 'Ҷаримаҳо — миллионҳо!',
+                step8_warning_text: 'Шартнома бо Т-банк сифати идеалиро талаб мекунад. Хато = пули зиёд.',
+                step9_title: 'Ҳолатҳои мураккаб',
+                step9_subhead: 'Барои менеҷерон ва операторони расонидан — фармоишҳои ғайристандартӣ ва ҳолатҳо бо масрафотро таҳлил мекунем.',
+                step9_case1_title: 'Ҳолати 1: Ду спринг-ролли гуногун фармоиш дода шудаанд (ҳамаи 4 не).',
+                step9_case1_yes: '✅ <strong>Мегузорем:</strong> визитка (открытка) дар қуттии шаффофи меҳмон.',
+                step9_case1_no: '❌ <strong>Намегузорем:</strong> брелок, чӯбчаҳо (инҳо танҳо барои маҷмӯаи «Шаффоф» ва ҳамаи 4 мазза мебошанд).',
+                step9_case2_title: 'Ҳолати 2: Ҳамаи 4 мазза + маҷмӯаи «Шаффоф» фармоиш дода шудааст.',
+                step9_case2_yes: '✅ <strong>Мегузорем:</strong> визитка (открытка), чӯбчаҳо (барои маҷмӯа), брелок (танҳо МСК/МО) дар зиплоки шаффоф.',
+                step9_case2_max: 'Ҳама чиз ба ҳадди аксар!',
+                step9_out_of_stock_title: 'Агар чизе тамом шавад чӣ мекунем?',
+                step9_out1: '<strong>а) Туҳфаҳо тамом шаванд</strong> (брелок, визитка (открытка), чӯбчаҳо) → фармоишро <strong>бе онҳо</strong> мерасонем (ин иҷозат аст).',
+                step9_out2: '<strong>б) Халтаҳо ё зиплокҳо тамом шаванд</strong> → дар <strong>сафеди Тануки</strong> мерасонем — ин ҷоиз аст, фақат агар шаффофҳо набошанд.',
+                step9_out3: '<strong>в) Бастабандии шаффоф</strong> (контейнерҳо) тамом шавад → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">таом қатъ мешавад</span>. Ба оддӣ иваз кардан мумкин нест!',
+                step10_title: 'Курьер, диққат!',
+                step10_subhead: 'Бастабандӣ шаффоф аст — ҳар як нуқсон намоён аст. Эҳтиёт бошед.',
+                step10_courier_title: 'Ба курьер ҳатман:',
+                step10_courier_quote: '«Сумкаи фармоишро хам кардан, партофтан, чаппа кардан мумкин нест. Бояд рост ва эҳтиёт рондан».',
+                step10_manager_title: 'Барои менеҷерон:',
+                step10_manager_text: 'боварӣ ҳосил кунед, ки операторон ва курьер дастурҳоро фаҳмидаанд. Бо кормандон пеш аз оғози навбат брифинги 5-дақиқаӣ гузаронед.',
+                step11_title: 'Худро санҷед',
+                step11_subhead: 'Ба ҳамаи 10 савол ҷавоб диҳед. Диққат бошед!',
+                cert_title: 'Ту — суперситора ҳастӣ!',
+                cert_sub1: 'Табрик мекунем, ту омӯзишро аз рӯи аксия гузаштанд',
+                cert_sub2: 'Тануки × Т-Банк',
+                cert_employee: 'Корманд',
+                cert_text1: 'Акнун ту ҳама чизро дар бораи шаффофият, туҳфаҳо ва бастабандӣ медонӣ.',
+                cert_text2: 'Ин сертификатро чоп кунед ва дар ҷои намоён овезед!',
+                roleTip_delivery: `Оператори расонидан: кори ошпазро санҷед, сипас бо схемаи туҳфаҳо муқоиса кунед. Дар ҳолатҳои мураккаб қоидаҳоро риоя кунед:
+                    <ul class="role-tip-list"><li>дар сурати набудани туҳфаҳо — бе онҳо медиҳем;</li><li>дар сурати набудани халтаҳо/зиплокҳо — сафеди Тануки мегирем;</li><li>дар сурати набудани контейнерҳо — қатъ.</li></ul> 🔴 Ба комплектатсияи қуттии меҳмон дар фармоишҳои омехта махсусан диққат диҳед.`,
+                roleTip_courier: 'Курьер: ибораро барои расонидани эҳтиёткорона ба ёд доред ва ҳамеша тамомияти халтаро санҷед.',
+                roleTip_manager: 'Менеҷер: тамоми раванд, махсусан ҳолатҳои мураккабро назорат кунед. Агар контейнерҳо тамом шаванд — фавран фурӯшро қатъ кунед. Брифингҳо гузаронед ва комплектатсияи дурусти фармоишҳоро назорат кунед.',
+                roleTip_chef: 'Ошпаз: бо диққат тайёр кунед, ҳар як роллро дар контейнери алоҳида гузоред. Агар контейнерҳо тамом шаванд — фавран ба менеҷер хабар диҳед, таом қатъ мешавад.',
+                q1: 'Агар дар фармоиш таоми Т-банк бошад, кадом халтаро истифода мекунем?',
+                q1_o1: 'Сафеди стандартӣ',
+                q1_o2: 'Шаффофи брендӣ',
+                q1_o3: 'Ҳар кадоме ки ҳаст',
+                q2: 'Ҳангоми фармоиши як спринг-ролли шаффоф барои расонидан чанд визитка (открытка) мегузорем?',
+                q2_o1: 'Як',
+                q2_o2: 'Ду',
+                q2_o3: 'Ҳеҷ',
+                q3: 'Оё ду спринг-роллро дар як контейнер гузоштан мумкин аст?',
+                q3_o1: 'Ҳа, агар хурд бошанд',
+                q3_o2: 'Не, танҳо ҳар як алоҳида',
+                q3_o3: 'Ҳа, агар ба плёнка печонида шаванд',
+                q4: 'Ки санҷиш мекунад, ки ошпаз ҳар як таомро дуруст бастабандӣ кардааст?',
+                q4_o1: 'Курьер',
+                q4_o2: 'Оператори расонидан ва менеҷер',
+                q4_o3: 'Ҳеҷ кас, ин муҳим нест',
+                q5: 'Ба курьер ҳатман чӣ гуфтан лозим аст?',
+                q5_o1: 'Фармоиш гарм аст',
+                q5_o2: 'Фармоишро эҳтиёт расондан лозим',
+                q5_o3: 'Шитоб кардан лозим',
+                q6: 'Ду спринг-ролли гуногун фармоиш дода шудааст (ҳамаи 4 не). Чӣ мегузорем?',
+                q6_o1: 'Танҳо визитка (открытка)',
+                q6_o2: 'Визитка (открытка) дар қуттии шаффофи меҳмон',
+                q6_o3: 'Брелок ва чӯбчаҳо',
+                q7: 'Ҳамаи 4 мазза + маҷмӯаи «Шаффоф» фармоиш дода шудааст. Чӣ мегузорем?',
+                q7_o1: 'Танҳо визитка (открытка) ва чӯбчаҳо',
+                q7_o2: 'Визитка (открытка), чӯбчаҳо, брелок (МСК/МО) дар зиплоки шаффоф',
+                q7_o3: 'Ғайр аз хӯрок ҳеҷ чиз',
+                q8: 'Агар контейнерҳои шаффоф тамом шаванд чӣ мекунем?',
+                q8_o1: 'Дар бастабандии оддӣ медиҳем',
+                q8_o2: 'Таомро қатъ мекунем',
+                q8_o3: 'Бе бастабандӣ медиҳем',
+                q9: 'Дар фармоиши омехта (таомҳои Т-банк ва оддӣ ҳастанд), кадом қуттии меҳмонро истифода мекунем?',
+                q9_o1: 'Зиплоки шаффоф',
+                q9_o2: 'Сафеди Тануки',
+                q9_o3: 'Ҳар кадоме',
+                q10: 'Ҳангоми комплектатсияи қуттии меҳмон, агар меҳмонон 2 бошанд, чанд чӯбчаи сафеди Тануки мегузорем?',
+                q10_o1: '1',
+                q10_o2: '2',
+                q10_o3: '0',
+                quiz_correct: '✅ Дуруст!',
+                quiz_wrong: '❌ Нодуруст. Ҷавоби дуруст: "',
+                quiz_submit_retry: '🔄 Боз кӯшиш кардан',
+                quiz_submit_cert: '🏆 Гирифтани сертификат',
+                quiz_submit_check: 'Санҷидан',
+            },
 
-    <!-- ===== ШАГ 11: ТЕСТ ===== -->
-    <div class="step" data-step="11">
-        <h2><span class="emoji">🧠</span> Проверь себя</h2>
-        <div class="subhead">
-            Ответь на все 10 вопросов. Будь внимателен!
-        </div>
-        <div id="quizContainer"></div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(10)">← Назад</button>
-            <button class="btn btn-success" id="quizSubmitBtn" onclick="submitQuiz()" disabled>Проверить</button>
-        </div>
-    </div>
-
-    <!-- ===== ШАГ 12: СЕРТИФИКАТ ===== -->
-    <div class="step" data-step="12">
-        <div class="certificate">
-            <div class="stamp">🏆</div>
-            <h2>Ты — суперзвезда!</h2>
-            <p style="font-size: 1.2rem;">Поздравляем, ты прошёл обучение по акции</p>
-            <p style="font-size: 1.1rem; margin: 12px 0;"><strong>Тануки × Т-Банк</strong></p>
-            <div class="name" id="certName">Сотрудник</div>
-            <p style="margin-top: 16px; font-weight: 600;">Теперь ты знаешь всё о прозрачности, подарках и упаковке.</p>
-            <p style="margin-top: 8px; color: #555;">Распечатай этот сертификат и повесь на видное место!</p>
-            <button class="btn btn-primary" style="margin-top: 20px;" onclick="window.print()">🖨️ Распечатать</button>
-            <button class="btn btn-secondary" style="margin-top: 12px;" onclick="resetCourse()">🔄 Пройти заново</button>
-        </div>
-    </div>
-</div>
-
-<!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <img id="modalImage" src="" alt="Увеличенное фото" />
-</div>
-
-<script>
-    // ===== ДАННЫЕ =====
-    const TOTAL_STEPS = 13;
-    let currentStep = 0;
-    let userRole = 'сотрудник';
-    let roleSelected = false;
-    let quizAnswered = false;
-    let quizScore = 0;
-
-    // ===== 10 ВОПРОСОВ =====
-    const quizQuestions = [
-        {
-            question: 'Если в заказе есть блюдо Т-банка, какой пакет мы используем?',
-            options: ['Стандартный белый', 'Прозрачный брендированный', 'Любой, какой есть'],
-            correct: 1
-        },
-        {
-            question: 'Сколько визиток (открыток) кладём при заказе одного прозрачного спринг-ролла на доставку?',
-            options: ['Одну', 'Две', 'Ни одной'],
-            correct: 0
-        },
-        {
-            question: 'Можно ли положить два спринг-ролла в один контейнер?',
-            options: ['Да, если они маленькие', 'Нет, только по одному', 'Да, если завернуть в плёнку'],
-            correct: 1
-        },
-        {
-            question: 'Кто проверяет, что повар правильно упаковал каждое блюдо?',
-            options: ['Курьер', 'Оператор доставки и менеджер', 'Никто, это не важно'],
-            correct: 1
-        },
-        {
-            question: 'Что обязательно нужно сообщить курьеру?',
-            options: ['Что заказ горячий', 'Что везем заказ аккуратно', 'Что нужно торопиться'],
-            correct: 1
-        },
-        {
-            question: 'Заказаны два разных спринг-ролла (не все 4). Что кладём?',
-            options: [
-                'Только визитку (открытку)',
-                'Визитку (открытку) в прозрачный гостевой бокс',
-                'Брелок и палочки'
-            ],
-            correct: 1
-        },
-        {
-            question: 'Заказаны все 4 вкуса + сет «Прозрачный». Что кладём?',
-            options: [
-                'Только визитку (открытку) и палочки',
-                'Визитку (открытку), палочки, брелок (МСК/МО) в прозрачный зиплок',
-                'Ничего, кроме еды'
-            ],
-            correct: 1
-        },
-        {
-            question: 'Что делаем, если заканчиваются прозрачные контейнеры?',
-            options: [
-                'Выдаём в обычной упаковке',
-                'Ставим блюдо в стоп',
-                'Выдаём без упаковки'
-            ],
-            correct: 1
-        },
-        {
-            question: 'В смешанном заказе (есть блюда Т-банка и обычные), какой гостевой бокс используем?',
-            options: ['Прозрачный зиплок', 'Белый Тануки', 'Любой'],
-            correct: 0
-        },
-        {
-            question: 'При комплектации гостевого бокса, если гостей 2, сколько белых палочек Тануки кладём?',
-            options: ['1', '2', '0'],
-            correct: 1
-        }
-    ];
-
-    const roleTips = {
-        'оператор доставки': `👷 Оператор доставки: проверь работу повара, затем сверься со схемой подарков. В сложных случаях руководствуйся правилами:
-• при отсутствии подарков — выдаём без них,
-• при отсутствии пакетов/зиплоков — берём белые Тануки,
-• при отсутствии контейнеров — стоп.
-🔴 Особое внимание удели комплектации гостевого бокса при смешанных заказах.`,
-        курьер: '🚴 Курьер: запомни фразу для осторожной перевозки и всегда проверяй целостность пакета.',
-        менеджер: '📋 Менеджер: контролируй весь процесс, особенно сложные случаи. Если заканчиваются контейнеры — немедленно останавливай продажу. Проводи брифинги и следи за правильной комплектацией заказов.',
-        повар: '👨‍🍳 Повар: готовь аккуратно, каждый ролл в отдельный контейнер. Если заканчиваются контейнеры — сразу сообщай менеджеру, блюдо встаёт в стоп.'
-    };
-
-    // ===== ФУНКЦИИ =====
-    function selectRole(role) {
-        userRole = role;
-        roleSelected = true;
-        document.querySelectorAll('.btn-primary').forEach(b => {
-            if (b.textContent.includes(role) || b.textContent.includes('Выбери')) {
-                b.style.background = '#feda00';
-                b.style.color = '#000';
-            } else {
-                b.style.background = '';
-                b.style.color = '';
+            // ===== ENGLISH =====
+            en: {
+                role_delivery: '📦 Delivery Operator',
+                role_courier: '🚴 Courier',
+                role_manager: '📋 Manager',
+                role_chef: '👨‍🍳 Chef',
+                role_tip_default: 'Select your role to see the tip.',
+                btn_next: 'Next →',
+                btn_back: '← Back',
+                btn_check: 'Check',
+                btn_print: '🖨️ Print',
+                btn_restart: '🔄 Restart',
+                modal_close: '✕',
+                step0_title: 'Hello, colleague!',
+                step0_subhead: 'We are launching a great promotion together with <strong>T-Bank</strong>.<br> You are part of the team, and it depends on you to make everything perfect.',
+                step0_card1_title: 'Why is this important?',
+                step0_card1_text: 'T-Bank loves <strong>transparency</strong> — both in advertising and in life. We will deliver <strong>transparent spring rolls and our signature roll set in transparent packaging</strong>. Every detail is visible!',
+                step0_card1_warning: '⚠️ Mistakes cost millions in fines!',
+                step0_card2_title: 'Who are you?',
+                step0_card2_sub: 'Choose your role so I can give you the most important tips.',
+                step0_card2_hint: '(select and click Next to see personal tips)',
+                step1_title: 'Transparency is awesome',
+                step1_subhead: 'T-Bank has always talked about <strong>openness</strong>. We support it visually:',
+                step1_list1: '✅ <strong>Transparent</strong> spring rolls',
+                step1_list2: '✅ <strong>Transparent</strong> packaging',
+                step1_list3: '✅ <strong>Transparent</strong> guest box',
+                step1_list4: '✅ <strong>Transparent</strong> delivery bag',
+                step1_reminder_title: 'Remember:',
+                step1_reminder_text: 'we don\'t hide food — we show it. So every order should look like it\'s on display.',
+                step2_title: 'Packaging is the foundation',
+                step2_subhead: 'If the order contains <strong>at least one T-Bank dish</strong> — we follow a special rule.',
+                step2_rule1_title: '1. All orders',
+                step2_rule1_text: 'are packed and delivered in a <strong>transparent branded bag</strong> from T-Bank.',
+                step2_rule2_title: '2. Inside the bag, always',
+                step2_rule2_text: 'place a <strong>transparent ziplock (guest box)</strong> (instead of our white branded one).',
+                step2_rule3_text: 'If there is no T-Bank dish — we follow our usual Tanuki standards:',
+                step2_rule3_examples: 'for example: <strong>transparent set + Tanuki yam soup</strong> — delivery in transparent bag + transparent guest box<br> <strong>Philadelphia roll + Tanuki yam soup</strong> — delivery in our white bag + white guest box',
+                step2_warning_title: 'Important!',
+                step2_warning_text: 'If <strong>transparent containers for the set or spring rolls</strong> run out — the dish is put on hold. Cannot replace with our standard packaging — this would break transparency and lead to fines.',
+                step2_out_of_stock_title: 'What to do when something runs out:',
+                step2_out_of_stock1: 'If <strong>gifts</strong> (keychain, cards, chopsticks) run out → deliver the order <strong>without them</strong> (this is allowed).',
+                step2_out_of_stock2: 'If <strong>bags or ziplocks</strong> run out → deliver in <strong>our regular (white Tanuki branded)</strong>.',
+                step2_out_of_stock3: 'If <strong>the packaging itself (containers)</strong> runs out → the dish is put on hold.',
+                step3_title: 'Gifts on delivery',
+                step3_subhead: 'Rules for delivery.',
+                step3_rule1: 'All 4 flavors',
+                step3_rule1_text: '→ keychain (only MSK/MO) + card',
+                step3_rule2: '«Transparent» set',
+                step3_rule2_text: '→ chopsticks + card',
+                step3_rule3: 'Any transparent spring roll',
+                step3_rule3_highlight: 'one card',
+                step3_note_title: 'If gifts run out',
+                step3_note_text: '(keychains, chopsticks, cards) — deliver the order <strong>without them</strong>. This is allowed.',
+                step4_title: 'Guest box assembly',
+                step4_subhead: '<strong>For delivery operators and managers:</strong> if the order contains T-Bank promotion dishes <strong>and</strong> dishes from our current menu — we assemble the guest box in a <strong>transparent ziplock</strong>.',
+                step4_rule_title: 'General rule:',
+                step4_rule1: 'Place a <strong>gift</strong> in the ziplock depending on the promotion dish (chopsticks, keychain, card).',
+                step4_rule2: 'Add standard components according to the <strong>current guest box standard</strong> (number of persons, chopsticks, soy sauce, red spoon).',
+                step4_rule3: 'The number of <strong>white Tanuki chopsticks</strong> and <strong>red spoons</strong> depends on the <strong>number of guests</strong>.',
+                step4_examples_title: 'Examples:',
+                step4_ex1: '<span class="tag">Example 1</span> <strong>Order:</strong> «Transparent» set, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 1</strong><br> <span class="highlight">Place in T-Bank transparent ziplock:</span> 1 gift (chopsticks + card) + 1 white Tanuki chopsticks + 1 red spoon + soy sauce.',
+                step4_ex2: '<span class="tag">Example 2</span> <strong>Order:</strong> «Transparent» set, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 2</strong><br> <span class="highlight">Place:</span> 1 gift (chopsticks + card) + 2 white Tanuki chopsticks + 1 red spoon + soy sauce.',
+                step4_ex3: '<span class="tag">Example 3</span> <strong>Order:</strong> «Transparent» set, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 0</strong><br> <span class="highlight">Place:</span> 1 gift (chopsticks + card) + soy sauce.',
+                step4_ex4: '<span class="tag">Example 4</span> <strong>Order:</strong> «Transparent» set, <strong>Transparent spring roll with tuna</strong>, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 1</strong><br> <span class="highlight">Place:</span> 1 gift (chopsticks + card) + 1 gift (card) + 1 white Tanuki chopsticks + 1 red spoon + soy sauce.',
+                step4_ex5: '<span class="tag">Example 5</span> <strong>Order:</strong> «Transparent» set, <strong>Transparent spring roll with tuna</strong>, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 0</strong><br> <span class="highlight">Place:</span> 1 gift (chopsticks + card) + 1 gift (card) + soy sauce.',
+                step4_ex6: '<span class="tag">Example 6</span> <strong>Order:</strong> «Transparent» set, <strong>4 flavors spring rolls</strong>, «Philadelphia» roll, «Tanuki yam» soup. <strong>Guests: 3</strong><br> <span class="highlight">Place in T-Bank transparent ziplock:</span> 1 gift (chopsticks + card) + 1 gift (keychain (MSK/MO) or card) + 3 white Tanuki chopsticks + 1 red spoon + soy sauce.',
+                step5_title: 'What we use',
+                step5_subhead: 'Here are all the materials and gifts for the promotion. Remember what they look like!<br> <span style="font-size: 0.9rem; color: #666;">Click on the photo to enlarge.</span>',
+                step5_subhead_hint: 'Click on the photo to enlarge.',
+                gallery_brelok: 'Keychain',
+                gallery_vizitka: 'Card',
+                gallery_palochki: 'Chopsticks',
+                gallery_paket: 'Transparent branded bag',
+                gallery_ziplok: 'Transparent ziplock (guest box)',
+                gallery_konteiner: 'Transparent container',
+                step6_title: 'Container = one spring roll',
+                step6_subhead: 'This is super important for quality!',
+                step6_rule1: '✅ Each spring roll — in a <strong>separate</strong> transparent container.',
+                step6_rule2: '❌ <strong>Cannot</strong> place two or more rolls in one container — they will stick together and the guest will be disappointed.',
+                step6_rule3: '📌 If 3 rolls are ordered → need 3 containers. Simple and clear.',
+                step6_chef_tip: 'For the chef:',
+                step6_chef_tip_text: 'prepare each spring roll separately and immediately place in a separate container.',
+                step7_title: 'Chef prepares, operator checks',
+                step7_subhead: 'Everyone participates in the promotion. Each has their own task, but together we make the perfect order.',
+                step7_chef_title: 'Chef:',
+                step7_chef1: 'Prepares spring rolls or set according to standards and STK.',
+                step7_chef2: 'Packs each spring roll or set in a separate transparent container.',
+                step7_chef3: 'Passes the packed dish to the delivery operator for final check and packaging.',
+                step7_operator_title: 'Delivery operator and manager:',
+                step7_operator1: 'Check the chef\'s work: each dish in its own separate container, the dish is prepared and visually appealing according to standards and promotion terms. <strong>(🔴Important: control of the finished dish\'s appearance!)</strong>',
+                step7_operator2: 'Check the quantity against the order form.',
+                step7_operator3: 'Assemble the transparent ziplock (guest box) and the correctness of gifts (according to the scheme).',
+                step7_operator4: 'Only after checking, pack the order in a transparent bag.',
+                step8_title: 'Delivery operator checklist',
+                step8_subhead: 'Before shipping, every order goes through this check. Don\'t miss a single item!',
+                step8_check1: '☐ Check the appearance of dishes at the pass (all dishes are made according to standard).',
+                step8_check2: '☐ Dishes are packed in transparent containers (each spring roll in a separate container).',
+                step8_check3: '☐ Assemble the Guest box - transparent ziplock.',
+                step8_check4: '☐ Check against the gift scheme, don\'t forget or confuse anything.',
+                step8_check5: '☐ Pack the dishes in a transparent bag.',
+                step8_check6: '☐ Warn the courier about caution.',
+                step8_warning_title: 'Fines — millions!',
+                step8_warning_text: 'The contract with T-Bank requires perfect quality. Mistake = big money.',
+                step9_title: 'Complex cases',
+                step9_subhead: 'For managers and delivery operators — we analyze non-standard orders and situations with consumables.',
+                step9_case1_title: 'Situation 1: Two different spring rolls ordered (not all 4).',
+                step9_case1_yes: '✅ <strong>Place:</strong> card in the transparent guest box.',
+                step9_case1_no: '❌ <strong>Do not place:</strong> keychain, chopsticks (these are only for the «Transparent» set and all 4 flavors).',
+                step9_case2_title: 'Situation 2: All 4 flavors + «Transparent» set ordered.',
+                step9_case2_yes: '✅ <strong>Place:</strong> card, chopsticks (for the set), keychain (only if MSK/MO) in the transparent ziplock.',
+                step9_case2_max: 'Everything to the max!',
+                step9_out_of_stock_title: 'What to do when something runs out?',
+                step9_out1: '<strong>a) Gifts run out</strong> (keychain, cards, chopsticks) → deliver the order <strong>without them</strong> (this is allowed).',
+                step9_out2: '<strong>b) Bags or ziplocks run out</strong> → deliver in <strong>our white Tanuki</strong> — this is acceptable, but only if there are no transparent ones.',
+                step9_out3: '<strong>c) Transparent packaging</strong> (containers) runs out → <span style="background: #feda00; padding: 2px 12px; border-radius: 40px; font-weight: 700;">the dish is put on hold</span>. Cannot replace with regular!',
+                step10_title: 'Courier, attention!',
+                step10_subhead: 'The packaging is transparent — every defect is visible. Be careful.',
+                step10_courier_title: 'Must tell the courier:',
+                step10_courier_quote: '«The order bag cannot be tilted, thrown, or turned over. Drive straight and carefully».',
+                step10_manager_title: 'For managers:',
+                step10_manager_text: 'make sure the operators and courier understood the instructions. Hold a 5-minute briefing with employees before the start of the shift.',
+                step11_title: 'Test yourself',
+                step11_subhead: 'Answer all 10 questions. Be attentive!',
+                cert_title: 'You are a superstar!',
+                cert_sub1: 'Congratulations, you have completed the training for the promotion',
+                cert_sub2: 'Tanuki × T-Bank',
+                cert_employee: 'Employee',
+                cert_text1: 'Now you know everything about transparency, gifts, and packaging.',
+                cert_text2: 'Print this certificate and hang it in a visible place!',
+                roleTip_delivery: `Delivery operator: check the chef's work, then check against the gift scheme. In complex cases, follow the rules:
+                    <ul class="role-tip-list"><li>if gifts are missing — give without them;</li><li>if bags/ziplocks are missing — use white Tanuki;</li><li>if containers are missing — put on hold.</li></ul> 🔴 Pay special attention to guest box assembly for mixed orders.`,
+                roleTip_courier: 'Courier: remember the phrase for careful transportation and always check the integrity of the bag.',
+                roleTip_manager: 'Manager: control the entire process, especially complex cases. If containers run out — immediately stop sales. Conduct briefings and monitor correct order assembly.',
+                roleTip_chef: 'Chef: cook carefully, each roll in a separate container. If containers run out — immediately inform the manager, the dish is put on hold.',
+                q1: 'If the order contains a T-Bank dish, which bag do we use?',
+                q1_o1: 'Standard white',
+                q1_o2: 'Transparent branded',
+                q1_o3: 'Any available',
+                q2: 'How many cards do we put when ordering one transparent spring roll for delivery?',
+                q2_o1: 'One',
+                q2_o2: 'Two',
+                q2_o3: 'None',
+                q3: 'Can we put two spring rolls in one container?',
+                q3_o1: 'Yes, if they are small',
+                q3_o2: 'No, only one each',
+                q3_o3: 'Yes, if wrapped in film',
+                q4: 'Who checks that the chef has properly packed each dish?',
+                q4_o1: 'Courier',
+                q4_o2: 'Delivery operator and manager',
+                q4_o3: 'No one, it\'s not important',
+                q5: 'What must be told to the courier?',
+                q5_o1: 'The order is hot',
+                q5_o2: 'Drive the order carefully',
+                q5_o3: 'Need to hurry',
+                q6: 'Two different spring rolls ordered (not all 4). What do we place?',
+                q6_o1: 'Only a card',
+                q6_o2: 'Card in the transparent guest box',
+                q6_o3: 'Keychain and chopsticks',
+                q7: 'All 4 flavors + «Transparent» set ordered. What do we place?',
+                q7_o1: 'Only card and chopsticks',
+                q7_o2: 'Card, chopsticks, keychain (MSK/MO) in transparent ziplock',
+                q7_o3: 'Nothing but food',
+                q8: 'What do we do if transparent containers run out?',
+                q8_o1: 'Give in regular packaging',
+                q8_o2: 'Put the dish on hold',
+                q8_o3: 'Give without packaging',
+                q9: 'In a mixed order (has T-Bank and regular dishes), which guest box do we use?',
+                q9_o1: 'Transparent ziplock',
+                q9_o2: 'White Tanuki',
+                q9_o3: 'Any',
+                q10: 'When assembling the guest box, if there are 2 guests, how many white Tanuki chopsticks do we put?',
+                q10_o1: '1',
+                q10_o2: '2',
+                q10_o3: '0',
+                quiz_correct: '✅ Correct!',
+                quiz_wrong: '❌ Incorrect. Correct answer: "',
+                quiz_submit_retry: '🔄 Try again',
+                quiz_submit_cert: '🏆 Get certificate',
+                quiz_submit_check: 'Check',
             }
-        });
-        const nextBtn = document.getElementById('nextBtn0');
-        if (nextBtn) {
-            nextBtn.classList.remove('btn-blocked');
-            nextBtn.disabled = false;
-        }
-        updateRoleTips();
-        alert(`Отлично! Ты — ${role}. Теперь я буду давать тебе персональные советы.`);
-    }
+        };
 
-    function handleNextStep0() {
-        if (!roleSelected) {
-            alert('Пожалуйста, сначала выберите свою роль!');
-            return;
-        }
-        goToStep(1);
-    }
+        // ============================================================
+        //  СОСТОЯНИЕ
+        // ============================================================
+        let currentLang = 'ru';
+        let currentStep = 0;
+        let userRole = 'сотрудник';
+        let roleSelected = false;
+        let quizAnswered = false;
+        let selectedOptions = {};
+        const TOTAL_STEPS = 13;
 
-    function updateRoleTips() {
-        const tip = roleTips[userRole] || '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
-        document.getElementById('roleTipText2').textContent = tip;
-        document.getElementById('roleTipText4').textContent = tip;
-        document.getElementById('roleTipText7').textContent = tip;
-        document.getElementById('roleTipText9').textContent = tip;
-    }
-
-    function goToStep(step) {
-        if (step < 0 || step >= TOTAL_STEPS) return;
-        if (step === 11) {
-            quizAnswered = false;
-            renderQuiz();
-            document.getElementById('quizSubmitBtn').disabled = true;
-            document.getElementById('quizSubmitBtn').textContent = 'Проверить';
-            document.getElementById('quizSubmitBtn').onclick = function() { submitQuiz(); };
-        }
-        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-        document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
-        currentStep = step;
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function updateProgress() {
-        const pct = Math.round((currentStep / (TOTAL_STEPS - 1)) * 100);
-        document.getElementById('progressFill').style.width = pct + '%';
-        document.getElementById('progressLabel').textContent = pct + '%';
-    }
-
-    // ===== ТЕСТ =====
-    function renderQuiz() {
-        const container = document.getElementById('quizContainer');
-        let html = '';
-        quizQuestions.forEach((q, idx) => {
-            html += `<div class="card" style="margin-bottom: 20px;">
-                        <p><strong>${idx+1}. ${q.question}</strong></p>`;
-            q.options.forEach((opt, oi) => {
-                html += `<button class="quiz-option" data-q="${idx}" data-opt="${oi}" onclick="selectOption(${idx}, ${oi})">${opt}</button>`;
+        // ============================================================
+        //  ЯЗЫК
+        // ============================================================
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(el => {
+                el.classList.toggle('active', el.dataset.lang === lang);
             });
-            html += `<div id="quizFeedback${idx}" class="quiz-feedback" style="display:none;"></div>
-                    </div>`;
-        });
-        container.innerHTML = html;
-        quizAnswered = false;
-        document.getElementById('quizSubmitBtn').disabled = true;
-        quizScore = 0;
-        selectedOptions = {};
-    }
-
-    let selectedOptions = {};
-
-    function selectOption(qIdx, optIdx) {
-        if (quizAnswered) return;
-        const container = document.getElementById('quizContainer');
-        const allOpts = container.querySelectorAll(`.quiz-option[data-q="${qIdx}"]`);
-        allOpts.forEach(el => {
-            el.classList.remove('selected', 'correct', 'wrong', 'disabled');
-        });
-        const chosen = container.querySelector(`.quiz-option[data-q="${qIdx}"][data-opt="${optIdx}"]`);
-        chosen.classList.add('selected', 'disabled');
-        selectedOptions[qIdx] = optIdx;
-        const total = quizQuestions.length;
-        let answered = 0;
-        for (let i = 0; i < total; i++) {
-            if (selectedOptions[i] !== undefined) answered++;
+            // обновить все тексты
+            applyTranslations();
+            // обновить кнопки ролей (текст)
+            updateRoleButtons();
+            // обновить подсказки ролей
+            updateRoleTips();
+            // перерисовать квиз
+            if (currentStep === 11) {
+                renderQuiz();
+            }
+            // обновить сертификат
+            const certName = document.getElementById('certName');
+            if (certName) {
+                certName.textContent = t('cert_employee');
+            }
         }
-        document.getElementById('quizSubmitBtn').disabled = (answered < total);
-    }
 
-    function submitQuiz() {
-        if (quizAnswered) return;
-        const total = quizQuestions.length;
-        let correct = 0;
-        const container = document.getElementById('quizContainer');
-        for (let i = 0; i < total; i++) {
-            const selected = selectedOptions[i];
-            const q = quizQuestions[i];
-            const feedback = document.getElementById(`quizFeedback${i}`);
-            const options = container.querySelectorAll(`.quiz-option[data-q="${i}"]`);
-            options.forEach((el, idx) => {
-                el.classList.add('disabled');
-                el.classList.remove('selected');
-                if (idx === q.correct) {
-                    el.classList.add('correct');
-                } else if (idx === selected && selected !== q.correct) {
-                    el.classList.add('wrong');
+        function t(key) {
+            const langData = translations[currentLang] || translations.ru;
+            return langData[key] || key;
+        }
+
+        function applyTranslations() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.dataset.i18n;
+                const val = t(key);
+                if (val && val !== key) {
+                    // если содержит HTML, используем innerHTML
+                    el.innerHTML = val;
+                } else if (val) {
+                    el.textContent = val;
                 }
             });
-            if (selected === q.correct) {
-                correct++;
-                feedback.style.display = 'block';
-                feedback.className = 'quiz-feedback success';
-                feedback.textContent = '✅ Верно!';
-            } else {
-                feedback.style.display = 'block';
-                feedback.className = 'quiz-feedback error';
-                feedback.textContent = `❌ Неверно. Правильный ответ: "${q.options[q.correct]}"`;
+            // кнопки навигации обновляем через data-i18n уже есть
+            // обновляем заголовок сертификата и т.д.
+            const certName = document.getElementById('certName');
+            if (certName) {
+                certName.textContent = t('cert_employee');
+            }
+            // обновить текст кнопки "Проверить" и т.д.
+            const submitBtn = document.getElementById('quizSubmitBtn');
+            if (submitBtn) {
+                if (quizAnswered) {
+                    const allCorrect = checkAllCorrect();
+                    if (allCorrect) {
+                        submitBtn.textContent = t('quiz_submit_cert');
+                    } else {
+                        submitBtn.textContent = t('quiz_submit_retry');
+                    }
+                } else {
+                    submitBtn.textContent = t('btn_check');
+                }
             }
         }
-        quizAnswered = true;
-        document.getElementById('quizSubmitBtn').disabled = true;
-        quizScore = correct;
-        const submitBtn = document.getElementById('quizSubmitBtn');
-        if (correct === total) {
-            submitBtn.textContent = '🏆 Получить сертификат';
-            submitBtn.onclick = function() {
-                goToStep(12);
-                document.getElementById('certName').textContent = userRole === 'сотрудник' ? 'Сотрудник' : userRole;
+
+        function updateRoleButtons() {
+            const roleMap = {
+                'оператор доставки': 'role_delivery',
+                'курьер': 'role_courier',
+                'менеджер': 'role_manager',
+                'повар': 'role_chef',
             };
-            submitBtn.disabled = false;
-        } else {
-            submitBtn.textContent = '🔄 Попробовать снова';
-            submitBtn.onclick = function() {
-                resetQuiz();
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                const text = btn.textContent.trim();
+                // ищем соответствие
+                for (const [key, transKey] of Object.entries(roleMap)) {
+                    if (text.includes(key) || text.includes(t(transKey))) {
+                        // не меняем текст, если это не роль
+                        const newText = t(transKey);
+                        if (newText && newText !== transKey) {
+                            btn.textContent = newText;
+                        }
+                        break;
+                    }
+                }
+            });
+        }
+
+        function updateRoleTips() {
+            const tipKeyMap = {
+                'оператор доставки': 'roleTip_delivery',
+                'курьер': 'roleTip_courier',
+                'менеджер': 'roleTip_manager',
+                'повар': 'roleTip_chef',
             };
-            submitBtn.disabled = false;
+            let tipText = t('role_tip_default');
+            const tipKey = tipKeyMap[userRole];
+            if (tipKey) {
+                const val = t(tipKey);
+                if (val && val !== tipKey) {
+                    tipText = val;
+                }
+            }
+            // обновляем все roleTipText
+            ['roleTipText2', 'roleTipText4', 'roleTipText7', 'roleTipText9'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = tipText;
+                }
+            });
         }
-    }
 
-    function resetQuiz() {
-        selectedOptions = {};
-        quizAnswered = false;
-        document.getElementById('quizSubmitBtn').disabled = true;
-        document.getElementById('quizSubmitBtn').textContent = 'Проверить';
-        document.getElementById('quizSubmitBtn').onclick = function() { submitQuiz(); };
-        renderQuiz();
-        document.querySelectorAll('.quiz-feedback').forEach(el => {
-            el.style.display = 'none';
+        // ============================================================
+        //  РОЛИ
+        // ============================================================
+        function selectRole(role) {
+            userRole = role;
+            roleSelected = true;
+            document.querySelectorAll('.btn-primary').forEach(b => {
+                const txt = b.textContent.trim();
+                const isRole = txt.includes('Оператор') || txt.includes('Курьер') || txt.includes('Менеджер') || txt.includes('Повар') ||
+                    txt.includes('Operator') || txt.includes('Courier') || txt.includes('Manager') || txt.includes('Chef') ||
+                    txt.includes('оператор') || txt.includes('курьер') || txt.includes('менеджер') || txt.includes('повар') ||
+                    txt.includes('жеткирүү') || txt.includes('ошпаз') || txt.includes('yetkazib') || txt.includes('rasoni') ||
+                    txt.includes('оператори');
+                if (isRole) {
+                    b.style.background = b.textContent.includes(t('role_delivery').slice(0, 5)) ? '#feda00' : '';
+                    b.style.color = b.textContent.includes(t('role_delivery').slice(0, 5)) ? '#000' : '';
+                }
+            });
+            const nextBtn = document.getElementById('nextBtn0');
+            if (nextBtn) {
+                nextBtn.classList.remove('btn-blocked');
+                nextBtn.disabled = false;
+            }
+            updateRoleTips();
+            // Показываем уведомление на выбранном языке
+            const msg = t('step0_card2_sub') + ' ' + t('role_delivery').replace('📦', '').trim();
+            alert('✅ ' + t('role_delivery').replace('📦', '').trim() + ' — ' + t('role_tip_default').replace('Выбери роль, чтобы увидеть совет.', ''));
+        }
+
+        function handleNextStep0() {
+            if (!roleSelected) {
+                alert(t('role_tip_default'));
+                return;
+            }
+            goToStep(1);
+        }
+
+        // ============================================================
+        //  НАВИГАЦИЯ
+        // ============================================================
+        function goToStep(step) {
+            if (step < 0 || step >= TOTAL_STEPS) return;
+            if (step === 11) {
+                quizAnswered = false;
+                selectedOptions = {};
+                renderQuiz();
+                const submitBtn = document.getElementById('quizSubmitBtn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = t('btn_check');
+                submitBtn.onclick = function() { submitQuiz(); };
+            }
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            const target = document.querySelector(`.step[data-step="${step}"]`);
+            if (target) target.classList.add('active');
+            currentStep = step;
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // применить переводы после переключения
+            applyTranslations();
+            updateRoleTips();
+        }
+
+        function updateProgress() {
+            const pct = Math.round((currentStep / (TOTAL_STEPS - 1)) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = pct + '%';
+        }
+
+        // ============================================================
+        //  КВИЗ
+        // ============================================================
+        const quizKeys = [
+            { q: 'q1', o: ['q1_o1', 'q1_o2', 'q1_o3'], correct: 1 },
+            { q: 'q2', o: ['q2_o1', 'q2_o2', 'q2_o3'], correct: 0 },
+            { q: 'q3', o: ['q3_o1', 'q3_o2', 'q3_o3'], correct: 1 },
+            { q: 'q4', o: ['q4_o1', 'q4_o2', 'q4_o3'], correct: 1 },
+            { q: 'q5', o: ['q5_o1', 'q5_o2', 'q5_o3'], correct: 1 },
+            { q: 'q6', o: ['q6_o1', 'q6_o2', 'q6_o3'], correct: 1 },
+            { q: 'q7', o: ['q7_o1', 'q7_o2', 'q7_o3'], correct: 1 },
+            { q: 'q8', o: ['q8_o1', 'q8_o2', 'q8_o3'], correct: 1 },
+            { q: 'q9', o: ['q9_o1', 'q9_o2', 'q9_o3'], correct: 0 },
+            { q: 'q10', o: ['q10_o1', 'q10_o2', 'q10_o3'], correct: 1 },
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            let html = '';
+            quizKeys.forEach((item, idx) => {
+                const qText = t(item.q);
+                const opts = item.o.map(k => t(k));
+                html += `<div class="card" style="margin-bottom:20px;">
+                            <p><strong>${idx+1}. ${qText}</strong></p>`;
+                opts.forEach((opt, oi) => {
+                    html += `<button class="quiz-option" data-q="${idx}" data-opt="${oi}" onclick="selectOption(${idx}, ${oi})">${opt}</button>`;
+                });
+                html += `<div id="quizFeedback${idx}" class="quiz-feedback" style="display:none;"></div>
+                        </div>`;
+            });
+            container.innerHTML = html;
+            quizAnswered = false;
+            selectedOptions = {};
+            const submitBtn = document.getElementById('quizSubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = t('btn_check');
+            submitBtn.onclick = function() { submitQuiz(); };
+        }
+
+        function selectOption(qIdx, optIdx) {
+            if (quizAnswered) return;
+            const container = document.getElementById('quizContainer');
+            const allOpts = container.querySelectorAll(`.quiz-option[data-q="${qIdx}"]`);
+            allOpts.forEach(el => {
+                el.classList.remove('selected', 'correct', 'wrong', 'disabled');
+            });
+            const chosen = container.querySelector(`.quiz-option[data-q="${qIdx}"][data-opt="${optIdx}"]`);
+            if (chosen) {
+                chosen.classList.add('selected', 'disabled');
+            }
+            selectedOptions[qIdx] = optIdx;
+            const total = quizKeys.length;
+            let answered = 0;
+            for (let i = 0; i < total; i++) {
+                if (selectedOptions[i] !== undefined) answered++;
+            }
+            document.getElementById('quizSubmitBtn').disabled = (answered < total);
+        }
+
+        function checkAllCorrect() {
+            let correct = 0;
+            for (let i = 0; i < quizKeys.length; i++) {
+                if (selectedOptions[i] === quizKeys[i].correct) correct++;
+            }
+            return correct === quizKeys.length;
+        }
+
+        function submitQuiz() {
+            if (quizAnswered) return;
+            const total = quizKeys.length;
+            let correct = 0;
+            const container = document.getElementById('quizContainer');
+            for (let i = 0; i < total; i++) {
+                const selected = selectedOptions[i];
+                const qData = quizKeys[i];
+                const feedback = document.getElementById(`quizFeedback${i}`);
+                const options = container.querySelectorAll(`.quiz-option[data-q="${i}"]`);
+                options.forEach((el, idx) => {
+                    el.classList.add('disabled');
+                    el.classList.remove('selected');
+                    if (idx === qData.correct) {
+                        el.classList.add('correct');
+                    } else if (idx === selected && selected !== qData.correct) {
+                        el.classList.add('wrong');
+                    }
+                });
+                if (selected === qData.correct) {
+                    correct++;
+                    feedback.style.display = 'block';
+                    feedback.className = 'quiz-feedback success';
+                    feedback.textContent = t('quiz_correct');
+                } else {
+                    feedback.style.display = 'block';
+                    feedback.className = 'quiz-feedback error';
+                    const correctAnswer = t(qData.o[qData.correct]);
+                    feedback.textContent = t('quiz_wrong') + correctAnswer + '"';
+                }
+            }
+            quizAnswered = true;
+            const submitBtn = document.getElementById('quizSubmitBtn');
+            submitBtn.disabled = true;
+            if (correct === total) {
+                submitBtn.textContent = t('quiz_submit_cert');
+                submitBtn.onclick = function() {
+                    goToStep(12);
+                    document.getElementById('certName').textContent = userRole === 'сотрудник' ? t('cert_employee') : userRole;
+                };
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.textContent = t('quiz_submit_retry');
+                submitBtn.onclick = function() {
+                    resetQuiz();
+                };
+                submitBtn.disabled = false;
+            }
+        }
+
+        function resetQuiz() {
+            selectedOptions = {};
+            quizAnswered = false;
+            document.getElementById('quizSubmitBtn').disabled = true;
+            document.getElementById('quizSubmitBtn').textContent = t('btn_check');
+            document.getElementById('quizSubmitBtn').onclick = function() { submitQuiz(); };
+            renderQuiz();
+            document.querySelectorAll('.quiz-feedback').forEach(el => {
+                el.style.display = 'none';
+            });
+            applyTranslations();
+        }
+
+        function resetCourse() {
+            selectedOptions = {};
+            quizAnswered = false;
+            userRole = 'сотрудник';
+            roleSelected = false;
+            const nextBtn = document.getElementById('nextBtn0');
+            if (nextBtn) {
+                nextBtn.classList.add('btn-blocked');
+                nextBtn.disabled = true;
+            }
+            goToStep(0);
+            updateRoleTips();
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('progressLabel').textContent = '0%';
+            document.querySelectorAll('.btn-primary').forEach(b => {
+                b.style.background = '';
+                b.style.color = '';
+            });
+            document.getElementById('certName').textContent = t('cert_employee');
+            resetQuiz();
+            const submitBtn = document.getElementById('quizSubmitBtn');
+            submitBtn.textContent = t('btn_check');
+            submitBtn.onclick = function() { submitQuiz(); };
+            submitBtn.disabled = true;
+            applyTranslations();
+        }
+
+        // ============================================================
+        //  МОДАЛЬНОЕ ОКНО
+        // ============================================================
+        function openModal(src) {
+            const overlay = document.getElementById('modalOverlay');
+            const img = document.getElementById('modalImage');
+            img.src = src;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event) event.stopPropagation();
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal(e);
         });
-    }
 
-    function resetCourse() {
-        selectedOptions = {};
-        quizAnswered = false;
-        userRole = 'сотрудник';
-        roleSelected = false;
-        const nextBtn = document.getElementById('nextBtn0');
-        if (nextBtn) {
-            nextBtn.classList.add('btn-blocked');
-            nextBtn.disabled = true;
-        }
-        goToStep(0);
-        updateRoleTips();
-        document.getElementById('progressFill').style.width = '0%';
-        document.getElementById('progressLabel').textContent = '0%';
-        document.querySelectorAll('.btn-primary').forEach(b => {
-            b.style.background = '';
-            b.style.color = '';
-        });
-        document.getElementById('certName').textContent = 'Сотрудник';
-        resetQuiz();
-        const submitBtn = document.getElementById('quizSubmitBtn');
-        submitBtn.textContent = 'Проверить';
-        submitBtn.onclick = function() { submitQuiz(); };
-        submitBtn.disabled = true;
-    }
-
-    // ===== МОДАЛЬНОЕ ОКНО =====
-    function openModal(src) {
-        const overlay = document.getElementById('modalOverlay');
-        const img = document.getElementById('modalImage');
-        img.src = src;
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(event) {
-        if (event) event.stopPropagation();
-        const overlay = document.getElementById('modalOverlay');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal(e);
-        }
-    });
-
-    window.onload = function() {
-        const nextBtn = document.getElementById('nextBtn0');
-        if (nextBtn) {
-            nextBtn.classList.add('btn-blocked');
-            nextBtn.disabled = true;
-        }
-        updateRoleTips();
-        renderQuiz();
-        updateProgress();
-        document.getElementById('roleTipText2').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
-        document.getElementById('roleTipText4').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
-        document.getElementById('roleTipText7').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
-        document.getElementById('roleTipText9').textContent = '👀 Выбери свою роль в первом шаге, чтобы получить персональный совет.';
-    };
-</script>
+        // ============================================================
+        //  INIT
+        // ============================================================
+        window.onload = function() {
+            const nextBtn = document.getElementById('nextBtn0');
+            if (nextBtn) {
+                nextBtn.classList.add('btn-blocked');
+                nextBtn.disabled = true;
+            }
+            // установить язык по умолчанию
+            setLanguage('ru');
+            renderQuiz();
+            updateProgress();
+            updateRoleTips();
+            // подсказки
+            const defaultTip = t('role_tip_default');
+            document.getElementById('roleTipText2').innerHTML = defaultTip;
+            document.getElementById('roleTipText4').innerHTML = defaultTip;
+            document.getElementById('roleTipText7').innerHTML = defaultTip;
+            document.getElementById('roleTipText9').innerHTML = defaultTip;
+            // обновить все
+            applyTranslations();
+        };
+    </script>
 </body>
 </html>
