@@ -514,10 +514,10 @@
             <div class="card">
                 <p><span class="icon">🎯</span> <strong data-i18n="step0_card2_title">Кто ты?</strong> <span data-i18n="step0_card2_sub">Выбери свою роль, чтобы я подсказывал тебе самое важное.</span></p>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-                    <button class="btn btn-primary" onclick="selectRole('оператор доставки')" data-i18n="role_delivery">📦 Оператор доставки</button>
-                    <button class="btn btn-primary" onclick="selectRole('курьер')" data-i18n="role_courier">🚴 Курьер</button>
-                    <button class="btn btn-primary" onclick="selectRole('менеджер')" data-i18n="role_manager">📋 Менеджер</button>
-                    <button class="btn btn-primary" onclick="selectRole('повар')" data-i18n="role_chef">👨‍🍳 Повар</button>
+                    <button class="btn btn-primary role-btn" data-role="оператор доставки" onclick="selectRole('оператор доставки')" data-i18n="role_delivery">📦 Оператор доставки</button>
+                    <button class="btn btn-primary role-btn" data-role="курьер" onclick="selectRole('курьер')" data-i18n="role_courier">🚴 Курьер</button>
+                    <button class="btn btn-primary role-btn" data-role="менеджер" onclick="selectRole('менеджер')" data-i18n="role_manager">📋 Менеджер</button>
+                    <button class="btn btn-primary role-btn" data-role="повар" onclick="selectRole('повар')" data-i18n="role_chef">👨‍🍳 Повар</button>
                 </div>
                 <p style="margin-top: 12px; font-size: 0.9rem; color: #555;" data-i18n="step0_card2_hint">(выбери и нажми далее, чтобы увидеть персональные подсказки)</p>
             </div>
@@ -819,6 +819,31 @@
         <button class="modal-close" onclick="closeModal(event)" data-i18n="modal_close">✕</button>
         <img id="modalImage" src="" alt="Увеличенное фото" />
     </div>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() { (m[i].a = m[i].a || []).push(arguments); };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=109961198', 'ym');
+
+        ym(109961198, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/109961198" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Яндекс.Метрика -->
 
     <script>
         // ============================================================
@@ -1766,17 +1791,13 @@
             document.querySelectorAll('.lang-btn').forEach(el => {
                 el.classList.toggle('active', el.dataset.lang === lang);
             });
-            // обновить все тексты
             applyTranslations();
-            // обновить кнопки ролей (текст)
             updateRoleButtons();
-            // обновить подсказки ролей
             updateRoleTips();
-            // перерисовать квиз
+            highlightSelectedRole();
             if (currentStep === 11) {
                 renderQuiz();
             }
-            // обновить сертификат
             const certName = document.getElementById('certName');
             if (certName) {
                 certName.textContent = t('cert_employee');
@@ -1794,19 +1815,15 @@
                 const key = el.dataset.i18n;
                 const val = t(key);
                 if (val && val !== key) {
-                    // если содержит HTML, используем innerHTML
                     el.innerHTML = val;
                 } else if (val) {
                     el.textContent = val;
                 }
             });
-            // кнопки навигации обновляем через data-i18n уже есть
-            // обновляем заголовок сертификата и т.д.
             const certName = document.getElementById('certName');
             if (certName) {
                 certName.textContent = t('cert_employee');
             }
-            // обновить текст кнопки "Проверить" и т.д.
             const submitBtn = document.getElementById('quizSubmitBtn');
             if (submitBtn) {
                 if (quizAnswered) {
@@ -1829,18 +1846,24 @@
                 'менеджер': 'role_manager',
                 'повар': 'role_chef',
             };
-            document.querySelectorAll('.btn-primary').forEach(btn => {
-                const text = btn.textContent.trim();
-                // ищем соответствие
-                for (const [key, transKey] of Object.entries(roleMap)) {
-                    if (text.includes(key) || text.includes(t(transKey))) {
-                        // не меняем текст, если это не роль
-                        const newText = t(transKey);
-                        if (newText && newText !== transKey) {
-                            btn.textContent = newText;
-                        }
-                        break;
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                const roleKey = btn.dataset.role;
+                if (roleKey && roleMap[roleKey]) {
+                    const newText = t(roleMap[roleKey]);
+                    if (newText && newText !== roleMap[roleKey]) {
+                        btn.textContent = newText;
                     }
+                }
+            });
+        }
+
+        function highlightSelectedRole() {
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.style.background = '';
+                btn.style.color = '';
+                if (btn.dataset.role === userRole) {
+                    btn.style.background = '#feda00';
+                    btn.style.color = '#000';
                 }
             });
         }
@@ -1860,7 +1883,6 @@
                     tipText = val;
                 }
             }
-            // обновляем все roleTipText
             ['roleTipText2', 'roleTipText4', 'roleTipText7', 'roleTipText9'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
@@ -1875,27 +1897,23 @@
         function selectRole(role) {
             userRole = role;
             roleSelected = true;
-            document.querySelectorAll('.btn-primary').forEach(b => {
-                const txt = b.textContent.trim();
-                const isRole = txt.includes('Оператор') || txt.includes('Курьер') || txt.includes('Менеджер') || txt.includes('Повар') ||
-                    txt.includes('Operator') || txt.includes('Courier') || txt.includes('Manager') || txt.includes('Chef') ||
-                    txt.includes('оператор') || txt.includes('курьер') || txt.includes('менеджер') || txt.includes('повар') ||
-                    txt.includes('жеткирүү') || txt.includes('ошпаз') || txt.includes('yetkazib') || txt.includes('rasoni') ||
-                    txt.includes('оператори');
-                if (isRole) {
-                    b.style.background = b.textContent.includes(t('role_delivery').slice(0, 5)) ? '#feda00' : '';
-                    b.style.color = b.textContent.includes(t('role_delivery').slice(0, 5)) ? '#000' : '';
-                }
-            });
+            highlightSelectedRole();
             const nextBtn = document.getElementById('nextBtn0');
             if (nextBtn) {
                 nextBtn.classList.remove('btn-blocked');
                 nextBtn.disabled = false;
             }
             updateRoleTips();
-            // Показываем уведомление на выбранном языке
-            const msg = t('step0_card2_sub') + ' ' + t('role_delivery').replace('📦', '').trim();
-            alert('✅ ' + t('role_delivery').replace('📦', '').trim() + ' — ' + t('role_tip_default').replace('Выбери роль, чтобы увидеть совет.', ''));
+            // Показываем корректное подтверждение
+            const roleKeyMap = {
+                'оператор доставки': 'role_delivery',
+                'курьер': 'role_courier',
+                'менеджер': 'role_manager',
+                'повар': 'role_chef',
+            };
+            const roleTrans = t(roleKeyMap[role]);
+            const msg = '✅ ' + roleTrans + ' — ' + t('role_tip_default');
+            alert(msg);
         }
 
         function handleNextStep0() {
@@ -1926,9 +1944,9 @@
             currentStep = step;
             updateProgress();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // применить переводы после переключения
             applyTranslations();
             updateRoleTips();
+            highlightSelectedRole();
         }
 
         function updateProgress() {
@@ -2081,10 +2099,7 @@
             updateRoleTips();
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('progressLabel').textContent = '0%';
-            document.querySelectorAll('.btn-primary').forEach(b => {
-                b.style.background = '';
-                b.style.color = '';
-            });
+            highlightSelectedRole();
             document.getElementById('certName').textContent = t('cert_employee');
             resetQuiz();
             const submitBtn = document.getElementById('quizSubmitBtn');
@@ -2125,19 +2140,17 @@
                 nextBtn.classList.add('btn-blocked');
                 nextBtn.disabled = true;
             }
-            // установить язык по умолчанию
             setLanguage('ru');
             renderQuiz();
             updateProgress();
             updateRoleTips();
-            // подсказки
             const defaultTip = t('role_tip_default');
             document.getElementById('roleTipText2').innerHTML = defaultTip;
             document.getElementById('roleTipText4').innerHTML = defaultTip;
             document.getElementById('roleTipText7').innerHTML = defaultTip;
             document.getElementById('roleTipText9').innerHTML = defaultTip;
-            // обновить все
             applyTranslations();
+            highlightSelectedRole();
         };
     </script>
 </body>
